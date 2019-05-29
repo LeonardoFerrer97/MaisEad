@@ -6,17 +6,11 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\" />
-    <Folder Include="Business\" />
-    <Folder Include="Repository\" />
-    <Folder Include="Utils\" />
-    <Folder Include="Entity\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
-    <PackageReference Include="SwashBuckle.AspNetCore.MicrosoftExtensions" Version="0.5.0" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="4.0.1" />
   </ItemGroup>
 
 </Project>

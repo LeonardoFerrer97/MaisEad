@@ -10,9 +10,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Swashbuckle.AspNetCore.Swagger;
 
-namespace MaisEad
+namespace MaisEad.Business
 {
     public class Startup
     {
@@ -26,27 +25,7 @@ namespace MaisEad
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1",
-                    new Info
-                    {
-                        Title = "MaisEad",
-                        Version = "v1",
-                        Description = "API de Serviços do MaisEad"
-                    });
-
-                c.AddSecurityDefinition("Bearer", new ApiKeyScheme
-                {
-                    Description = "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
-                    Name = "Authorization",
-                    In = "header",
-                    Type = "apiKey"
-                });
-            });
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -60,21 +39,7 @@ namespace MaisEad
             {
                 app.UseHsts();
             }
-            app.UseSwagger();
 
-            app.UseCors(builder => builder
-                .AllowAnyOrigin()
-                .AllowAnyMethod()
-                .AllowAnyHeader()
-                .AllowCredentials()
-                );
-
-            const string swagger = "/swagger/v1/swagger.json";
-
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint(swagger, $"MaisEad");
-            });
             app.UseHttpsRedirection();
             app.UseMvc();
         }

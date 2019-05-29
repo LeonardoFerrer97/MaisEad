@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace MaisEad.Controllers
+namespace MaisEad.Business.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -14,7 +14,7 @@ namespace MaisEad.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
-            return new string[] { "PUC MINAS EAD", "UFMG EAD" };
+            return new string[] { "value1", "value2" };
         }
 
         // GET api/values/5
