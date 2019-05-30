@@ -8,7 +8,7 @@ export default class Routes extends Component {
 		return (
 			<Router history={history}>
 				<Switch>
-					<Route exact path="/" render={(props) => <DefaultView {...props}/>} />
+					<Route exact path="/" render={(props) => <DefaultView {...props} path='Home'/>} />
 				</Switch>
 			</Router>
 		);

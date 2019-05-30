@@ -1,7 +1,12 @@
 import React,{Component} from 'react';
-import {obterListaEad} from '../../actions/index'
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+import {obterListaEad,obterEadSucesso} from '../../actions/index'
+import Home from './Home';
+import AppEadBar from '../../components/AppEadBar/AppEadBar'
 
-export default class Routes extends Component {
+
+class DefaultView extends Component {
     constructor(props){
         super(props);
         this.state={
@@ -9,13 +14,23 @@ export default class Routes extends Component {
         }
     }
     componentDidMount(){
-        obterListaEad(this.successHandler,()=>{});
+        this.props.obterListaEad(this.successHandler,(error)=>{console.log(error)});
     }
     successHandler = (lista) =>{
-        console.log(lista)
-        this.setState({lista})
+        this.props.obterEadSucesso(lista)
     }
     render() {
-        return (<div><h1> Portal do Tico e do Leo</h1>{this.state.lista[1]}</div>)
+        if(this.props.path==='Home'){
+            return (<div>
+                <AppEadBar />
+                <Home />
+            </div>)
+        }
     }
 }
+
+function mapDispatchToProps(dispatch){
+    return bindActionCreators({obterListaEad,obterEadSucesso},dispatch)
+}
+
+export default connect(null,mapDispatchToProps)(DefaultView)
