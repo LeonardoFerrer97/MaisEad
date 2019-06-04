@@ -6,10 +6,6 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\" />
-    <Folder Include="Business\" />
-    <Folder Include="Repository\" />
-    <Folder Include="Utils\" />
-    <Folder Include="Entity\" />
   </ItemGroup>
 
   <ItemGroup>

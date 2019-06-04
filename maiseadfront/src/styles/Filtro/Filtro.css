@@ -1,0 +1,17 @@
+.titulo-filtro{
+    color: #910000;
+    height:67px;
+    display: flex;
+    flex-grow: 0.5;
+    flex-direction: column
+}
+
+.body{
+    background-color: darkgrey;
+    display: flex;
+    flex-direction: column;
+    margin-top:25vh;
+    margin-right: 10vw;
+    margin-left:10vw;
+    box-shadow: 0 0 10px rgba(0,0,0,.5);
+}
