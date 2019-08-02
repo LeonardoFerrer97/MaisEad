@@ -4,4 +4,14 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="MySql.Data" Version="8.0.17" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Database\" />
+    <Folder Include="FaculdadeRepository\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MaisEad.Entity\MaisEad.Entity.csproj" />
+  </ItemGroup>
 </Project>

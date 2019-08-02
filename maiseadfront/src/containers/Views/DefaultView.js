@@ -3,6 +3,7 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {obterListaEad,obterEadSucesso} from '../../actions/index'
 import Home from './Home';
+import EaDs from './EaDs';
 import AppEadBar from '../../components/AppEadBar/AppEadBar'
 
 
@@ -20,12 +21,19 @@ class DefaultView extends Component {
         this.props.obterEadSucesso(lista)
     }
     render() {
+        if(this.props.path==='EaDs'){
+            return (<div>
+                <AppEadBar />
+                <EaDs />
+            </div>)
+        }
         if(this.props.path==='Home'){
             return (<div>
                 <AppEadBar />
                 <Home />
             </div>)
         }
+
     }
 }
 

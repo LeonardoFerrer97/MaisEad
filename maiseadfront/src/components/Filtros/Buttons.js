@@ -2,6 +2,7 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import '../../styles/Filtro/buttons.css';
+import { Link } from 'react-router-dom'
 
 const styles = () => ({
     RootPesquisaAvancada:{
@@ -21,9 +22,11 @@ function Buttons(props) {
       <Button classes={{root:classes.RootPesquisaAvancada}}>
         Pesquisa Avançada
       </Button>
-      <Button color="primary" classes={{root:classes.button}}>
-        Pesquisar
-      </Button>
+      <Link to={'/EaDs'} >
+        <Button color="primary" classes={{root:classes.button}}>
+          Pesquisar
+        </Button>
+      </Link>
     </div>
   );
 }

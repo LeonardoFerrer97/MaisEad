@@ -4,4 +4,13 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="FaculdadeBusiness\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MaisEad.Repository\MaisEad.Repository.csproj" />
+    <ProjectReference Include="..\MaisEad.Entity\MaisEad.Entity.csproj" />
+    <ProjectReference Include="..\MaisEad.Utils\MaisEad.Utils.csproj" />
+    <ProjectReference Include="..\MaisEad.Dto\MaisEad.Dto.csproj" />
+  </ItemGroup>
 </Project>
