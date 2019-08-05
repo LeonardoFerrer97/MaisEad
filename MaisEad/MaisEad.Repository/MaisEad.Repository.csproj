@@ -13,5 +13,9 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MaisEad.Entity\MaisEad.Entity.csproj" />
+    <ProjectReference Include="..\MaisEad.Utils\MaisEad.Utils.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Class1.cs" />
   </ItemGroup>
 </Project>

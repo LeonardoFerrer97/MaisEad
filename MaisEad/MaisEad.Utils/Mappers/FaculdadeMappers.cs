@@ -29,5 +29,29 @@ namespace MaisEad.Utils.Mappers
             }
             return dtos;
         }
+
+        public Faculdade DtoToEntity(FaculdadeDto faculdade)
+        {
+            return new Faculdade()
+            {
+                Id = faculdade.Id,
+                Nome = faculdade.Nome,
+                Endereco = faculdade.Endereco,
+                NotaMec = faculdade.NotaMec,
+            };
+
+        }
+
+        public List<Faculdade> ListDtoToListEntity(List<FaculdadeDto> faculdade)
+        {
+            List<Faculdade> dtos = new List<Faculdade>();
+            foreach (var facul in faculdade)
+            {
+                dtos.Add(DtoToEntity(facul));
+
+            }
+            return dtos;
+        }
+
     }
 }

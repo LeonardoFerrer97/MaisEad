@@ -12,37 +12,43 @@ namespace MaisEad.Controllers
     [ApiController]
     public class FaculdadeController : ControllerBase
     {
-        FaculdadeBusiness faculdadeBusiness = new FaculdadeBusiness();
-        // GET api/values
+        private readonly FaculdadeBusiness faculdadeBusiness = new FaculdadeBusiness();
+
         [HttpGet]
         public ActionResult<IEnumerable<FaculdadeDto>> Get()
         {
-            return faculdadeBusiness.getAllFaculdade();
+            return faculdadeBusiness.GetAllFaculdade();
         }
 
-        // GET api/values/5
+
         [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        public ActionResult<FaculdadeDto> Get(int id)
         {
-            return "value";
+            return faculdadeBusiness.GetFaculdadeById(id);
         }
 
-        // POST api/values
+        [HttpGet("/nome/{nome}")]
+        public ActionResult<FaculdadeDto> GetByNome(string nome)
+        {
+            return faculdadeBusiness.GetFaculdadeByNome(nome);
+        }
+
         [HttpPost]
-        public void Post([FromBody] string value)
+        public ActionResult<int> Post([FromBody] FaculdadeDto faculdade)
         {
+            return faculdadeBusiness.InsertFaculdade(faculdade);
         }
 
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut()]
+        public ActionResult<int> Put([FromBody]FaculdadeDto faculdade)
         {
+            return faculdadeBusiness.UpdateFaculdadeById(faculdade);
         }
 
-        // DELETE api/values/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public ActionResult<int> Delete(int id)
         {
+            return faculdadeBusiness.DeleteFaculdadeById(id);
         }
     }
 }
