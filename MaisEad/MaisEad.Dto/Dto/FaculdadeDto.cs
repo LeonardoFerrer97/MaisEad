@@ -10,6 +10,5 @@ namespace MaisEad.Dto.Dto
         public string Nome { get; set; }
         public string Endereco { get; set; }
         public int NotaMec { get; set; }
-        public List<CursoDto> Cursos { get; set; }
     }
 }

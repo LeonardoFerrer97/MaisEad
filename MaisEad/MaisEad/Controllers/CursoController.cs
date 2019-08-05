@@ -10,18 +10,18 @@ namespace MaisEad.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class FaculdadeController : ControllerBase
+    public class CursoController : ControllerBase
     {
-        private readonly FaculdadeBusiness faculdadeBusiness = new FaculdadeBusiness();
+        private readonly CursoBusiness cursoBusiness = new CursoBusiness();
 
         [HttpGet]
-        public ActionResult<IEnumerable<FaculdadeDto>> Get()
+        public ActionResult<IEnumerable<CursoDto>> Get()
         {
-            return faculdadeBusiness.GetAllFaculdade();
+            return cursoBusiness.GetAllCursos();
         }
 
 
-        [HttpGet("{id}")]
+        /*[HttpGet("{id}")]
         public ActionResult<FaculdadeDto> Get(int id)
         {
             return faculdadeBusiness.GetFaculdadeById(id);
@@ -49,6 +49,6 @@ namespace MaisEad.Controllers
         public ActionResult<int> Delete(int id)
         {
             return faculdadeBusiness.DeleteFaculdadeById(id);
-        }
+        }*/
     }
 }

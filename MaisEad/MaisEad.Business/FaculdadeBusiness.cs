@@ -5,7 +5,7 @@ using MaisEad.Entity.Entity;
 using MaisEad.Repository.FaculdadeRepository;
 using MaisEad.Utils.Mappers;
 
-namespace MaisEad.Business.FaculdadeBusiness
+namespace MaisEad.Business
 {
     public class FaculdadeBusiness
     {

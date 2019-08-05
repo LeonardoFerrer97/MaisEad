@@ -11,5 +11,7 @@ namespace MaisEad.Entity.Entity
         public string Nome { get; set; }
         public string PontoApoio { get; set; }
         public string Mensalidade { get; set; }
+        public AvaliacaoUsuario AvaliacaoUsuario { get; set; }
+        public Comentario Comentario { get; set; }
     }
 }

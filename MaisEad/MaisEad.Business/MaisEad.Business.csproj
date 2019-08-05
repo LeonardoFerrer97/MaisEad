@@ -5,9 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="FaculdadeBusiness\" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\MaisEad.Repository\MaisEad.Repository.csproj" />
     <ProjectReference Include="..\MaisEad.Entity\MaisEad.Entity.csproj" />
     <ProjectReference Include="..\MaisEad.Utils\MaisEad.Utils.csproj" />

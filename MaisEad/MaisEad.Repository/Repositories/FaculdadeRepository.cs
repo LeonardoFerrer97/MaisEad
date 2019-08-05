@@ -27,7 +27,10 @@ namespace MaisEad.Repository.FaculdadeRepository
                 {
                     faculdades.Add(new Faculdade()
                     {
-                        Nome = reader.GetString(1)
+                        Id = reader.GetInt32(0),
+                        Nome = reader.GetString(1),
+                        Endereco = reader.GetString(2),
+                        NotaMec = reader.GetInt32(3)
 
                     });
                 }

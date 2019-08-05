@@ -4,6 +4,7 @@ namespace MaisEad.Dto.Dto
     public class CursoDto
     {
         public int Id { get; set; }
+        public FaculdadeDto Faculdade { get; set; }
         public ComentarioDto Comentario { get; set; }
         public AvaliacaoUsuarioDto AvaliacaoUsuario { get; set; }
         public int NotaMec { get; set; }
