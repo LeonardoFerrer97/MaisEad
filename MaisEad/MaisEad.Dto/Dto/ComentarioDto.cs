@@ -5,5 +5,6 @@ namespace MaisEad.Dto.Dto
     {
         public int Id { get; set; }
         public string CommentTxt { get; set; }
+        public int CursoId { get; set; }
     }
 }

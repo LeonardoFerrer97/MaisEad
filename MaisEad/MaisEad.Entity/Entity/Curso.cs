@@ -7,11 +7,9 @@ namespace MaisEad.Entity.Entity
         public int FaculdadeId { get; set; }
         public int NotaMec { get; set; }
         public string Duracao { get; set; }
-        public int Url { get; set; }
+        public string Url { get; set; }
         public string Nome { get; set; }
         public string PontoApoio { get; set; }
         public string Mensalidade { get; set; }
-        public AvaliacaoUsuario AvaliacaoUsuario { get; set; }
-        public Comentario Comentario { get; set; }
     }
 }

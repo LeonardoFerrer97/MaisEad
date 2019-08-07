@@ -11,6 +11,8 @@ namespace MaisEad.Business
     {
         private readonly CursoRepository cursoRepository = new CursoRepository();
         private readonly FaculdadeBusiness faculdadeBusiness = new FaculdadeBusiness();
+        private readonly ComentarioBusiness comentarioBusiness = new ComentarioBusiness();
+        private readonly AvaliacaoUsuarioBusiness avaliacaoUsuarioBusiness = new AvaliacaoUsuarioBusiness();
         private readonly CursoMappers mapper = new CursoMappers();
         public List<CursoDto> GetAllCursos()
         {
@@ -19,6 +21,8 @@ namespace MaisEad.Business
             List<CursoDto> cursosDto = mapper.ListEntityToListDto(cursos);
             foreach(var curso in cursosDto)
             {
+                curso.Comentario = comentarioBusiness.GetAllComentariosByCursoId(curso.Id);
+                curso.AvaliacaoUsuario = avaliacaoUsuarioBusiness.GetAllAvaliacaoUsuariosByCursoId(curso.Id);
                 curso.Faculdade = faculdadeBusiness.GetFaculdadeById(curso.Faculdade.Id);
             }
             return cursosDto;

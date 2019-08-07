@@ -27,9 +27,18 @@ namespace MaisEad.Repository.Repositories
                 {
                     cursos.Add(new Curso()
                     {
-                        Nome = reader[0].ToString()
-                    }) ;
+                        Id = Convert.ToInt32(reader["id"].ToString()),
+                        NotaMec = reader["notamec"].ToString() == null ? 0 : Convert.ToInt32(reader["notamec"].ToString()),
+                        Nome = reader["nome"].ToString(),
+                        Duracao = reader["duracao"].ToString(),
+                        FaculdadeId = Convert.ToInt32(reader["faculdade_id"].ToString()),
+                        Mensalidade = reader["mensalidade"].ToString(),
+                        Url = reader["url"].ToString(),
+                        PontoApoio = reader["pontoapoio"].ToString(),
+                    });
                 }
+
+                dbCon.Close();
                 return cursos;
             }
             dbCon.Close();

@@ -27,7 +27,7 @@ namespace MaisEad.Controllers
             return faculdadeBusiness.GetFaculdadeById(id);
         }
 
-        [HttpGet("/nome/{nome}")]
+        [HttpGet("nome/{nome}")]
         public ActionResult<FaculdadeDto> GetByNome(string nome)
         {
             return faculdadeBusiness.GetFaculdadeByNome(nome);

@@ -13,14 +13,6 @@ namespace MaisEad.Utils.Mappers
             {
                 Id = curso.Id,
                 Nome = curso.Nome,
-                AvaliacaoUsuario = new AvaliacaoUsuarioDto () {
-                    Id = curso.AvaliacaoUsuario.Id
-                } ,
-                Comentario = new ComentarioDto ()
-                {
-                    CommentTxt = curso.Comentario.CommentTxt,
-                    Id = curso.Comentario.Id,
-                },
                 Faculdade = new FaculdadeDto ()
                 {
                     Id = curso.FaculdadeId,
@@ -51,15 +43,6 @@ namespace MaisEad.Utils.Mappers
             {
                 Id = curso.Id,
                 Nome = curso.Nome,
-                AvaliacaoUsuario = new AvaliacaoUsuario()
-                {
-                    Id = curso.AvaliacaoUsuario.Id
-                },
-                Comentario = new Comentario()
-                {
-                    CommentTxt = curso.Comentario.CommentTxt,
-                    Id = curso.Comentario.Id,
-                },
                 Duracao = curso.Duracao,
                 Mensalidade = curso.Mensalidade,
                 NotaMec = curso.NotaMec,
