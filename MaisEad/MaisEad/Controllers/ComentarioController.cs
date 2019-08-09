@@ -4,7 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using MaisEad.Business;
 using MaisEad.Dto.Dto;
+using MaisEad.Utils.ConnectionStrings;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 
 namespace MaisEad.Controllers
 {
@@ -12,7 +14,15 @@ namespace MaisEad.Controllers
     [ApiController]
     public class ComentarioController : ControllerBase
     {
-        private readonly ComentarioBusiness comentarioBusiness = new ComentarioBusiness();
+        private readonly string connection;
+        private readonly ComentarioBusiness comentarioBusiness;
+
+        public ComentarioController(IOptions<ConnectionStrings> config)
+        {
+            this.connection = config.Value.DbConnection;
+            comentarioBusiness = new ComentarioBusiness(connection);
+        }
+
 
         [HttpGet]
         public ActionResult<IEnumerable<ComentarioDto>> Get()
@@ -21,7 +31,7 @@ namespace MaisEad.Controllers
         }
 
 
-        [HttpGet("{id}")]
+       /* [HttpGet("{id}")]
         public ActionResult<IEnumerable<ComentarioDto>> GetById(int id)
         {
             return comentarioBusiness.GetAllComentariosById(id);
@@ -31,6 +41,6 @@ namespace MaisEad.Controllers
         public ActionResult<IEnumerable<ComentarioDto>> GetByCursoId(int id)
         {
             return comentarioBusiness.GetAllComentariosByCursoId(id);
-        }
+        }*/
     }
 }

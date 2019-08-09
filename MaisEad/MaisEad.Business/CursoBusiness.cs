@@ -9,14 +9,24 @@ namespace MaisEad.Business
 {
     public class CursoBusiness
     {
-        private readonly CursoRepository cursoRepository = new CursoRepository();
-        private readonly FaculdadeBusiness faculdadeBusiness = new FaculdadeBusiness();
-        private readonly ComentarioBusiness comentarioBusiness = new ComentarioBusiness();
-        private readonly AvaliacaoUsuarioBusiness avaliacaoUsuarioBusiness = new AvaliacaoUsuarioBusiness();
+        private readonly FaculdadeBusiness faculdadeBusiness;
+        private readonly ComentarioBusiness comentarioBusiness;
+        private readonly AvaliacaoUsuarioBusiness avaliacaoUsuarioBusiness;
         private readonly CursoMappers mapper = new CursoMappers();
+        private readonly Repository<Curso> cursoRepository;
+
+        public CursoBusiness(string connection)
+        {
+            faculdadeBusiness = new FaculdadeBusiness(connection);
+            comentarioBusiness = new ComentarioBusiness(connection);
+            avaliacaoUsuarioBusiness = new AvaliacaoUsuarioBusiness(connection);
+            cursoRepository = new Repository<Curso>(connection);
+        }
+
+
         public List<CursoDto> GetAllCursos()
         {
-            List<Curso> cursos = cursoRepository.GetAllCursos();
+            IEnumerable<Curso> cursos = cursoRepository.All();
 
             List<CursoDto> cursosDto = mapper.ListEntityToListDto(cursos);
             foreach(var curso in cursosDto)

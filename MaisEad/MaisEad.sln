@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaisEad.Repository", "MaisE
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaisEad.Utils", "MaisEad.Utils\MaisEad.Utils.csproj", "{A64CEE03-583E-43A1-ACA7-F5A01ED4D867}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaisEad.Interface.Repository", "MaisEad.Interface.Repository\MaisEad.Interface.Repository.csproj", "{F7499802-BFEF-4231-B027-D8198B9248DB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,5 +45,9 @@ Global
 		{A64CEE03-583E-43A1-ACA7-F5A01ED4D867}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A64CEE03-583E-43A1-ACA7-F5A01ED4D867}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A64CEE03-583E-43A1-ACA7-F5A01ED4D867}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7499802-BFEF-4231-B027-D8198B9248DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7499802-BFEF-4231-B027-D8198B9248DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7499802-BFEF-4231-B027-D8198B9248DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7499802-BFEF-4231-B027-D8198B9248DB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

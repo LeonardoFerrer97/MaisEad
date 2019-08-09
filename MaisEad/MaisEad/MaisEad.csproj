@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <Compile Remove="Controllers\ValuesController.cs" />
+    <Compile Remove="Properties\ConnectionString.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MaisEad.Dto\MaisEad.Dto.csproj" />

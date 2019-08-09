@@ -1,35 +1,47 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data.SqlClient;
 using MaisEad.Dto.Dto;
 using MaisEad.Entity.Entity;
+using MaisEad.Interface.Repository.IRepository;
 using MaisEad.Repository.Repositories;
 using MaisEad.Utils.Mappers;
+using MaisEad.Utils.Query;
 
 namespace MaisEad.Business
 {
     public class ComentarioBusiness
     {
-        private readonly ComentarioRepository comentarioRepository = new ComentarioRepository();
+
         private readonly ComentarioMappers mapper = new ComentarioMappers();
+        private readonly Repository<Comentario> comentarioRepository;
+        
+        public ComentarioBusiness(string connection)
+        {
+            comentarioRepository = new Repository<Comentario>(connection);
+        }
         public List<ComentarioDto> GetAllComentarios()
         {
-            List<Comentario> comentarios = comentarioRepository.GetAllComentarios();
+            IEnumerable<Comentario> comentarios = comentarioRepository.All();
 
             List<ComentarioDto> comentariosDto = mapper.ListEntityToListDto(comentarios);
             return comentariosDto;
         }
 
-        public List<ComentarioDto> GetAllComentariosById(int id)
+        public List<ComentarioDto> GetAllComentariosById(int Id)
         {
-            List<Comentario> comentarios = comentarioRepository.GetAllComentariosById(id);
+            object parameters = new { Id };
+            IEnumerable<Comentario> comentarios = comentarioRepository.GetData(ComentarioQueries.GET_COMENTARIOS_BY_ID,parameters);
 
             List<ComentarioDto> comentariosDto = mapper.ListEntityToListDto(comentarios);
             return comentariosDto;
         }
 
-        public List<ComentarioDto> GetAllComentariosByCursoId(int cursoId)
+        public List<ComentarioDto> GetAllComentariosByCursoId(int CursoId)
         {
-            List<Comentario> comentarios = comentarioRepository.GetAllComentariosByCursoId(cursoId);
+            object parameters = new { CursoId };
+            IEnumerable<Comentario> comentarios = comentarioRepository.GetData(ComentarioQueries.GET_COMENTARIOS_BY_CURSO_ID,parameters);
 
             List<ComentarioDto> comentariosDto = mapper.ListEntityToListDto(comentarios);
             return comentariosDto;

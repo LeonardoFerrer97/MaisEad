@@ -4,32 +4,43 @@ using MaisEad.Dto.Dto;
 using MaisEad.Entity.Entity;
 using MaisEad.Repository.Repositories;
 using MaisEad.Utils.Mappers;
+using MaisEad.Utils.Query;
 
 namespace MaisEad.Business
 {
     public class AvaliacaoUsuarioBusiness
     {
-        private readonly AvaliacaoUsuarioRepository avaliacaoUsuarioRepository = new AvaliacaoUsuarioRepository();
         private readonly AvaliacaoUsuarioMappers mapper = new AvaliacaoUsuarioMappers();
+        private readonly Repository<AvaliacaoUsuario> avaliacaoUsuarioRepository;
+
+        public AvaliacaoUsuarioBusiness(string connection)
+        {
+            avaliacaoUsuarioRepository = new Repository<AvaliacaoUsuario>(connection);
+        }
+
+
         public List<AvaliacaoUsuarioDto> GetAllAvaliacaoUsuarios()
         {
-            List<AvaliacaoUsuario> avaliacaoUsuarios= avaliacaoUsuarioRepository.GetAllAvaliacaoUsuario();
+            IEnumerable<AvaliacaoUsuario> avaliacaoUsuarios= avaliacaoUsuarioRepository.All();
 
             List<AvaliacaoUsuarioDto> avaliacoesUsuario = mapper.ListEntityToListDto(avaliacaoUsuarios);
             return avaliacoesUsuario;
         }
 
-        public List<AvaliacaoUsuarioDto> GetAllAvaliacaoUsuariosById(int id)
+        public List<AvaliacaoUsuarioDto> GetAllAvaliacaoUsuariosById(int Id)
+
         {
-            List<AvaliacaoUsuario> avaliacaoUsuarios = avaliacaoUsuarioRepository.GetAllAvaliacoesUsuarioById(id);
+            object parameters = new { Id };
+            IEnumerable<AvaliacaoUsuario> avaliacaoUsuarios = avaliacaoUsuarioRepository.GetData(AvaliacaoUsuarioQueries.GET_AVALIACAOUSUARIO_BY_ID,parameters);
 
             List<AvaliacaoUsuarioDto> avaliacoesUsuario = mapper.ListEntityToListDto(avaliacaoUsuarios);
             return avaliacoesUsuario;
         }
 
-        public List<AvaliacaoUsuarioDto> GetAllAvaliacaoUsuariosByCursoId(int cursoId)
+        public List<AvaliacaoUsuarioDto> GetAllAvaliacaoUsuariosByCursoId(int CursoIdAvaliacao)
         {
-            List<AvaliacaoUsuario> avaliacaoUsuarios = avaliacaoUsuarioRepository.GetAllAvaliacoesUsuarioByCursoId(cursoId);
+            object parameters = new { CursoIdAvaliacao };
+            IEnumerable<AvaliacaoUsuario> avaliacaoUsuarios = avaliacaoUsuarioRepository.GetData(AvaliacaoUsuarioQueries.GET_AVALIACAOUSUARIO_BY_CURSO_ID,parameters);
 
             List<AvaliacaoUsuarioDto> avaliacoesUsuario = mapper.ListEntityToListDto(avaliacaoUsuarios);
             return avaliacoesUsuario;

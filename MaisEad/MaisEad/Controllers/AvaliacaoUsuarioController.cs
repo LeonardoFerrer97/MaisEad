@@ -4,7 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using MaisEad.Business;
 using MaisEad.Dto.Dto;
+using MaisEad.Utils.ConnectionStrings;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 
 namespace MaisEad.Controllers
 {
@@ -12,7 +14,16 @@ namespace MaisEad.Controllers
     [ApiController]
     public class AvaliacaoUsuarioController : ControllerBase
     {
-        private readonly AvaliacaoUsuarioBusiness avaliacaoUsuarioBusiness = new AvaliacaoUsuarioBusiness();
+        private readonly AvaliacaoUsuarioBusiness avaliacaoUsuarioBusiness;
+
+        private readonly string connection;
+
+        public AvaliacaoUsuarioController(IOptions<ConnectionStrings> config)
+        {
+            this.connection = config.Value.DbConnection;
+            avaliacaoUsuarioBusiness = new AvaliacaoUsuarioBusiness(connection);
+        }
+
 
         [HttpGet]
         public ActionResult<IEnumerable<AvaliacaoUsuarioDto>> Get()

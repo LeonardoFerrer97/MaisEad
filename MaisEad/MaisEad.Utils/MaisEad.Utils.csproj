@@ -7,6 +7,7 @@
   <ItemGroup>
     <Folder Include="Mappers\" />
     <Folder Include="Query\" />
+    <Folder Include="ConnectionStrings\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MaisEad.Dto\MaisEad.Dto.csproj" />

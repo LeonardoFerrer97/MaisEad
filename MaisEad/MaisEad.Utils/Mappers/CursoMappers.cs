@@ -26,7 +26,7 @@ namespace MaisEad.Utils.Mappers
 
         }
 
-        public List<CursoDto> ListEntityToListDto(List<Curso> cursos)
+        public List<CursoDto> ListEntityToListDto(IEnumerable<Curso> cursos)
         {
             List<CursoDto> dtos = new List<CursoDto>();
             foreach (var curso in cursos)
@@ -51,7 +51,7 @@ namespace MaisEad.Utils.Mappers
             };
         }
 
-        public List<Curso> ListDtoToListEntity(List<CursoDto> cursos)
+        public List<Curso> ListDtoToListEntity(IEnumerable<CursoDto> cursos)
         {
             List<Curso> dtos = new List<Curso>();
             foreach (var curso in cursos)

@@ -2,44 +2,50 @@
 using System.Collections.Generic;
 using MaisEad.Dto.Dto;
 using MaisEad.Entity.Entity;
-using MaisEad.Repository.FaculdadeRepository;
+using MaisEad.Repository.Repositories;
 using MaisEad.Utils.Mappers;
+using MaisEad.Utils.Query;
 
 namespace MaisEad.Business
 {
     public class FaculdadeBusiness
     {
-        private readonly FaculdadeRepository faculdadeRepository = new FaculdadeRepository();
         private readonly FaculdadeMappers mapper = new FaculdadeMappers();
+        private readonly Repository<Faculdade> faculdadeRepository;
+
+        public FaculdadeBusiness(string connection)
+        {
+            faculdadeRepository = new Repository<Faculdade>(connection);
+        }
         public List<FaculdadeDto> GetAllFaculdade()
         {
-            List<Faculdade> faculdade = faculdadeRepository.GetAllFaculdade();
+            IEnumerable<Faculdade> faculdade = faculdadeRepository.All();
             return mapper.ListEntityToListDto(faculdade);
         }
 
-        public FaculdadeDto GetFaculdadeById(int id)
+        public FaculdadeDto GetFaculdadeById(int Id)
         {
-            return mapper.EntityToDto(faculdadeRepository.GetFaculdadeById(id));
+            return mapper.EntityToDto(faculdadeRepository.Find(new { Id }));
         }
 
-        public FaculdadeDto GetFaculdadeByNome(string nome)
+        public FaculdadeDto GetFaculdadeByNome(string Nome)
         {
-            return mapper.EntityToDto(faculdadeRepository.GetFaculdadeByNome(nome));
+            return mapper.EntityToDto(faculdadeRepository.Find(new { Nome }));
         }
 
         public int UpdateFaculdadeById(FaculdadeDto faculdade)
         {
-           return faculdadeRepository.UpdateFaculdadeById(mapper.DtoToEntity(faculdade));
+           return faculdadeRepository.InstertOrUpdate(mapper.DtoToEntity(faculdade),new { faculdade.Id });
         }
 
-        public int DeleteFaculdadeById(int id)
+        public void DeleteFaculdadeById(int Id)
         {
-            return faculdadeRepository.DeleteFaculdadeById(id);
+            faculdadeRepository.Remove(new { Id });
         }
 
         public int InsertFaculdade(FaculdadeDto faculdade)
         {
-            return faculdadeRepository.InsertFaculdade(mapper.DtoToEntity(faculdade));
+            return faculdadeRepository.Add(mapper.DtoToEntity(faculdade));
         }
     }
 }

@@ -18,7 +18,7 @@ namespace MaisEad.Utils.Mappers
 
         }
 
-        public List<ComentarioDto> ListEntityToListDto(List<Comentario> comentarios)
+        public List<ComentarioDto> ListEntityToListDto(IEnumerable<Comentario> comentarios)
         {
             List<ComentarioDto> dtos = new List<ComentarioDto>();
             foreach (var comentario in comentarios)

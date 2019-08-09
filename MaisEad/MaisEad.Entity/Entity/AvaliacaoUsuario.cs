@@ -5,6 +5,6 @@ namespace MaisEad.Entity.Entity
     {
 
         public int Id { get; set; }
-        public int CursoId { get; set; }
+        public int CursoIdAvaliacao{ get; set; }
     }
 }

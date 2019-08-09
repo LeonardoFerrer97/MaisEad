@@ -12,12 +12,12 @@ namespace MaisEad.Utils.Mappers
             return new AvaliacaoUsuarioDto()
             {
                 Id = avaliacao.Id,
-                CursoId = avaliacao.CursoId,
+                CursoId = avaliacao.CursoIdAvaliacao,
             };
 
         }
 
-        public List<AvaliacaoUsuarioDto> ListEntityToListDto(List<AvaliacaoUsuario> avaliacoes)
+        public List<AvaliacaoUsuarioDto> ListEntityToListDto(IEnumerable<AvaliacaoUsuario> avaliacoes)
         {
             List<AvaliacaoUsuarioDto> dtos = new List<AvaliacaoUsuarioDto>();
             foreach (var avaliacaoUsuario in avaliacoes)
@@ -34,11 +34,11 @@ namespace MaisEad.Utils.Mappers
             {
 
                 Id = avaliacao.Id,
-                CursoId = avaliacao.CursoId,
+                CursoIdAvaliacao = avaliacao.CursoId,
             };
         }
 
-        public List<AvaliacaoUsuario> ListDtoToListEntity(List<AvaliacaoUsuarioDto> avaliacoes)
+        public List<AvaliacaoUsuario> ListDtoToListEntity(IEnumerable<AvaliacaoUsuarioDto> avaliacoes)
         {
             List<AvaliacaoUsuario> dtos = new List<AvaliacaoUsuario>();
             foreach (var avaliacaoUsuario in avaliacoes)

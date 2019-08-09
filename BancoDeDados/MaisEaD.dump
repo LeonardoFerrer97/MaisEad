@@ -1,0 +1,140 @@
+-- MySQL dump 10.13  Distrib 8.0.16, for osx10.12 (x86_64)
+--
+-- Host: 127.0.0.1    Database: MaisEaD
+-- ------------------------------------------------------
+-- Server version	8.0.17
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+ SET NAMES utf8mb4 ;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `AvaliacaoUsuario`
+--
+
+DROP TABLE IF EXISTS `AvaliacaoUsuario`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `AvaliacaoUsuario` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `curso_id_avaliacao` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`),
+  KEY `curso_id_avaliacao` (`curso_id_avaliacao`),
+  CONSTRAINT `avaliacaousuario_ibfk_1` FOREIGN KEY (`curso_id_avaliacao`) REFERENCES `curso` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `AvaliacaoUsuario`
+--
+
+LOCK TABLES `AvaliacaoUsuario` WRITE;
+/*!40000 ALTER TABLE `AvaliacaoUsuario` DISABLE KEYS */;
+/*!40000 ALTER TABLE `AvaliacaoUsuario` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `Comentario`
+--
+
+DROP TABLE IF EXISTS `Comentario`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `Comentario` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `curso_id` int(11) NOT NULL,
+  `commenttxt` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`),
+  KEY `curso_id` (`curso_id`),
+  CONSTRAINT `comentario_ibfk_1` FOREIGN KEY (`curso_id`) REFERENCES `curso` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Comentario`
+--
+
+LOCK TABLES `Comentario` WRITE;
+/*!40000 ALTER TABLE `Comentario` DISABLE KEYS */;
+/*!40000 ALTER TABLE `Comentario` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `Curso`
+--
+
+DROP TABLE IF EXISTS `Curso`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `Curso` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `notamec` varchar(255) DEFAULT NULL,
+  `nome` varchar(255) NOT NULL,
+  `duracao` varchar(255) DEFAULT NULL,
+  `faculdade_id` int(11) NOT NULL,
+  `mensalidade` varchar(255) DEFAULT NULL,
+  `url` varchar(255) DEFAULT NULL,
+  `pontoapoio` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `faculdade_id` (`faculdade_id`),
+  CONSTRAINT `curso_ibfk_1` FOREIGN KEY (`faculdade_id`) REFERENCES `faculdade` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Curso`
+--
+
+LOCK TABLES `Curso` WRITE;
+/*!40000 ALTER TABLE `Curso` DISABLE KEYS */;
+/*!40000 ALTER TABLE `Curso` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `Faculdade`
+--
+
+DROP TABLE IF EXISTS `Faculdade`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `Faculdade` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `notamec` int(11) DEFAULT NULL,
+  `endereco` varchar(255) DEFAULT NULL,
+  `nome` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Faculdade`
+--
+
+LOCK TABLES `Faculdade` WRITE;
+/*!40000 ALTER TABLE `Faculdade` DISABLE KEYS */;
+/*!40000 ALTER TABLE `Faculdade` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping routines for database 'MaisEaD'
+--
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2019-08-08 11:39:17

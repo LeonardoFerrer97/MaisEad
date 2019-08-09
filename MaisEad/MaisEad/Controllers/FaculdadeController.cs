@@ -4,7 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using MaisEad.Business;
 using MaisEad.Dto.Dto;
+using MaisEad.Utils.ConnectionStrings;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 
 namespace MaisEad.Controllers
 {
@@ -12,7 +14,15 @@ namespace MaisEad.Controllers
     [ApiController]
     public class FaculdadeController : ControllerBase
     {
-        private readonly FaculdadeBusiness faculdadeBusiness = new FaculdadeBusiness();
+        private readonly FaculdadeBusiness faculdadeBusiness;
+
+        private readonly string connection;
+
+        public FaculdadeController(IOptions<ConnectionStrings> config)
+        {
+            this.connection = config.Value.DbConnection;
+            faculdadeBusiness = new FaculdadeBusiness(connection);
+        }
 
         [HttpGet]
         public ActionResult<IEnumerable<FaculdadeDto>> Get()
@@ -46,9 +56,9 @@ namespace MaisEad.Controllers
         }
 
         [HttpDelete("{id}")]
-        public ActionResult<int> Delete(int id)
+        public void Delete(int id)
         {
-            return faculdadeBusiness.DeleteFaculdadeById(id);
+            faculdadeBusiness.DeleteFaculdadeById(id);
         }
     }
 }
