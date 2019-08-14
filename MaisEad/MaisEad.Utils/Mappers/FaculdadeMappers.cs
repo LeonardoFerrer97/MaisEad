@@ -11,10 +11,10 @@ namespace MaisEad.Utils.Mappers
         {
             return new FaculdadeDto()
             {
-                Id = faculdade.Id,
-                Nome = faculdade.Nome,
+                Id = faculdade.FaculId,
+                Nome = faculdade.NomeFaculdade,
                 Endereco = faculdade.Endereco,
-                NotaMec = faculdade.NotaMec,
+                NotaMec = faculdade.NotaMecFaculdade,
             };
 
         }
@@ -34,10 +34,10 @@ namespace MaisEad.Utils.Mappers
         {
             return new Faculdade()
             {
-                Id = faculdade.Id,
-                Nome = faculdade.Nome,
+                FaculId = faculdade.Id,
+                NomeFaculdade = faculdade.Nome,
                 Endereco = faculdade.Endereco,
-                NotaMec = faculdade.NotaMec,
+                NotaMecFaculdade = faculdade.NotaMec,
             };
 
         }

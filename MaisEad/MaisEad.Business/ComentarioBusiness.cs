@@ -46,5 +46,21 @@ namespace MaisEad.Business
             List<ComentarioDto> comentariosDto = mapper.ListEntityToListDto(comentarios);
             return comentariosDto;
         }
+
+        public int UpdateComentario(ComentarioDto comentario)
+        {
+            return comentarioRepository.InstertOrUpdate(mapper.DtoToEntity(comentario), new { ComentarioId = comentario.Id });
+        }
+
+        public void DeleteComentarioById(int ComentarioId)
+        {
+            comentarioRepository.Remove(new { ComentarioId });
+        }
+
+        public int InsertComentario(ComentarioDto comentario)
+        {
+            return comentarioRepository.Add(mapper.DtoToEntity(comentario));
+        }
+
     }
 }

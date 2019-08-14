@@ -43,5 +43,25 @@ namespace MaisEad.Controllers
         {
             return avaliacaoUsuarioBusiness.GetAllAvaliacaoUsuariosByCursoId(id);
         }
+
+        [HttpPost]
+        public ActionResult<int> Post([FromBody] AvaliacaoUsuarioDto Comentario)
+        {
+            return avaliacaoUsuarioBusiness.InsertAvaliacaoUsuario(Comentario);
+        }
+
+        [HttpPut()]
+        public ActionResult<int> Put([FromBody]AvaliacaoUsuarioDto AvaliacaoUsuario)
+        {
+            return avaliacaoUsuarioBusiness.UpdateAvaliacaoUsuario(AvaliacaoUsuario);
+        }
+
+        [HttpDelete("{id}")]
+        public void Delete(int id)
+        {
+            avaliacaoUsuarioBusiness.DeleteAvaliacaoUsuarioById(id);
+        }
+
+
     }
 }

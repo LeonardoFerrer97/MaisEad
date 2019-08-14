@@ -45,6 +45,21 @@ namespace MaisEad.Business
             List<AvaliacaoUsuarioDto> avaliacoesUsuario = mapper.ListEntityToListDto(avaliacaoUsuarios);
             return avaliacoesUsuario;
         }
+        
+        public int UpdateAvaliacaoUsuario(AvaliacaoUsuarioDto AvaliacaoUsuario)
+        {
+            return avaliacaoUsuarioRepository.InstertOrUpdate(mapper.DtoToEntity(AvaliacaoUsuario), new { AvaliacaoUsuarioId = AvaliacaoUsuario.Id });
+        }
+
+        public void DeleteAvaliacaoUsuarioById(int AvaliacaoUsuarioId)
+        {
+            avaliacaoUsuarioRepository.Remove(new { AvaliacaoUsuarioId });
+        }
+
+        public int InsertAvaliacaoUsuario(AvaliacaoUsuarioDto AvaliacaoUsuario)
+        {
+            return avaliacaoUsuarioRepository.Add(mapper.DtoToEntity(AvaliacaoUsuario));
+        }
 
 
     }

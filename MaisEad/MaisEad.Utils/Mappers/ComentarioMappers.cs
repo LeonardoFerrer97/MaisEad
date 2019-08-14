@@ -11,7 +11,7 @@ namespace MaisEad.Utils.Mappers
         {
             return new ComentarioDto()
             {
-                Id = comentario.Id,
+                Id = comentario.ComentarioId,
                 CommentTxt = comentario.CommentTxt,
                 CursoId = comentario.CursoId
             };
@@ -33,7 +33,7 @@ namespace MaisEad.Utils.Mappers
         {
             return new Comentario()
             {
-                Id = comentario.Id,
+                ComentarioId = comentario.Id,
                 CommentTxt = comentario.CommentTxt,
                 CursoId = comentario.CursoId
             };

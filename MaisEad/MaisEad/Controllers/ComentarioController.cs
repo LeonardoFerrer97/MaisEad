@@ -31,7 +31,7 @@ namespace MaisEad.Controllers
         }
 
 
-       /* [HttpGet("{id}")]
+        [HttpGet("{id}")]
         public ActionResult<IEnumerable<ComentarioDto>> GetById(int id)
         {
             return comentarioBusiness.GetAllComentariosById(id);
@@ -41,6 +41,26 @@ namespace MaisEad.Controllers
         public ActionResult<IEnumerable<ComentarioDto>> GetByCursoId(int id)
         {
             return comentarioBusiness.GetAllComentariosByCursoId(id);
-        }*/
+        }
+
+        [HttpPost]
+        public ActionResult<int> Post([FromBody] ComentarioDto Comentario)
+        {
+            return comentarioBusiness.InsertComentario(Comentario);
+        }
+
+        [HttpPut()]
+        public ActionResult<int> Put([FromBody]ComentarioDto Comentario)
+        {
+            return comentarioBusiness.UpdateComentario(Comentario);
+        }
+
+        [HttpDelete("{id}")]
+        public void Delete(int id)
+        {
+            comentarioBusiness.DeleteComentarioById(id);
+        }
+
+
     }
 }

@@ -23,24 +23,24 @@ namespace MaisEad.Business
             return mapper.ListEntityToListDto(faculdade);
         }
 
-        public FaculdadeDto GetFaculdadeById(int Id)
+        public FaculdadeDto GetFaculdadeById(int FaculId)
         {
-            return mapper.EntityToDto(faculdadeRepository.Find(new { Id }));
+            return mapper.EntityToDto(faculdadeRepository.Find(new { FaculId }));
         }
 
-        public FaculdadeDto GetFaculdadeByNome(string Nome)
+        public FaculdadeDto GetFaculdadeByNome(string NomeFaculdade)
         {
-            return mapper.EntityToDto(faculdadeRepository.Find(new { Nome }));
+            return mapper.EntityToDto(faculdadeRepository.Find(new { NomeFaculdade }));
         }
 
         public int UpdateFaculdadeById(FaculdadeDto faculdade)
         {
-           return faculdadeRepository.InstertOrUpdate(mapper.DtoToEntity(faculdade),new { faculdade.Id });
+           return faculdadeRepository.InstertOrUpdate(mapper.DtoToEntity(faculdade),new { FaculId = faculdade.Id });
         }
 
-        public void DeleteFaculdadeById(int Id)
+        public void DeleteFaculdadeById(int FaculId)
         {
-            faculdadeRepository.Remove(new { Id });
+            faculdadeRepository.Remove(new { FaculId });
         }
 
         public int InsertFaculdade(FaculdadeDto faculdade)
