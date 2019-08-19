@@ -9,6 +9,7 @@ namespace MaisEad.Dto.Dto
         public FaculdadeDto Faculdade { get; set; }
         public List<ComentarioDto> Comentario { get; set; }
         public List<AvaliacaoUsuarioDto> AvaliacaoUsuario { get; set; }
+        public int FaculdadeId { get; set; }
         public int NotaMec { get; set; }
         public string Duracao { get; set; }
         public string Url { get; set; }

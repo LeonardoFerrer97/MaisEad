@@ -49,6 +49,14 @@ namespace MaisEad.Controllers
             return comentarioBusiness.InsertComentario(Comentario);
         }
 
+        [HttpPost("lista")]
+        public ActionResult<int> Post([FromBody] List<ComentarioDto> Comentario)
+        {
+            return comentarioBusiness.InsertComentarios(Comentario);
+        }
+
+
+
         [HttpPut()]
         public ActionResult<int> Put([FromBody]ComentarioDto Comentario)
         {
@@ -59,6 +67,12 @@ namespace MaisEad.Controllers
         public void Delete(int id)
         {
             comentarioBusiness.DeleteComentarioById(id);
+        }
+
+        [HttpDelete("curso/{id}")]
+        public void DeleteByCursoId(int id)
+        {
+            comentarioBusiness.DeleteComentarioByCursoId(id);
         }
 
 

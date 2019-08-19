@@ -56,9 +56,16 @@ namespace MaisEad.Business
             avaliacaoUsuarioRepository.Remove(new { AvaliacaoUsuarioId });
         }
 
-        public int InsertAvaliacaoUsuario(AvaliacaoUsuarioDto AvaliacaoUsuario)
+
+        public void DeleteAvaliacaoUsuarioByCursoId(int CursoIdAvaliacao)
         {
-            return avaliacaoUsuarioRepository.Add(mapper.DtoToEntity(AvaliacaoUsuario));
+            avaliacaoUsuarioRepository.Remove(new { CursoIdAvaliacao });
+        }
+
+
+        public int InsertAvaliacaoUsuario(List<AvaliacaoUsuarioDto> AvaliacaoUsuario)
+        {
+            return avaliacaoUsuarioRepository.Add(mapper.ListDtoToListEntity(AvaliacaoUsuario));
         }
 
 

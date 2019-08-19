@@ -57,10 +57,22 @@ namespace MaisEad.Business
             comentarioRepository.Remove(new { ComentarioId });
         }
 
+        public void DeleteComentarioByCursoId(int CursoId)
+        {
+            comentarioRepository.Remove(new { CursoId });
+        }
+
         public int InsertComentario(ComentarioDto comentario)
         {
             return comentarioRepository.Add(mapper.DtoToEntity(comentario));
         }
 
+
+        public int InsertComentarios(List<ComentarioDto> comentarios)
+        {
+            return comentarioRepository.Add(mapper.ListDtoToListEntity(comentarios));
+        }
+
     }
+
 }

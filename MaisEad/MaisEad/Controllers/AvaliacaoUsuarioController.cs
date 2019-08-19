@@ -45,9 +45,9 @@ namespace MaisEad.Controllers
         }
 
         [HttpPost]
-        public ActionResult<int> Post([FromBody] AvaliacaoUsuarioDto Comentario)
+        public ActionResult<int> Post([FromBody] List<AvaliacaoUsuarioDto> avaliacaoUsuarios)
         {
-            return avaliacaoUsuarioBusiness.InsertAvaliacaoUsuario(Comentario);
+            return avaliacaoUsuarioBusiness.InsertAvaliacaoUsuario(avaliacaoUsuarios);
         }
 
         [HttpPut()]
@@ -60,6 +60,13 @@ namespace MaisEad.Controllers
         public void Delete(int id)
         {
             avaliacaoUsuarioBusiness.DeleteAvaliacaoUsuarioById(id);
+        }
+
+
+        [HttpDelete("curso/{id}")]
+        public void DeleteByCursoId(int id)
+        {
+            avaliacaoUsuarioBusiness.DeleteAvaliacaoUsuarioByCursoId(id);
         }
 
 

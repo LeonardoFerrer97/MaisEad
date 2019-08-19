@@ -31,35 +31,29 @@ namespace MaisEad.Controllers
             return cursoBusiness.GetAllCursos();
         }
 
-
-        /*[HttpGet("{id}")]
-        public ActionResult<FaculdadeDto> Get(int id)
+        [HttpGet("{id}")]
+        public ActionResult<CursoDto> GetById(int id)
         {
-            return faculdadeBusiness.GetFaculdadeById(id);
-        }
-
-        [HttpGet("/nome/{nome}")]
-        public ActionResult<FaculdadeDto> GetByNome(string nome)
-        {
-            return faculdadeBusiness.GetFaculdadeByNome(nome);
+            return cursoBusiness.GetCursoById(id);
         }
 
         [HttpPost]
-        public ActionResult<int> Post([FromBody] FaculdadeDto faculdade)
+        public ActionResult<int> Post([FromBody]CursoDto curso)
         {
-            return faculdadeBusiness.InsertFaculdade(faculdade);
+            return cursoBusiness.PostCurso(curso);
         }
 
-        [HttpPut()]
-        public ActionResult<int> Put([FromBody]FaculdadeDto faculdade)
+        [HttpPut]
+        public ActionResult<int> Put([FromBody]CursoDto curso)
         {
-            return faculdadeBusiness.UpdateFaculdadeById(faculdade);
+            return cursoBusiness.UpdateCurso(curso);
         }
 
-        [HttpDelete("{id}")]
-        public ActionResult<int> Delete(int id)
+
+        [HttpDelete]
+        public void Delete(int id)
         {
-            return faculdadeBusiness.DeleteFaculdadeById(id);
-        }*/
+            cursoBusiness.DeleteCursoById(id);
+        }
     }
 }

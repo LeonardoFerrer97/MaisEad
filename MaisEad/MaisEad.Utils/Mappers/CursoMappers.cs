@@ -7,16 +7,18 @@ namespace MaisEad.Utils.Mappers
 {
     public class CursoMappers
     {
+        private static ComentarioMappers comentarioMappers = new ComentarioMappers();
+        private static FaculdadeMappers faculdadeMappers = new FaculdadeMappers();
+        private static AvaliacaoUsuarioMappers avaliacaoUsuarioMappers = new AvaliacaoUsuarioMappers();
         public CursoDto EntityToDto(Curso curso)
         {
             return new CursoDto()
             {
                 Id = curso.Id,
                 Nome = curso.Nome,
-                Faculdade = new FaculdadeDto ()
-                {
-                    Id = curso.FaculdadeId,
-                },
+                Faculdade = curso.Faculdade != null ? faculdadeMappers.EntityToDto(curso.Faculdade): null,
+                Comentario = curso.Comentarios != null? comentarioMappers.ListEntityToListDto(curso.Comentarios):null,
+                AvaliacaoUsuario = curso.AvaliacaoUsuarios !=null ? avaliacaoUsuarioMappers.ListEntityToListDto(curso.AvaliacaoUsuarios):null,
                 Duracao = curso.Duracao,
                 Mensalidade = curso.Mensalidade,
                 NotaMec = curso.NotaMec,
@@ -44,6 +46,7 @@ namespace MaisEad.Utils.Mappers
                 Id = curso.Id,
                 Nome = curso.Nome,
                 Duracao = curso.Duracao,
+                FaculdadeId = curso.FaculdadeId,
                 Mensalidade = curso.Mensalidade,
                 NotaMec = curso.NotaMec,
                 PontoApoio = curso.PontoApoio,
