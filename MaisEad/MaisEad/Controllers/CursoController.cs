@@ -55,5 +55,11 @@ namespace MaisEad.Controllers
         {
             cursoBusiness.DeleteCursoById(id);
         }
+
+        [HttpGet("Filter")]
+        public ActionResult<List<CursoDto>> GetCursoFiltered([FromQuery]CursoDto curso = null, string nomeFaculdade = null)
+        {
+            return cursoBusiness.GetCursoFiltered(curso, nomeFaculdade);
+        }
     }
 }

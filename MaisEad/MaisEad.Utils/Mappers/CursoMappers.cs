@@ -20,6 +20,7 @@ namespace MaisEad.Utils.Mappers
                 Comentario = curso.Comentarios != null? comentarioMappers.ListEntityToListDto(curso.Comentarios):null,
                 AvaliacaoUsuario = curso.AvaliacaoUsuarios !=null ? avaliacaoUsuarioMappers.ListEntityToListDto(curso.AvaliacaoUsuarios):null,
                 Duracao = curso.Duracao,
+                FaculdadeId = curso.FaculdadeId,
                 Mensalidade = curso.Mensalidade,
                 NotaMec = curso.NotaMec,
                 PontoApoio = curso.PontoApoio,

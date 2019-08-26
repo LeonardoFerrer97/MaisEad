@@ -49,5 +49,10 @@ namespace MaisEad.Utils.Query
         "left join Comentario on Curso.Id = comentario.CursoId " +
         "left join AvaliacaoUsuario on Curso.Id = AvaliacaoUsuario.CursoIdAvaliacao " +
         "WHERE Curso.Id = {0}";
+
+
+        public static string GET_ALL_CURSO_ONLY_CURSO_AND_FACULDADE = "SELECT * FROM Curso INNER JOIN Faculdade ON FaculdadeId = FaculId WHERE FaculdadeId = {0}";
+
+        public static string GET_ALL_CURSO_ONLY_CURSO = "SELECT * FROM Curso";
     }
 }

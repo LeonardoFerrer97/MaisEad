@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 using MaisEad.Dto.Dto;
 using MaisEad.Entity.Entity;
 using MaisEad.Repository.Repositories;
@@ -14,6 +15,7 @@ namespace MaisEad.Business
         private readonly Repository<Curso> cursoDapperRepository;
         private readonly ComentarioBusiness comentarioBusiness;
         private readonly AvaliacaoUsuarioBusiness avaliacaoUsuarioBusiness;
+        private readonly FaculdadeBusiness faculdadeBusiness;
         private readonly CursoRepository cursoRepository;
 
         public CursoBusiness(string connection)
@@ -22,6 +24,7 @@ namespace MaisEad.Business
             cursoRepository = new CursoRepository(connection);
             comentarioBusiness = new ComentarioBusiness(connection);
             avaliacaoUsuarioBusiness = new AvaliacaoUsuarioBusiness(connection);
+            faculdadeBusiness = new FaculdadeBusiness(connection);
         }
 
 
@@ -59,5 +62,1060 @@ namespace MaisEad.Business
             avaliacaoUsuarioBusiness.DeleteAvaliacaoUsuarioByCursoId(Id);
             cursoDapperRepository.Remove(new { Id });
         }
+
+        public List<CursoDto> GetCursoFiltered(CursoDto curso = null, string nomeFaculdade = null)
+        {
+            int faculdadeId = 0;
+            if(nomeFaculdade != null)
+            {
+                faculdadeId = faculdadeBusiness.GetFaculdadeByNome(nomeFaculdade).Id;
+            }
+            object parameters = BuildParameters(curso);
+            if (faculdadeId != 0)
+            {
+                curso.FaculdadeId = faculdadeId;
+            }
+            string query = BuildQuery(curso);
+
+            if (parameters != null)
+            {
+                List<CursoDto> listaCursos = mapper.ListEntityToListDto(cursoDapperRepository.GetData(query, parameters));
+                if (faculdadeId != 0)
+                {
+                    listaCursos = listaCursos.FindAll(x => x.FaculdadeId == faculdadeId);
+                }
+                return listaCursos ;
+            }
+            else
+            {
+                if(faculdadeId != 0)
+                {
+                    return mapper.ListEntityToListDto(cursoDapperRepository.GetData(query,null)).FindAll(x => x.FaculdadeId == faculdadeId);
+                }
+                else
+                {
+                    return mapper.ListEntityToListDto(cursoDapperRepository.GetData(query,null));
+                }
+            }
+
+            
+        }
+        private object BuildParameters(CursoDto curso = null)
+        {
+            if(curso.Nome != null)
+            {
+                if (curso.Duracao != null)
+                {
+                    if (curso.Mensalidade != null)
+                    {
+                        if (curso.NotaMec != 0)
+                        {
+                            if (curso.PontoApoio != null)
+                            {
+                                if (curso.Url != null)
+                                {
+                                    return new { curso.Nome, curso.Duracao, curso.Mensalidade, curso.NotaMec, curso.PontoApoio, curso.Url };
+                                }
+                                else
+                                {
+                                    return new { curso.Nome, curso.Duracao, curso.Mensalidade, curso.NotaMec, curso.PontoApoio };
+                                }
+                            }
+                            else
+                            {
+                                if (curso.Url != null)
+                                {
+                                    return new { curso.Nome, curso.Duracao, curso.Mensalidade, curso.NotaMec, curso.Url };
+                                }
+                                else
+                                {
+                                    return new { curso.Nome, curso.Duracao, curso.Mensalidade, curso.NotaMec };
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (curso.PontoApoio != null)
+                            {
+                                if (curso.Url != null)
+                                {
+                                    return new { curso.Nome, curso.Duracao, curso.Mensalidade, curso.PontoApoio, curso.Url };
+                                }
+                                else
+                                {
+                                    return new { curso.Nome, curso.Duracao, curso.Mensalidade, curso.PontoApoio };
+                                }
+                            }
+                            else
+                            {
+                                if (curso.Url != null)
+                                {
+                                    return new { curso.Nome, curso.Duracao, curso.Mensalidade, curso.Url };
+                                }
+                                else
+                                {
+                                    return new { curso.Nome, curso.Duracao, curso.Mensalidade, };
+                                }
+                            }
+                        }
+
+                    }
+                    else
+                    {
+                        if (curso.NotaMec != 0)
+                        {
+                            if (curso.PontoApoio != null)
+                            {
+                                if (curso.Url != null)
+                                {
+                                    return new { curso.Nome, curso.Duracao,curso.NotaMec, curso.PontoApoio, curso.Url };
+                                }
+                                else
+                                {
+                                    return new { curso.Nome, curso.Duracao,curso.NotaMec, curso.PontoApoio };
+                                }
+                            }
+                            else
+                            {
+                                if (curso.Url != null)
+                                {
+                                    return new { curso.Nome, curso.Duracao, curso.NotaMec, curso.Url };
+                                }
+                                else
+                                {
+                                    return new { curso.Nome, curso.Duracao, curso.Mensalidade, curso.NotaMec };
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (curso.PontoApoio != null)
+                            {
+                                if (curso.Url != null)
+                                {
+                                    return new { curso.Nome, curso.Duracao, curso.PontoApoio, curso.Url };
+                                }
+                                else
+                                {
+                                    return new { curso.Nome, curso.Duracao, curso.PontoApoio };
+                                }
+                            }
+                            else
+                            {
+                                if (curso.Url != null)
+                                {
+                                    return new { curso.Nome, curso.Duracao, curso.Url };
+                                }
+                                else
+                                {
+                                    return new { curso.Nome, curso.Duracao };
+                                }
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    if (curso.Mensalidade != null)
+                    {
+                        if (curso.NotaMec != 0)
+                        {
+                            if (curso.PontoApoio != null)
+                            {
+                                if (curso.Url != null)
+                                {
+                                    return new { curso.Nome,curso.Mensalidade, curso.NotaMec, curso.PontoApoio, curso.Url };
+                                }
+                                else
+                                {
+                                    return new { curso.Nome, curso.Mensalidade, curso.NotaMec, curso.PontoApoio };
+                                }
+                            }
+                            else
+                            {
+                                if (curso.Url != null)
+                                {
+                                    return new { curso.Nome, curso.Mensalidade, curso.NotaMec, curso.Url };
+                                }
+                                else
+                                {
+                                    return new { curso.Nome,  curso.Mensalidade, curso.NotaMec };
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (curso.PontoApoio != null)
+                            {
+                                if (curso.Url != null)
+                                {
+                                    return new { curso.Nome,  curso.Mensalidade, curso.PontoApoio, curso.Url };
+                                }
+                                else
+                                {
+                                    return new { curso.Nome, curso.Mensalidade, curso.PontoApoio };
+                                }
+                            }
+                            else
+                            {
+                                if (curso.Url != null)
+                                {
+                                    return new { curso.Nome,curso.Mensalidade, curso.Url };
+                                }
+                                else
+                                {
+                                    return new { curso.Nome, curso.Mensalidade, };
+                                }
+                            }
+                        }
+
+                    }
+                    else
+                    {
+                        if (curso.NotaMec != 0)
+                        {
+                            if (curso.PontoApoio != null)
+                            {
+                                if (curso.Url != null)
+                                {
+                                    return new { curso.Nome,curso.NotaMec, curso.PontoApoio, curso.Url };
+                                }
+                                else
+                                {
+                                    return new { curso.Nome, curso.NotaMec, curso.PontoApoio };
+                                }
+                            }
+                            else
+                            {
+                                if (curso.Url != null)
+                                {
+                                    return new { curso.Nome,  curso.NotaMec, curso.Url };
+                                }
+                                else
+                                {
+                                    return new { curso.Nome, curso.NotaMec };
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (curso.PontoApoio != null)
+                            {
+                                if (curso.Url != null)
+                                {
+                                    return new { curso.Nome, curso.PontoApoio, curso.Url };
+                                }
+                                else
+                                {
+                                    return new { curso.Nome, curso.PontoApoio };
+                                }
+                            }
+                            else
+                            {
+                                if (curso.Url != null)
+                                {
+                                    return new { curso.Nome, curso.Url };
+                                }
+                                else
+                                {
+                                    return new { curso.Nome };
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+            else
+            {
+                if (curso.Duracao != null)
+                {
+                    if (curso.Mensalidade != null)
+                    {
+                        if (curso.NotaMec != 0)
+                        {
+                            if (curso.PontoApoio != null)
+                            {
+                                if (curso.Url != null)
+                                {
+                                    return new { curso.Duracao, curso.Mensalidade, curso.NotaMec, curso.PontoApoio, curso.Url };
+                                }
+                                else
+                                {
+                                    return new {curso.Duracao, curso.Mensalidade, curso.NotaMec, curso.PontoApoio };
+                                }
+                            }
+                            else
+                            {
+                                if (curso.Url != null)
+                                {
+                                    return new { curso.Duracao, curso.Mensalidade, curso.NotaMec, curso.Url };
+                                }
+                                else
+                                {
+                                    return new {  curso.Duracao, curso.Mensalidade, curso.NotaMec };
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (curso.PontoApoio != null)
+                            {
+                                if (curso.Url != null)
+                                {
+                                    return new { curso.Duracao, curso.Mensalidade, curso.PontoApoio, curso.Url };
+                                }
+                                else
+                                {
+                                    return new {curso.Duracao, curso.Mensalidade, curso.PontoApoio };
+                                }
+                            }
+                            else
+                            {
+                                if (curso.Url != null)
+                                {
+                                    return new {curso.Duracao, curso.Mensalidade, curso.Url };
+                                }
+                                else
+                                {
+                                    return new {curso.Duracao, curso.Mensalidade, };
+                                }
+                            }
+                        }
+
+                    }
+                    else
+                    {
+                        if (curso.NotaMec != 0)
+                        {
+                            if (curso.PontoApoio != null)
+                            {
+                                if (curso.Url != null)
+                                {
+                                    return new {curso.Duracao, curso.NotaMec, curso.PontoApoio, curso.Url };
+                                }
+                                else
+                                {
+                                    return new { curso.Duracao, curso.NotaMec, curso.PontoApoio };
+                                }
+                            }
+                            else
+                            {
+                                if (curso.Url != null)
+                                {
+                                    return new {  curso.Duracao, curso.NotaMec, curso.Url };
+                                }
+                                else
+                                {
+                                    return new {  curso.Duracao, curso.Mensalidade, curso.NotaMec };
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (curso.PontoApoio != null)
+                            {
+                                if (curso.Url != null)
+                                {
+                                    return new { curso.Duracao, curso.PontoApoio, curso.Url };
+                                }
+                                else
+                                {
+                                    return new { curso.Duracao, curso.PontoApoio };
+                                }
+                            }
+                            else
+                            {
+                                if (curso.Url != null)
+                                {
+                                    return new { curso.Duracao, curso.Url };
+                                }
+                                else
+                                {
+                                    return new { curso.Duracao };
+                                }
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    if (curso.Mensalidade != null)
+                    {
+                        if (curso.NotaMec != 0)
+                        {
+                            if (curso.PontoApoio != null)
+                            {
+                                if (curso.Url != null)
+                                {
+                                    return new {  curso.Mensalidade, curso.NotaMec, curso.PontoApoio, curso.Url };
+                                }
+                                else
+                                {
+                                    return new {  curso.Mensalidade, curso.NotaMec, curso.PontoApoio };
+                                }
+                            }
+                            else
+                            {
+                                if (curso.Url != null)
+                                {
+                                    return new {curso.Mensalidade, curso.NotaMec, curso.Url };
+                                }
+                                else
+                                {
+                                    return new {  curso.Mensalidade, curso.NotaMec };
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (curso.PontoApoio != null)
+                            {
+                                if (curso.Url != null)
+                                {
+                                    return new { curso.Mensalidade, curso.PontoApoio, curso.Url };
+                                }
+                                else
+                                {
+                                    return new {  curso.Mensalidade, curso.PontoApoio };
+                                }
+                            }
+                            else
+                            {
+                                if (curso.Url != null)
+                                {
+                                    return new {curso.Mensalidade, curso.Url };
+                                }
+                                else
+                                {
+                                    return new { curso.Mensalidade, };
+                                }
+                            }
+                        }
+
+                    }
+                    else
+                    {
+                        if (curso.NotaMec != 0)
+                        {
+                            if (curso.PontoApoio != null)
+                            {
+                                if (curso.Url != null)
+                                {
+                                    return new {curso.NotaMec, curso.PontoApoio, curso.Url };
+                                }
+                                else
+                                {
+                                    return new { curso.NotaMec, curso.PontoApoio };
+                                }
+                            }
+                            else
+                            {
+                                if (curso.Url != null)
+                                {
+                                    return new {curso.NotaMec, curso.Url };
+                                }
+                                else
+                                {
+                                    return new {  curso.NotaMec };
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (curso.PontoApoio != null)
+                            {
+                                if (curso.Url != null)
+                                {
+                                    return new { curso.PontoApoio, curso.Url };
+                                }
+                                else
+                                {
+                                    return new { curso.PontoApoio };
+                                }
+                            }
+                            else
+                            {
+                                if (curso.Url != null)
+                                {
+                                    return new {  curso.Url };
+                                }
+                                else
+                                {
+                                    return null;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private string BuildQuery(CursoDto curso = null)
+        {
+            if(curso == null)
+            {
+                return CursoQueries.GET_ALL_CURSO_ONLY_CURSO;
+            }
+            StringBuilder query = new StringBuilder(CursoQueries.GET_ALL_CURSO_ONLY_CURSO);
+            query.Append(" WHERE Id != 0");
+            if(curso.FaculdadeId!= 0)
+            {
+                query = new StringBuilder(String.Format(CursoQueries.GET_ALL_CURSO_ONLY_CURSO_AND_FACULDADE, curso.FaculdadeId));
+            }
+            
+            if (curso.Nome != null)
+            {
+                if (curso.Duracao != null)
+                {
+                    if (curso.Mensalidade != null)
+                    {
+                        if (curso.NotaMec != 0)
+                        {
+                            if (curso.PontoApoio != null)
+                            {
+                                if (curso.Url != null)
+                                {
+                                    query.Append(" AND Nome = @Nome AND Duracao = @Duracao AND Mensalidade = @Mensalidade AND NotaMec = @NotaMec AND PontoApoio = @PontoApoio AND Url = @Url");
+                                    return query.ToString();
+                                }
+                                else
+                                {
+
+                                    query.Append(" AND Nome = @Nome AND Duracao = @Duracao AND Mensalidade = @Mensalidade AND NotaMec = @NotaMec AND PontoApoio = @PontoApoio");
+                                    return query.ToString();
+                                }
+                            }
+                            else
+                            {
+                                if (curso.Url != null)
+                                {
+
+                                    query.Append(" AND Nome = @Nome AND Duracao = @Duracao AND Mensalidade = @Mensalidade AND NotaMec = @NotaMec AND Url = @Url");
+                                    return query.ToString();
+                                }
+                                else
+                                {
+                                    query.Append(" AND Nome = @Nome AND Duracao = @Duracao AND Mensalidade = @Mensalidade AND NotaMec = @NotaMec");
+                                    return query.ToString();
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (curso.PontoApoio != null)
+                            {
+                                if (curso.Url != null)
+                                {
+
+                                    query.Append(" AND Nome = @Nome AND Duracao = @Duracao AND Mensalidade = @Mensalidade AND PontoApoio = @PontoApoio AND Url = @Url");
+                                    return query.ToString();
+                                }
+                                else
+                                {
+
+                                    query.Append(" AND Nome = @Nome AND Duracao = @Duracao AND Mensalidade = @Mensalidade AND PontoApoio = @PontoApoio");
+                                    return query.ToString();
+                                }
+                            }
+                            else
+                            {
+                                if (curso.Url != null)
+                                {
+
+                                    query.Append(" AND Nome = @Nome AND Duracao = @Duracao AND Mensalidade = @Mensalidade Url = @Url");
+                                    return query.ToString();
+                                }
+                                else
+                                {
+
+                                    query.Append(" AND Nome = @Nome AND Duracao = @Duracao AND Mensalidade = @Mensalidade");
+                                    return query.ToString();
+                                }
+                            }
+                        }
+
+                    }
+                    else
+                    {
+                        if (curso.NotaMec != 0)
+                        {
+                            if (curso.PontoApoio != null)
+                            {
+                                if (curso.Url != null)
+                                {
+                                    query.Append(" AND Nome = @Nome AND Duracao = @Duracao AND NotaMec = @NotaMec AND PontoApoio = @PontoApoio AND Url = @Url");
+                                    return query.ToString();
+                                }
+                                else
+                                {
+
+                                    query.Append(" AND Nome = @Nome AND Duracao = @Duracao AND NotaMec = @NotaMec AND PontoApoio = @PontoApoio");
+                                    return query.ToString();
+                                }
+                            }
+                            else
+                            {
+                                if (curso.Url != null)
+                                {
+
+                                    query.Append(" AND Nome = @Nome AND Duracao = @Duracao AND NotaMec = @NotaMec AND Url = @Url");
+                                    return query.ToString();
+                                }
+                                else
+                                {
+
+                                    query.Append(" AND Nome = @Nome AND Duracao = @Duracao AND NotaMec = @NotaMec ");
+                                    return query.ToString();
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (curso.PontoApoio != null)
+                            {
+                                if (curso.Url != null)
+                                {
+
+                                    query.Append(" AND Nome = @Nome AND Duracao = @Duracao PontoApoio = @PontoApoio AND Url = @Url");
+                                    return query.ToString();
+                                }
+                                else
+                                {
+
+                                    query.Append(" AND Nome = @Nome AND Duracao = @Duracao AND PontoApoio = @PontoApoio ");
+                                    return query.ToString();
+                                }
+                            }
+                            else
+                            {
+                                if (curso.Url != null)
+                                {
+
+                                    query.Append(" AND Nome = @Nome AND Duracao = @Duracao AND Url = @Url");
+                                    return query.ToString();
+                                }
+                                else
+                                {
+                                    query.Append(" AND Nome = @Nome AND Duracao = @Duracao");
+                                    return query.ToString();
+                                }
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    if (curso.Mensalidade != null)
+                    {
+                        if (curso.NotaMec != 0)
+                        {
+                            if (curso.PontoApoio != null)
+                            {
+                                if (curso.Url != null)
+                                {
+
+                                    query.Append(" AND Nome = @Nome AND Mensalidade = @Mensalidade AND NotaMec = @NotaMec AND PontoApoio = @PontoApoio AND Url = @Url");
+                                    return query.ToString();
+                                }
+                                else
+                                {
+                                    query.Append(" AND Nome = @Nome AND Mensalidade = @Mensalidade AND NotaMec = @NotaMec AND PontoApoio = @PontoApoio ");
+                                    return query.ToString();
+                                }
+                            }
+                            else
+                            {
+                                if (curso.Url != null)
+                                {
+
+                                    query.Append(" AND Nome = @Nome AND Mensalidade = @Mensalidade AND NotaMec = @NotaMec AND Url = @Url");
+                                    return query.ToString();
+                                }
+                                else
+                                {
+
+                                    query.Append(" AND Nome = @Nome AND Mensalidade = @Mensalidade AND NotaMec = @NotaMec");
+                                    return query.ToString();
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (curso.PontoApoio != null)
+                            {
+                                if (curso.Url != null)
+                                {
+
+                                    query.Append(" AND Nome = @Nome AND Mensalidade = @Mensalidade AND PontoApoio = @PontoApoio AND Url = @Url");
+                                    return query.ToString();
+                                }
+                                else
+                                {
+
+                                    query.Append(" AND Nome = @Nome AND Mensalidade = @Mensalidade AND PontoApoio = @PontoApoio");
+                                    return query.ToString();
+                                }
+                            }
+                            else
+                            {
+                                if (curso.Url != null)
+                                {
+
+                                    query.Append(" AND Nome = @Nome AND Mensalidade = @Mensalidade AND Url = @Url");
+                                    return query.ToString();
+                                }
+                                else
+                                {
+
+                                    query.Append(" AND Nome = @Nome AND Mensalidade = @Mensalidade ");
+                                    return query.ToString();
+                                }
+                            }
+                        }
+
+                    }
+                    else
+                    {
+                        if (curso.NotaMec != 0)
+                        {
+                            if (curso.PontoApoio != null)
+                            {
+                                if (curso.Url != null)
+                                {
+                                    query.Append(" AND Nome = @Nome AND NotaMec = @NotaMec AND PontoApoio = @PontoApoio AND Url = @Url");
+                                    return query.ToString();
+                                }
+                                else
+                                {
+
+                                    query.Append(" AND Nome = @Nome AND NotaMec = @NotaMec AND PontoApoio = @PontoApoio");
+                                    return query.ToString();
+                                }
+                            }
+                            else
+                            {
+                                if (curso.Url != null)
+                                {
+
+                                    query.Append(" AND Nome = @Nome AND NotaMec = @NotaMec Url = @Url");
+                                    return query.ToString();
+                                }
+                                else
+                                {
+                                    query.Append(" AND Nome = @Nome AND NotaMec = @NotaMec");
+                                    return query.ToString();
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (curso.PontoApoio != null)
+                            {
+                                if (curso.Url != null)
+                                {
+
+                                    query.Append(" AND Nome = @Nome AND PontoApoio = @PontoApoio AND Url = @Url");
+                                    return query.ToString();
+                                }
+                                else
+                                {
+
+                                    query.Append(" AND Nome = @Nome AND PontoApoio = @PontoApoio");
+                                    return query.ToString();
+                                }
+                            }
+                            else
+                            {
+                                if (curso.Url != null)
+                                {
+
+                                    query.Append(" AND Nome = @Nome AND Url = @Url");
+                                    return query.ToString();
+                                }
+                                else
+                                {
+
+                                    query.Append(" AND Nome = @Nome");
+                                    return query.ToString();
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+            else
+            {
+                if (curso.Duracao != null)
+                {
+                    if (curso.Mensalidade != null)
+                    {
+                        if (curso.NotaMec != 0)
+                        {
+                            if (curso.PontoApoio != null)
+                            {
+                                if (curso.Url != null)
+                                {
+
+                                    query.Append(" AND Duracao = @Duracao AND Mensalidade = @Mensalidade AND NotaMec = @NotaMec AND PontoApoio = @PontoApoio AND Url = @Url");
+                                    return query.ToString();
+                                }
+                                else
+                                {
+                                    query.Append(" AND Duracao = @Duracao AND Mensalidade = @Mensalidade AND NotaMec = @NotaMec AND PontoApoio = @PontoApoio");
+                                    return query.ToString();
+                                }
+                            }
+                            else
+                            {
+                                if (curso.Url != null)
+                                {
+                                    query.Append(" AND Duracao = @Duracao AND Mensalidade = @Mensalidade AND NotaMec = @NotaMec AND Url = @Url");
+                                    return query.ToString();
+                                }
+                                else
+                                {
+                                    query.Append(" AND Duracao = @Duracao AND Mensalidade = @Mensalidade AND NotaMec = @NotaMec");
+                                    return query.ToString();
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (curso.PontoApoio != null)
+                            {
+                                if (curso.Url != null)
+                                {
+                                    query.Append(" AND Duracao = @Duracao AND Mensalidade = @Mensalidade AND PontoApoio = @PontoApoio AND Url = @Url");
+                                    return query.ToString();
+                                }
+                                else
+                                {
+                                    query.Append(" AND Duracao = @Duracao AND Mensalidade = @Mensalidade AND PontoApoio = @PontoApoio");
+                                    return query.ToString();
+                                }
+                            }
+                            else
+                            {
+                                if (curso.Url != null)
+                                {
+                                    query.Append(" AND Duracao = @Duracao AND Mensalidade = @Mensalidade AND Url = @Url");
+                                    return query.ToString();
+                                }
+                                else
+                                {
+                                    query.Append(" AND Duracao = @Duracao AND Mensalidade = @Mensalidade");
+                                    return query.ToString();
+                                }
+                            }
+                        }
+
+                    }
+                    else
+                    {
+                        if (curso.NotaMec != 0)
+                        {
+                            if (curso.PontoApoio != null)
+                            {
+                                if (curso.Url != null)
+                                {
+                                    query.Append(" AND Duracao = @Duracao  AND NotaMec = @NotaMec AND PontoApoio = @PontoApoio AND Url = @Url");
+                                    return query.ToString();
+                                }
+                                else
+                                {
+                                    query.Append(" AND Duracao = @Duracao AND NotaMec = @NotaMec AND PontoApoio = @PontoApoio");
+                                    return query.ToString();
+                                }
+                            }
+                            else
+                            {
+                                if (curso.Url != null)
+                                {
+                                    query.Append(" AND Duracao = @Duracao AND NotaMec = @NotaMec AND Url = @Url");
+                                    return query.ToString();
+                                }
+                                else
+                                {
+                                    query.Append(" AND Duracao = @Duracao AND NotaMec = @NotaMec ");
+                                    return query.ToString();
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (curso.PontoApoio != null)
+                            {
+                                if (curso.Url != null)
+                                {
+                                    query.Append(" AND Duracao = @Duracao AND PontoApoio = @PontoApoio AND Url = @Url");
+                                    return query.ToString();
+                                }
+                                else
+                                {
+                                    query.Append(" AND Duracao = @Duracao AND PontoApoio = @PontoApoio ");
+                                    return query.ToString();
+                                }
+                            }
+                            else
+                            {
+                                if (curso.Url != null)
+                                {
+                                    query.Append(" AND Duracao = @Duracao AND Url = @Url");
+                                    return query.ToString();
+                                }
+                                else
+                                {
+                                    query.Append(" AND Duracao = @Duracao");
+                                    return query.ToString();
+                                }
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    if (curso.Mensalidade != null)
+                    {
+                        if (curso.NotaMec != 0)
+                        {
+                            if (curso.PontoApoio != null)
+                            {
+                                if (curso.Url != null)
+                                {
+                                    query.Append(" AND Mensalidade = @Mensalidade AND NotaMec = @NotaMec AND PontoApoio = @PontoApoio AND Url = @Url");
+                                    return query.ToString();
+                                }
+                                else
+                                {
+                                    query.Append(" AND Mensalidade = @Mensalidade AND NotaMec = @NotaMec AND PontoApoio = @PontoApoio");
+                                    return query.ToString();
+                                }
+                            }
+                            else
+                            {
+                                if (curso.Url != null)
+                                {
+                                    query.Append(" AND Mensalidade = @Mensalidade AND NotaMec = @NotaMec AND Url = @Url");
+                                    return query.ToString();
+                                }
+                                else
+                                {
+                                    query.Append(" AND Mensalidade = @Mensalidade AND NotaMec = @NotaMec");
+                                    return query.ToString();
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (curso.PontoApoio != null)
+                            {
+                                if (curso.Url != null)
+                                {
+                                    query.Append(" AND Mensalidade = @Mensalidade AND PontoApoio = @PontoApoio AND Url = @Url");
+                                    return query.ToString();
+                                }
+                                else
+                                {
+
+                                    query.Append(" AND Mensalidade = @Mensalidade AND PontoApoio = @PontoApoio");
+                                    return query.ToString();
+                                }
+                            }
+                            else
+                            {
+                                if (curso.Url != null)
+                                {
+
+                                    query.Append(" AND Mensalidade = @Mensalidade AND Url = @Url");
+                                    return query.ToString();
+                                }
+                                else
+                                {
+
+                                    query.Append(" AND Mensalidade = @Mensalidade ");
+                                    return query.ToString();
+                                }
+                            }
+                        }
+
+                    }
+                    else
+                    {
+                        if (curso.NotaMec != 0)
+                        {
+                            if (curso.PontoApoio != null)
+                            {
+                                if (curso.Url != null)
+                                {
+                                    query.Append(" AND NotaMec = @NotaMec AND PontoApoio = @PontoApoio AND Url = @Url");
+                                    return query.ToString();
+                                }
+                                else
+                                {
+
+                                    query.Append(" AND NotaMec = @NotaMec AND PontoApoio = @PontoApoio");
+                                    return query.ToString();
+                                }
+                            }
+                            else
+                            {
+                                if (curso.Url != null)
+                                {
+
+                                    query.Append(" AND NotaMec = @NotaMec AND Url = @Url");
+                                    return query.ToString();
+                                }
+                                else
+                                {
+
+                                    query.Append(" AND NotaMec = @NotaMec");
+                                    return query.ToString();
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (curso.PontoApoio != null)
+                            {
+                                if (curso.Url != null)
+                                {
+
+                                    query.Append(" AND PontoApoio = @PontoApoio AND Url = @Url");
+                                    return query.ToString();
+                                }
+                                else
+                                {
+
+                                    query.Append(" AND PontoApoio = @PontoApoio");
+                                    return query.ToString();
+                                }
+                            }
+                            else
+                            {
+                                if (curso.Url != null)
+                                {
+
+                                    query.Append(" AND Url = @Url");
+                                    return query.ToString();
+                                }
+                                else
+                                {
+                                    return query.ToString();
+                                }
+                            }
+                        }
+                    }
+
+                }
+            }
+
+            return query.ToString();
+
+        }
+
     }
+
+
 }
