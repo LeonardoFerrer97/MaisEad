@@ -1,0 +1,32 @@
+.tutorial{
+    margin-left:10vw;
+    margin-right:10vw;
+    margin-top:20px;
+    margin-bottom:20px;
+    display: flex;
+    width:100%;
+    flex-direction: row;
+}
+
+.svg{
+    align-self: center;
+    margin-left:30px;
+}
+
+.tutorial-acima{
+    margin-right:10px;
+    display: flex;
+    flex-grow:1;
+    font-weight:bold;
+    z-index: 32190;
+    font-family: Arial, Helvetica, sans-serif; 
+}
+
+.tutorial-abaixo{
+    display: flex;
+    flex-grow:1;
+    align-items: flex-end;
+    z-index: 32190;
+    font-weight:bold;
+    font-family: Arial, Helvetica, sans-serif;
+}

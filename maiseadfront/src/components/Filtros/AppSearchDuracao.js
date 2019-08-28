@@ -21,7 +21,7 @@ class AppSearchDuracao extends React.Component {
         label="Tempo mínimo para formar"
         classes={{root:classes.textField}}
         value={this.props.duracao}
-        onChange={this.props.handleChange('curso')}
+        onChange={this.props.handleChange('duracao')}
         margin="normal"
         type='number'
         variant="outlined"

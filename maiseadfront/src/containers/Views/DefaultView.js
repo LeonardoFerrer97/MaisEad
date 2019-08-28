@@ -4,7 +4,8 @@ import {connect} from 'react-redux';
 import {obterListaEad,obterEadSucesso} from '../../actions/index'
 import Home from './Home';
 import EaDs from './EaDs';
-import AppEadBar from '../../components/AppEadBar/AppEadBar'
+import AppEadBar from '../../components/AppEadBar/AppEadBar';
+import AppBottomBar from '../../components/AppEadBar/AppBottomBar';
 
 
 class DefaultView extends Component {
@@ -31,6 +32,7 @@ class DefaultView extends Component {
             return (<div>
                 <AppEadBar />
                 <Home />
+                <AppBottomBar />
             </div>)
         }
 

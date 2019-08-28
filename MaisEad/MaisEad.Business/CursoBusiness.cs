@@ -576,13 +576,13 @@ namespace MaisEad.Business
                             {
                                 if (curso.Url != null)
                                 {
-                                    query.Append(" AND Nome = @Nome AND Duracao = @Duracao AND Mensalidade = @Mensalidade AND NotaMec = @NotaMec AND PontoApoio = @PontoApoio AND Url = @Url");
+                                    query.Append(" AND Nome LIKE @Nome AND Duracao = @Duracao AND Mensalidade < @Mensalidade AND NotaMec = @NotaMec AND PontoApoio LIKE @PontoApoio AND Url LIKE @Url");
                                     return query.ToString();
                                 }
                                 else
                                 {
 
-                                    query.Append(" AND Nome = @Nome AND Duracao = @Duracao AND Mensalidade = @Mensalidade AND NotaMec = @NotaMec AND PontoApoio = @PontoApoio");
+                                    query.Append(" AND Nome LIKE @Nome AND Duracao = @Duracao AND Mensalidade < @Mensalidade AND NotaMec = @NotaMec AND PontoApoio LIKE @PontoApoio");
                                     return query.ToString();
                                 }
                             }
@@ -591,12 +591,12 @@ namespace MaisEad.Business
                                 if (curso.Url != null)
                                 {
 
-                                    query.Append(" AND Nome = @Nome AND Duracao = @Duracao AND Mensalidade = @Mensalidade AND NotaMec = @NotaMec AND Url = @Url");
+                                    query.Append(" AND Nome LIKE @Nome AND Duracao LIKE @Duracao AND Mensalidade < @Mensalidade AND NotaMec = @NotaMec AND Url LIKE @Url");
                                     return query.ToString();
                                 }
                                 else
                                 {
-                                    query.Append(" AND Nome = @Nome AND Duracao = @Duracao AND Mensalidade = @Mensalidade AND NotaMec = @NotaMec");
+                                    query.Append(" AND Nome LIKE @Nome AND Duracao LIKE @Duracao AND Mensalidade < @Mensalidade AND NotaMec LIKE @NotaMec");
                                     return query.ToString();
                                 }
                             }
@@ -608,13 +608,13 @@ namespace MaisEad.Business
                                 if (curso.Url != null)
                                 {
 
-                                    query.Append(" AND Nome = @Nome AND Duracao = @Duracao AND Mensalidade = @Mensalidade AND PontoApoio = @PontoApoio AND Url = @Url");
+                                    query.Append(" AND Nome LIKE @Nome AND Duracao = @Duracao AND Mensalidade < @Mensalidade AND PontoApoio LIKE @PontoApoio AND Url LIKE @Url");
                                     return query.ToString();
                                 }
                                 else
                                 {
 
-                                    query.Append(" AND Nome = @Nome AND Duracao = @Duracao AND Mensalidade = @Mensalidade AND PontoApoio = @PontoApoio");
+                                    query.Append(" AND Nome LIKE @Nome AND Duracao = @Duracao AND Mensalidade < @Mensalidade AND PontoApoio LIKE @PontoApoio");
                                     return query.ToString();
                                 }
                             }
@@ -623,13 +623,13 @@ namespace MaisEad.Business
                                 if (curso.Url != null)
                                 {
 
-                                    query.Append(" AND Nome = @Nome AND Duracao = @Duracao AND Mensalidade = @Mensalidade Url = @Url");
+                                    query.Append(" AND Nome LIKE @Nome AND Duracao = @Duracao AND Mensalidade < @Mensalidade Url LIKE @Url");
                                     return query.ToString();
                                 }
                                 else
                                 {
 
-                                    query.Append(" AND Nome = @Nome AND Duracao = @Duracao AND Mensalidade = @Mensalidade");
+                                    query.Append(" AND Nome LIKE @Nome AND Duracao = @Duracao AND Mensalidade < @Mensalidade");
                                     return query.ToString();
                                 }
                             }
@@ -644,13 +644,13 @@ namespace MaisEad.Business
                             {
                                 if (curso.Url != null)
                                 {
-                                    query.Append(" AND Nome = @Nome AND Duracao = @Duracao AND NotaMec = @NotaMec AND PontoApoio = @PontoApoio AND Url = @Url");
+                                    query.Append(" AND Nome LIKE @Nome AND Duracao = @Duracao AND NotaMec = @NotaMec AND PontoApoio LIKE @PontoApoio AND Url LIKE @Url");
                                     return query.ToString();
                                 }
                                 else
                                 {
 
-                                    query.Append(" AND Nome = @Nome AND Duracao = @Duracao AND NotaMec = @NotaMec AND PontoApoio = @PontoApoio");
+                                    query.Append(" AND Nome LIKE @Nome AND Duracao = @Duracao AND NotaMec = @NotaMec AND PontoApoio LIKE @PontoApoio");
                                     return query.ToString();
                                 }
                             }
@@ -659,13 +659,13 @@ namespace MaisEad.Business
                                 if (curso.Url != null)
                                 {
 
-                                    query.Append(" AND Nome = @Nome AND Duracao = @Duracao AND NotaMec = @NotaMec AND Url = @Url");
+                                    query.Append(" AND Nome LIKE @Nome AND Duracao = @Duracao AND NotaMec = @NotaMec AND Url LIKE @Url");
                                     return query.ToString();
                                 }
                                 else
                                 {
 
-                                    query.Append(" AND Nome = @Nome AND Duracao = @Duracao AND NotaMec = @NotaMec ");
+                                    query.Append(" AND Nome LIKE @Nome AND Duracao = @Duracao AND NotaMec = @NotaMec ");
                                     return query.ToString();
                                 }
                             }
@@ -677,13 +677,13 @@ namespace MaisEad.Business
                                 if (curso.Url != null)
                                 {
 
-                                    query.Append(" AND Nome = @Nome AND Duracao = @Duracao PontoApoio = @PontoApoio AND Url = @Url");
+                                    query.Append(" AND Nome LIKE @Nome AND Duracao = @Duracao PontoApoio LIKE @PontoApoio AND Url LIKE @Url");
                                     return query.ToString();
                                 }
                                 else
                                 {
 
-                                    query.Append(" AND Nome = @Nome AND Duracao = @Duracao AND PontoApoio = @PontoApoio ");
+                                    query.Append(" AND Nome LIKE @Nome AND Duracao = @Duracao AND PontoApoio LIKE @PontoApoio ");
                                     return query.ToString();
                                 }
                             }
@@ -692,12 +692,12 @@ namespace MaisEad.Business
                                 if (curso.Url != null)
                                 {
 
-                                    query.Append(" AND Nome = @Nome AND Duracao = @Duracao AND Url = @Url");
+                                    query.Append(" AND Nome LIKE @Nome AND Duracao = @Duracao AND Url LIKE @Url");
                                     return query.ToString();
                                 }
                                 else
                                 {
-                                    query.Append(" AND Nome = @Nome AND Duracao = @Duracao");
+                                    query.Append(" AND Nome LIKE @Nome AND Duracao = @Duracao");
                                     return query.ToString();
                                 }
                             }
@@ -715,12 +715,12 @@ namespace MaisEad.Business
                                 if (curso.Url != null)
                                 {
 
-                                    query.Append(" AND Nome = @Nome AND Mensalidade = @Mensalidade AND NotaMec = @NotaMec AND PontoApoio = @PontoApoio AND Url = @Url");
+                                    query.Append(" AND Nome LIKE @Nome AND Mensalidade < @Mensalidade AND NotaMec = @NotaMec AND PontoApoio LIKE @PontoApoio AND Url LIKE @Url");
                                     return query.ToString();
                                 }
                                 else
                                 {
-                                    query.Append(" AND Nome = @Nome AND Mensalidade = @Mensalidade AND NotaMec = @NotaMec AND PontoApoio = @PontoApoio ");
+                                    query.Append(" AND Nome LIKE @Nome AND Mensalidade < @Mensalidade AND NotaMec = @NotaMec AND PontoApoio LIKE @PontoApoio ");
                                     return query.ToString();
                                 }
                             }
@@ -729,13 +729,13 @@ namespace MaisEad.Business
                                 if (curso.Url != null)
                                 {
 
-                                    query.Append(" AND Nome = @Nome AND Mensalidade = @Mensalidade AND NotaMec = @NotaMec AND Url = @Url");
+                                    query.Append(" AND Nome LIKE @Nome AND Mensalidade < @Mensalidade AND NotaMec = @NotaMec AND Url LIKE @Url");
                                     return query.ToString();
                                 }
                                 else
                                 {
 
-                                    query.Append(" AND Nome = @Nome AND Mensalidade = @Mensalidade AND NotaMec = @NotaMec");
+                                    query.Append(" AND Nome LIKE @Nome AND Mensalidade < @Mensalidade AND NotaMec = @NotaMec");
                                     return query.ToString();
                                 }
                             }
@@ -747,13 +747,13 @@ namespace MaisEad.Business
                                 if (curso.Url != null)
                                 {
 
-                                    query.Append(" AND Nome = @Nome AND Mensalidade = @Mensalidade AND PontoApoio = @PontoApoio AND Url = @Url");
+                                    query.Append(" AND Nome LIKE @Nome AND Mensalidade < @Mensalidade AND PontoApoio LIKE @PontoApoio AND Url LIKE @Url");
                                     return query.ToString();
                                 }
                                 else
                                 {
 
-                                    query.Append(" AND Nome = @Nome AND Mensalidade = @Mensalidade AND PontoApoio = @PontoApoio");
+                                    query.Append(" AND Nome LIKE @Nome AND Mensalidade < @Mensalidade AND PontoApoio LIKE @PontoApoio");
                                     return query.ToString();
                                 }
                             }
@@ -762,13 +762,13 @@ namespace MaisEad.Business
                                 if (curso.Url != null)
                                 {
 
-                                    query.Append(" AND Nome = @Nome AND Mensalidade = @Mensalidade AND Url = @Url");
+                                    query.Append(" AND Nome LIKE @Nome AND Mensalidade < @Mensalidade AND Url LIKE @Url");
                                     return query.ToString();
                                 }
                                 else
                                 {
 
-                                    query.Append(" AND Nome = @Nome AND Mensalidade = @Mensalidade ");
+                                    query.Append(" AND Nome LIKE @Nome AND Mensalidade < @Mensalidade ");
                                     return query.ToString();
                                 }
                             }
@@ -783,13 +783,13 @@ namespace MaisEad.Business
                             {
                                 if (curso.Url != null)
                                 {
-                                    query.Append(" AND Nome = @Nome AND NotaMec = @NotaMec AND PontoApoio = @PontoApoio AND Url = @Url");
+                                    query.Append(" AND Nome LIKE @Nome AND NotaMec = @NotaMec AND PontoApoio LIKE @PontoApoio AND Url LIKE @Url");
                                     return query.ToString();
                                 }
                                 else
                                 {
 
-                                    query.Append(" AND Nome = @Nome AND NotaMec = @NotaMec AND PontoApoio = @PontoApoio");
+                                    query.Append(" AND Nome LIKE @Nome AND NotaMec = @NotaMec AND PontoApoio LIKE @PontoApoio");
                                     return query.ToString();
                                 }
                             }
@@ -798,12 +798,12 @@ namespace MaisEad.Business
                                 if (curso.Url != null)
                                 {
 
-                                    query.Append(" AND Nome = @Nome AND NotaMec = @NotaMec Url = @Url");
+                                    query.Append(" AND Nome LIKE @Nome AND NotaMec = @NotaMec Url LIKE @Url");
                                     return query.ToString();
                                 }
                                 else
                                 {
-                                    query.Append(" AND Nome = @Nome AND NotaMec = @NotaMec");
+                                    query.Append(" AND Nome LIKE @Nome AND NotaMec = @NotaMec");
                                     return query.ToString();
                                 }
                             }
@@ -815,13 +815,13 @@ namespace MaisEad.Business
                                 if (curso.Url != null)
                                 {
 
-                                    query.Append(" AND Nome = @Nome AND PontoApoio = @PontoApoio AND Url = @Url");
+                                    query.Append(" AND Nome LIKE @Nome AND PontoApoio LIKE @PontoApoio AND Url LIKE @Url");
                                     return query.ToString();
                                 }
                                 else
                                 {
 
-                                    query.Append(" AND Nome = @Nome AND PontoApoio = @PontoApoio");
+                                    query.Append(" AND Nome LIKE @Nome AND PontoApoio LIKE @PontoApoio");
                                     return query.ToString();
                                 }
                             }
@@ -830,13 +830,13 @@ namespace MaisEad.Business
                                 if (curso.Url != null)
                                 {
 
-                                    query.Append(" AND Nome = @Nome AND Url = @Url");
+                                    query.Append(" AND Nome LIKE @Nome AND Url LIKE @Url");
                                     return query.ToString();
                                 }
                                 else
                                 {
 
-                                    query.Append(" AND Nome = @Nome");
+                                    query.Append(" AND Nome LIKE @Nome");
                                     return query.ToString();
                                 }
                             }
@@ -858,12 +858,12 @@ namespace MaisEad.Business
                                 if (curso.Url != null)
                                 {
 
-                                    query.Append(" AND Duracao = @Duracao AND Mensalidade = @Mensalidade AND NotaMec = @NotaMec AND PontoApoio = @PontoApoio AND Url = @Url");
+                                    query.Append(" AND Duracao = @Duracao AND Mensalidade < @Mensalidade AND NotaMec = @NotaMec AND PontoApoio LIKE @PontoApoio AND Url LIKE @Url");
                                     return query.ToString();
                                 }
                                 else
                                 {
-                                    query.Append(" AND Duracao = @Duracao AND Mensalidade = @Mensalidade AND NotaMec = @NotaMec AND PontoApoio = @PontoApoio");
+                                    query.Append(" AND Duracao = @Duracao AND Mensalidade < @Mensalidade AND NotaMec = @NotaMec AND PontoApoio LIKE @PontoApoio");
                                     return query.ToString();
                                 }
                             }
@@ -871,12 +871,12 @@ namespace MaisEad.Business
                             {
                                 if (curso.Url != null)
                                 {
-                                    query.Append(" AND Duracao = @Duracao AND Mensalidade = @Mensalidade AND NotaMec = @NotaMec AND Url = @Url");
+                                    query.Append(" AND Duracao = @Duracao AND Mensalidade < @Mensalidade AND NotaMec = @NotaMec AND Url LIKE @Url");
                                     return query.ToString();
                                 }
                                 else
                                 {
-                                    query.Append(" AND Duracao = @Duracao AND Mensalidade = @Mensalidade AND NotaMec = @NotaMec");
+                                    query.Append(" AND Duracao = @Duracao AND Mensalidade < @Mensalidade AND NotaMec = @NotaMec");
                                     return query.ToString();
                                 }
                             }
@@ -887,12 +887,12 @@ namespace MaisEad.Business
                             {
                                 if (curso.Url != null)
                                 {
-                                    query.Append(" AND Duracao = @Duracao AND Mensalidade = @Mensalidade AND PontoApoio = @PontoApoio AND Url = @Url");
+                                    query.Append(" AND Duracao = @Duracao AND Mensalidade < @Mensalidade AND PontoApoio LIKE @PontoApoio AND Url LIKE @Url");
                                     return query.ToString();
                                 }
                                 else
                                 {
-                                    query.Append(" AND Duracao = @Duracao AND Mensalidade = @Mensalidade AND PontoApoio = @PontoApoio");
+                                    query.Append(" AND Duracao = @Duracao AND Mensalidade < @Mensalidade AND PontoApoio LIKE @PontoApoio");
                                     return query.ToString();
                                 }
                             }
@@ -900,12 +900,12 @@ namespace MaisEad.Business
                             {
                                 if (curso.Url != null)
                                 {
-                                    query.Append(" AND Duracao = @Duracao AND Mensalidade = @Mensalidade AND Url = @Url");
+                                    query.Append(" AND Duracao = @Duracao AND Mensalidade < @Mensalidade AND Url LIKE @Url");
                                     return query.ToString();
                                 }
                                 else
                                 {
-                                    query.Append(" AND Duracao = @Duracao AND Mensalidade = @Mensalidade");
+                                    query.Append(" AND Duracao = @Duracao AND Mensalidade < @Mensalidade");
                                     return query.ToString();
                                 }
                             }
@@ -920,12 +920,12 @@ namespace MaisEad.Business
                             {
                                 if (curso.Url != null)
                                 {
-                                    query.Append(" AND Duracao = @Duracao  AND NotaMec = @NotaMec AND PontoApoio = @PontoApoio AND Url = @Url");
+                                    query.Append(" AND Duracao = @Duracao  AND NotaMec = @NotaMec AND PontoApoio LIKE @PontoApoio AND Url LIKE @Url");
                                     return query.ToString();
                                 }
                                 else
                                 {
-                                    query.Append(" AND Duracao = @Duracao AND NotaMec = @NotaMec AND PontoApoio = @PontoApoio");
+                                    query.Append(" AND Duracao = @Duracao AND NotaMec = @NotaMec AND PontoApoio LIKE @PontoApoio");
                                     return query.ToString();
                                 }
                             }
@@ -933,7 +933,7 @@ namespace MaisEad.Business
                             {
                                 if (curso.Url != null)
                                 {
-                                    query.Append(" AND Duracao = @Duracao AND NotaMec = @NotaMec AND Url = @Url");
+                                    query.Append(" AND Duracao = @Duracao AND NotaMec = @NotaMec AND Url LIKE @Url");
                                     return query.ToString();
                                 }
                                 else
@@ -949,12 +949,12 @@ namespace MaisEad.Business
                             {
                                 if (curso.Url != null)
                                 {
-                                    query.Append(" AND Duracao = @Duracao AND PontoApoio = @PontoApoio AND Url = @Url");
+                                    query.Append(" AND Duracao = @Duracao AND PontoApoio LIKE @PontoApoio AND Url LIKE @Url");
                                     return query.ToString();
                                 }
                                 else
                                 {
-                                    query.Append(" AND Duracao = @Duracao AND PontoApoio = @PontoApoio ");
+                                    query.Append(" AND Duracao = @Duracao AND PontoApoio LIKE @PontoApoio ");
                                     return query.ToString();
                                 }
                             }
@@ -962,7 +962,7 @@ namespace MaisEad.Business
                             {
                                 if (curso.Url != null)
                                 {
-                                    query.Append(" AND Duracao = @Duracao AND Url = @Url");
+                                    query.Append(" AND Duracao = @Duracao AND Url LIKE @Url");
                                     return query.ToString();
                                 }
                                 else
@@ -984,12 +984,12 @@ namespace MaisEad.Business
                             {
                                 if (curso.Url != null)
                                 {
-                                    query.Append(" AND Mensalidade = @Mensalidade AND NotaMec = @NotaMec AND PontoApoio = @PontoApoio AND Url = @Url");
+                                    query.Append(" AND Mensalidade < @Mensalidade AND NotaMec < @NotaMec AND PontoApoio LIKE @PontoApoio AND Url LIKE @Url");
                                     return query.ToString();
                                 }
                                 else
                                 {
-                                    query.Append(" AND Mensalidade = @Mensalidade AND NotaMec = @NotaMec AND PontoApoio = @PontoApoio");
+                                    query.Append(" AND Mensalidade < @Mensalidade AND NotaMec < @NotaMec AND PontoApoio LIKE @PontoApoio");
                                     return query.ToString();
                                 }
                             }
@@ -997,12 +997,12 @@ namespace MaisEad.Business
                             {
                                 if (curso.Url != null)
                                 {
-                                    query.Append(" AND Mensalidade = @Mensalidade AND NotaMec = @NotaMec AND Url = @Url");
+                                    query.Append(" AND Mensalidade < @Mensalidade AND NotaMec = @NotaMec AND Url LIKE @Url");
                                     return query.ToString();
                                 }
                                 else
                                 {
-                                    query.Append(" AND Mensalidade = @Mensalidade AND NotaMec = @NotaMec");
+                                    query.Append(" AND Mensalidade < @Mensalidade AND NotaMec = @NotaMec");
                                     return query.ToString();
                                 }
                             }
@@ -1013,13 +1013,13 @@ namespace MaisEad.Business
                             {
                                 if (curso.Url != null)
                                 {
-                                    query.Append(" AND Mensalidade = @Mensalidade AND PontoApoio = @PontoApoio AND Url = @Url");
+                                    query.Append(" AND Mensalidade < @Mensalidade AND PontoApoio LIKE @PontoApoio AND Url LIKE @Url");
                                     return query.ToString();
                                 }
                                 else
                                 {
 
-                                    query.Append(" AND Mensalidade = @Mensalidade AND PontoApoio = @PontoApoio");
+                                    query.Append(" AND Mensalidade < @Mensalidade AND PontoApoio LIKE @PontoApoio");
                                     return query.ToString();
                                 }
                             }
@@ -1028,13 +1028,13 @@ namespace MaisEad.Business
                                 if (curso.Url != null)
                                 {
 
-                                    query.Append(" AND Mensalidade = @Mensalidade AND Url = @Url");
+                                    query.Append(" AND Mensalidade < @Mensalidade AND Url LIKE @Url");
                                     return query.ToString();
                                 }
                                 else
                                 {
 
-                                    query.Append(" AND Mensalidade = @Mensalidade ");
+                                    query.Append(" AND Mensalidade < @Mensalidade ");
                                     return query.ToString();
                                 }
                             }
@@ -1049,13 +1049,13 @@ namespace MaisEad.Business
                             {
                                 if (curso.Url != null)
                                 {
-                                    query.Append(" AND NotaMec = @NotaMec AND PontoApoio = @PontoApoio AND Url = @Url");
+                                    query.Append(" AND NotaMec = @NotaMec AND PontoApoio LIKE @PontoApoio AND Url LIKE @Url");
                                     return query.ToString();
                                 }
                                 else
                                 {
 
-                                    query.Append(" AND NotaMec = @NotaMec AND PontoApoio = @PontoApoio");
+                                    query.Append(" AND NotaMec = @NotaMec AND PontoApoio LIKE @PontoApoio");
                                     return query.ToString();
                                 }
                             }
@@ -1064,7 +1064,7 @@ namespace MaisEad.Business
                                 if (curso.Url != null)
                                 {
 
-                                    query.Append(" AND NotaMec = @NotaMec AND Url = @Url");
+                                    query.Append(" AND NotaMec = @NotaMec AND Url LIKE @Url");
                                     return query.ToString();
                                 }
                                 else
@@ -1082,13 +1082,13 @@ namespace MaisEad.Business
                                 if (curso.Url != null)
                                 {
 
-                                    query.Append(" AND PontoApoio = @PontoApoio AND Url = @Url");
+                                    query.Append(" AND PontoApoio LIKE @PontoApoio AND Url LIKE @Url");
                                     return query.ToString();
                                 }
                                 else
                                 {
 
-                                    query.Append(" AND PontoApoio = @PontoApoio");
+                                    query.Append(" AND PontoApoio LIKE @PontoApoio");
                                     return query.ToString();
                                 }
                             }
@@ -1097,7 +1097,7 @@ namespace MaisEad.Business
                                 if (curso.Url != null)
                                 {
 
-                                    query.Append(" AND Url = @Url");
+                                    query.Append(" AND Url LIKE @Url");
                                     return query.ToString();
                                 }
                                 else
@@ -1110,8 +1110,6 @@ namespace MaisEad.Business
 
                 }
             }
-
-            return query.ToString();
 
         }
 

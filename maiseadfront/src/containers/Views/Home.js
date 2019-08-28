@@ -1,15 +1,11 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import _ from 'lodash';
-import Filtro from '../../components/Filtros/Filtro';
+import FiltroPai from '../../components/Filtros/FiltroPai';
 class Home extends React.Component{
 
     
     render(){
-        if(!_.isEmpty(this.props.listaEad)){
-            return <Filtro />
-        } 
-        else return <div></div>       
+        return <FiltroPai />     
     }
 }
 

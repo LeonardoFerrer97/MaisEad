@@ -12,20 +12,20 @@ const styles = theme => ({
   },
 });
 
-class AppSearch extends React.Component {
+class AppSearchMensalidade extends React.Component {
   render (){
     const {classes} =this.props;
     return <form className={classes.container} noValidate autoComplete="on">
       <TextField
         id="outlined-name"
-        label="Nome do curso"
+        label="Mensalidade máxima"
         classes={{root:classes.textField}}
-        value={this.props.curso}
-        onChange={this.props.handleChange('curso')}
+        value={this.props.mensalidade}
+        onChange={this.props.handleChange('mensalidade')}
         margin="normal"
         variant="outlined"
       />
       </form>
   }
 }  
-export default withStyles(styles)(AppSearch);
+export default withStyles(styles)(AppSearchMensalidade);
