@@ -17,16 +17,16 @@
     margin-right:10px;
     display: flex;
     flex-grow:1;
-    font-weight:bold;
     z-index: 32190;
+    color:#F0F7EE;
     font-family: Arial, Helvetica, sans-serif; 
 }
 
 .tutorial-abaixo{
     display: flex;
     flex-grow:1;
+    color: #F0F7EE;
     align-items: flex-end;
     z-index: 32190;
-    font-weight:bold;
     font-family: Arial, Helvetica, sans-serif;
 }
