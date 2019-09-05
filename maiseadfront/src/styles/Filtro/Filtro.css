@@ -11,12 +11,23 @@
 }
 
 .body-filtro{
-    border-radius: 5%;
+    border-radius: 2%;
     background-color: #d5d7db;
     display: flex;
     flex-direction: column;
     margin-top:18vh;
     margin-right: 50vw;
+    margin-left:10vw;
+    box-shadow: 0 0 10px rgba(0,0,0,.5);
+}
+
+.body-filtro-avancado{
+    border-radius: 2%;
+    background-color: #d5d7db;
+    display: flex;
+    flex-direction: column;
+    margin-top:18vh;
+    margin-right: 10vw;
     margin-left:10vw;
     box-shadow: 0 0 10px rgba(0,0,0,.5);
 }

@@ -1,8 +1,9 @@
 import React,{Component} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {obterListaEad,obterEadSucesso} from '../../actions/index'
+import {obterEadSucesso} from '../../actions/index'
 import Home from './Home';
+import history from '../../components/Common/history'
 import EaDs from './EaDs';
 import AppEadBar from '../../components/AppEadBar/AppEadBar';
 import AppBottomBar from '../../components/AppEadBar/AppBottomBar';
@@ -15,11 +16,9 @@ class DefaultView extends Component {
             lista:{}
         }
     }
-    componentDidMount(){
-        this.props.obterListaEad(this.successHandler,(error)=>{console.log(error)});
-    }
     successHandler = (lista) =>{
         this.props.obterEadSucesso(lista)
+        history.push('/EaDs')
     }
     render() {
         if(this.props.path==='EaDs'){
@@ -29,9 +28,9 @@ class DefaultView extends Component {
             </div>)
         }
         if(this.props.path==='Home'){
-            return (<div>
+            return (<div >
                 <AppEadBar />
-                <Home />
+                <Home successHandler = {this.successHandler}/>
                 <AppBottomBar />
             </div>)
         }
@@ -40,7 +39,7 @@ class DefaultView extends Component {
 }
 
 function mapDispatchToProps(dispatch){
-    return bindActionCreators({obterListaEad,obterEadSucesso},dispatch)
+    return bindActionCreators({obterEadSucesso},dispatch)
 }
 
 export default connect(null,mapDispatchToProps)(DefaultView)

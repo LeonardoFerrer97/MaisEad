@@ -9,14 +9,18 @@ namespace MaisEad.Utils.Mappers
     {
         public FaculdadeDto EntityToDto(Faculdade faculdade)
         {
-            return new FaculdadeDto()
+            if (faculdade != null)
             {
-                Id = faculdade.FaculId,
-                Nome = faculdade.NomeFaculdade,
-                Endereco = faculdade.Endereco,
-                NotaMec = faculdade.NotaMecFaculdade,
-            };
+                return new FaculdadeDto()
+                {
+                    Id = faculdade.FaculId,
+                    Nome = faculdade.NomeFaculdade,
+                    Endereco = faculdade.Endereco,
+                    NotaMec = faculdade.NotaMecFaculdade,
+                };
 
+            }
+            return null;
         }
 
         public List<FaculdadeDto> ListEntityToListDto(IEnumerable<Faculdade> faculdade)

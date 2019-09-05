@@ -7,7 +7,6 @@ import AppSearchMensalidade from './AppSearchMensalidade';
 
 class Filtro extends React.Component{
     render(){
-      console.log(this.props)
         return <div >
 
                 <AppSearch 

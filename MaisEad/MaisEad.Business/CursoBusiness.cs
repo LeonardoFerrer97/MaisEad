@@ -68,7 +68,8 @@ namespace MaisEad.Business
             int faculdadeId = 0;
             if(nomeFaculdade != null)
             {
-                faculdadeId = faculdadeBusiness.GetFaculdadeByNome(nomeFaculdade).Id;
+                var faculdade = faculdadeBusiness.GetFaculdadeByNome(nomeFaculdade);
+                faculdadeId = faculdade == null ? faculdadeId : faculdade.Id;
             }
             object parameters = BuildParameters(curso);
             if (faculdadeId != 0)

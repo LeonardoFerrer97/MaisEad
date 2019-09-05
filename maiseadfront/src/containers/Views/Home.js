@@ -1,11 +1,12 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import FiltroPai from '../../components/Filtros/FiltroPai';
+
 class Home extends React.Component{
 
     
     render(){
-        return <FiltroPai />     
+        return <FiltroPai successHandler = {this.props.successHandler}/>     
     }
 }
 
@@ -14,5 +15,7 @@ function mapStateToProps(state){
         listaEad:state.listaEad
     }
 }
+
+
 
 export default connect(mapStateToProps)(Home);
