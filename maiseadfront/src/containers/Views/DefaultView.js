@@ -16,6 +16,7 @@ class DefaultView extends Component {
             lista:{}
         }
     }
+
     successHandler = (lista) =>{
         this.props.obterEadSucesso(lista)
         history.push('/EaDs')
