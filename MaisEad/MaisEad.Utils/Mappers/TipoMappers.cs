@@ -6,26 +6,26 @@ using MaisEad.Entity.Entity;
 
 namespace MaisEad.Utils.Mappers
 {
-    public class TipoMappers
+    public class TipoCursoMappers
     {
-        public TipoDto EntityToDto(Tipo tipo)
+        public TipoCursoDto EntityToDto(TipoCurso TipoCurso)
         {
-            if (tipo != null)
+            if (TipoCurso != null)
             {
-                return new TipoDto()
+                return new TipoCursoDto()
                 {
-                    IdTipo = tipo.IdTipo,
-                    NomeTipo = tipo.NomeTipo,
+                    IdTipo = TipoCurso.IdTipo,
+                    NomeTipo = TipoCurso.NomeTipo,
                 };
 
             }
             return null;
         }
 
-        public List<TipoDto> ListEntityToListDto(IEnumerable<Tipo> tipo)
+        public List<TipoCursoDto> ListEntityToListDto(IEnumerable<TipoCurso> TipoCurso)
         {
-            List<TipoDto> dtos = new List<TipoDto>();
-            foreach (var type in tipo)
+            List<TipoCursoDto> dtos = new List<TipoCursoDto>();
+            foreach (var type in TipoCurso)
             {
                 dtos.Add(EntityToDto(type));
 
@@ -33,20 +33,20 @@ namespace MaisEad.Utils.Mappers
             return dtos;
         }
 
-        public Tipo DtoToEntity(TipoDto tipo)
+        public TipoCurso DtoToEntity(TipoCursoDto TipoCurso)
         {
-            return new Tipo()
+            return new TipoCurso()
             {
-                IdTipo = tipo.IdTipo,
-                NomeTipo = tipo.NomeTipo,
+                IdTipo = TipoCurso.IdTipo,
+                NomeTipo = TipoCurso.NomeTipo,
             };
 
         }
 
-        public List<Tipo> ListDtoToListEntity(IEnumerable<TipoDto> tipo)
+        public List<TipoCurso> ListDtoToListEntity(IEnumerable<TipoCursoDto> TipoCurso)
         {
-            List<Tipo> dtos = new List<Tipo>();
-            foreach (var type in tipo)
+            List<TipoCurso> dtos = new List<TipoCurso>();
+            foreach (var type in TipoCurso)
             {
                 dtos.Add(DtoToEntity(type));
 

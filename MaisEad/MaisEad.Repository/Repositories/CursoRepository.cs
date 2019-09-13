@@ -23,7 +23,7 @@ namespace MaisEad.Repository.Repositories
             using (conn)
             {
                 var dictionaryCurso = new Dictionary<int, Curso>();
-                var result = conn.Query<Curso, Faculdade, Comentario,AvaliacaoUsuario,Tipo,Curso>(CursoQueries.GET_ALL_CURSOS, (cu,fa,co,avu,ti) =>
+                var result = conn.Query<Curso, Faculdade, Comentario,AvaliacaoUsuario,TipoCurso,Curso>(CursoQueries.GET_ALL_CURSOS, (cu,fa,co,avu,ti) =>
                 {
                     if (!dictionaryCurso.TryGetValue(cu.Id, out Curso cuEntry))
                     {
@@ -38,7 +38,7 @@ namespace MaisEad.Repository.Repositories
                     }
                     if(ti!=null)
                     {
-                        cuEntry.Tipo = ti;
+                        cuEntry.TipoCurso = ti;
                     }
                     if(co != null)
                     {
@@ -62,7 +62,7 @@ namespace MaisEad.Repository.Repositories
             using (conn)
             {
                 var dictionaryCurso = new Dictionary<int, Curso>();
-                var result = conn.Query<Curso, Faculdade, Comentario, AvaliacaoUsuario,Tipo, Curso>(String.Format(CursoQueries.GET_ALL_CURSOS_BY_ID,id), (cu, fa, co, avu,ti) =>
+                var result = conn.Query<Curso, Faculdade, Comentario, AvaliacaoUsuario,TipoCurso, Curso>(String.Format(CursoQueries.GET_ALL_CURSOS_BY_ID,id), (cu, fa, co, avu,ti) =>
                 {
                     if (!dictionaryCurso.TryGetValue(cu.Id, out Curso cuEntry))
                     {
@@ -77,7 +77,7 @@ namespace MaisEad.Repository.Repositories
                     }
                     if(ti!=null)
                     {
-                        cuEntry.Tipo = ti;
+                        cuEntry.TipoCurso = ti;
                     }
                     if (co != null)
                     {

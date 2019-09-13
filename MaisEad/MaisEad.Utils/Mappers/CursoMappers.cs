@@ -10,7 +10,7 @@ namespace MaisEad.Utils.Mappers
         private static ComentarioMappers comentarioMappers = new ComentarioMappers();
         private static FaculdadeMappers faculdadeMappers = new FaculdadeMappers();
         private static AvaliacaoUsuarioMappers avaliacaoUsuarioMappers = new AvaliacaoUsuarioMappers();
-        private static TipoMappers tipoMappers = new TipoMappers();
+        private static TipoCursoMappers TipoCursoMappers = new TipoCursoMappers();
         public CursoDto EntityToDto(Curso curso)
         {
             return new CursoDto()
@@ -26,8 +26,8 @@ namespace MaisEad.Utils.Mappers
                 NotaMec = curso.NotaMec,
                 PontoApoio = curso.PontoApoio,
                 Url = curso.Url,
-                TipoId = curso.TipoId,
-                Tipo = curso.Tipo != null ? tipoMappers.EntityToDto(curso.Tipo) : null,
+                TipoId = curso.TipoCursoId,
+                TipoCurso = curso.TipoCurso != null ? TipoCursoMappers.EntityToDto(curso.TipoCurso) : null,
             };
 
         }
@@ -55,7 +55,7 @@ namespace MaisEad.Utils.Mappers
                 NotaMec = curso.NotaMec,
                 PontoApoio = curso.PontoApoio,
                 Url = curso.Url,
-                TipoId = curso.TipoId,
+                TipoCursoId = curso.TipoId,
             };
         }
 
