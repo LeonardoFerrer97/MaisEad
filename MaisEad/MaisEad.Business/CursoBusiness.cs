@@ -85,17 +85,31 @@ namespace MaisEad.Business
                 {
                     listaCursos = listaCursos.FindAll(x => x.FaculdadeId == faculdadeId);
                 }
+                foreach (var curs in listaCursos)
+                {
+                    curs.Faculdade = faculdadeBusiness.GetFaculdadeById(curs.FaculdadeId);
+                }
                 return listaCursos ;
             }
             else
             {
                 if(faculdadeId != 0)
                 {
-                    return mapper.ListEntityToListDto(cursoDapperRepository.GetData(query,null)).FindAll(x => x.FaculdadeId == faculdadeId);
+                    var cursoFinal = mapper.ListEntityToListDto(cursoDapperRepository.GetData(query,null)).FindAll(x => x.FaculdadeId == faculdadeId);
+                    foreach(var cursoIndividual in cursoFinal)
+                    {
+                        cursoIndividual.Faculdade = faculdadeBusiness.GetFaculdadeByNome(nomeFaculdade);
+                        
+                    }
+                    return cursoFinal;
                 }
                 else
                 {
-                    return mapper.ListEntityToListDto(cursoDapperRepository.GetData(query,null));
+                    var cursos = mapper.ListEntityToListDto(cursoDapperRepository.GetData(query,null));
+                    foreach(var curs in cursos) {
+                        curs.Faculdade = faculdadeBusiness.GetFaculdadeById(curs.FaculdadeId);
+                    }
+                    return cursos;
                 }
             }
 

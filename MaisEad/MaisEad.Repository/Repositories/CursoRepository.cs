@@ -6,6 +6,7 @@ using MaisEad.Entity.Entity;
 using System.Collections.Generic;
 using MaisEad.Utils.Query;
 using System.Linq;
+using MaisEad.Entity;
 
 namespace MaisEad.Repository.Repositories
 {
@@ -22,7 +23,7 @@ namespace MaisEad.Repository.Repositories
             using (conn)
             {
                 var dictionaryCurso = new Dictionary<int, Curso>();
-                var result = conn.Query<Curso, Faculdade, Comentario,AvaliacaoUsuario,Curso>(CursoQueries.GET_ALL_CURSOS, (cu,fa,co,avu) =>
+                var result = conn.Query<Curso, Faculdade, Comentario,AvaliacaoUsuario,Tipo,Curso>(CursoQueries.GET_ALL_CURSOS, (cu,fa,co,avu,ti) =>
                 {
                     if (!dictionaryCurso.TryGetValue(cu.Id, out Curso cuEntry))
                     {
@@ -34,6 +35,10 @@ namespace MaisEad.Repository.Repositories
                     if (fa != null)
                     {
                         cuEntry.Faculdade = fa;
+                    }
+                    if(ti!=null)
+                    {
+                        cuEntry.Tipo = ti;
                     }
                     if(co != null)
                     {
@@ -46,7 +51,7 @@ namespace MaisEad.Repository.Repositories
                             cuEntry.AvaliacaoUsuarios.Add(avu);
                     }
                     return cuEntry;
-                }, null, splitOn: "FaculId,ComentarioId,AvaliacaoUsuarioId")
+                }, null, splitOn: "FaculId,ComentarioId,AvaliacaoUsuarioId,IdTipo")
                 .Distinct()
                 .ToList();
                 return result;
@@ -57,7 +62,7 @@ namespace MaisEad.Repository.Repositories
             using (conn)
             {
                 var dictionaryCurso = new Dictionary<int, Curso>();
-                var result = conn.Query<Curso, Faculdade, Comentario, AvaliacaoUsuario, Curso>(String.Format(CursoQueries.GET_ALL_CURSOS_BY_ID,id), (cu, fa, co, avu) =>
+                var result = conn.Query<Curso, Faculdade, Comentario, AvaliacaoUsuario,Tipo, Curso>(String.Format(CursoQueries.GET_ALL_CURSOS_BY_ID,id), (cu, fa, co, avu,ti) =>
                 {
                     if (!dictionaryCurso.TryGetValue(cu.Id, out Curso cuEntry))
                     {
@@ -70,6 +75,10 @@ namespace MaisEad.Repository.Repositories
                     {
                         cuEntry.Faculdade = fa;
                     }
+                    if(ti!=null)
+                    {
+                        cuEntry.Tipo = ti;
+                    }
                     if (co != null)
                     {
                         if (!cuEntry.Comentarios.Any(x => x.ComentarioId == co.ComentarioId))
@@ -81,7 +90,7 @@ namespace MaisEad.Repository.Repositories
                             cuEntry.AvaliacaoUsuarios.Add(avu);
                     }
                     return cuEntry;
-                }, null, splitOn: "FaculId,ComentarioId,AvaliacaoUsuarioId")
+                }, null, splitOn: "FaculId,ComentarioId,AvaliacaoUsuarioId,IdTipo")
                 .Distinct()
                 .FirstOrDefault();
                 return result;

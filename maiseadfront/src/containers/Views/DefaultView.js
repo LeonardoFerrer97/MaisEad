@@ -23,7 +23,7 @@ class DefaultView extends Component {
     }
     render() {
         if(this.props.path==='EaDs'){
-            return (<div>
+            return (<div style={{height:'100vh',width:'100vw',backgroundImage : 'null !important',}}>
                 <AppEadBar />
                 <EaDs />
             </div>)
@@ -32,7 +32,7 @@ class DefaultView extends Component {
             return (<div >
                 <AppEadBar />
                 <Home successHandler = {this.successHandler}/>
-                <AppBottomBar />
+                <AppBottomBar isTelaFiltrada={true}/>
             </div>)
         }
 

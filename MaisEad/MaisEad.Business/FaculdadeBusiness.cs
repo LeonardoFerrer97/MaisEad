@@ -30,7 +30,10 @@ namespace MaisEad.Business
 
         public FaculdadeDto GetFaculdadeByNome(string NomeFaculdade)
         {
-            return mapper.EntityToDto(faculdadeRepository.Find(new { NomeFaculdade }));
+            var faculdade = mapper.ListEntityToListDto(faculdadeRepository.GetData(String.Format(FaculdadeQueries.GET_FACULDADE_BY_NOME,NomeFaculdade)));
+            if(faculdade.Count >0)
+                return faculdade.ToArray()[0];
+            return null;
         }
 
         public int UpdateFaculdadeById(FaculdadeDto faculdade)

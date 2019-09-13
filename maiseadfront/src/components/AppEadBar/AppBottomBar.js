@@ -24,7 +24,7 @@ class AppBottomBar extends React.Component {
         const { classes } = this.props;
         return <AppBar classes={{ root: classes.root }}>
             <Toolbar classes={{ root: classes.root }} />
-            <div className='tutorial'>
+            {<div className='tutorial'>
                 <div className='tutorial-acima'>1. Pesquise o seu EaD
                 <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#F0F7EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg"><line x1="7" y1="7" x2="17" y2="17"></line><polyline points="17 7 17 17 7 17"></polyline></svg>
                 </div>
@@ -36,7 +36,7 @@ class AppBottomBar extends React.Component {
                 </div>
                 <div className='tutorial-abaixo'>4. Se matricule!
                 </div>
-            </div>
+            </div>}
         </AppBar>
     }
 }

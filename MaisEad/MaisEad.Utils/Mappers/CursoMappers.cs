@@ -10,21 +10,24 @@ namespace MaisEad.Utils.Mappers
         private static ComentarioMappers comentarioMappers = new ComentarioMappers();
         private static FaculdadeMappers faculdadeMappers = new FaculdadeMappers();
         private static AvaliacaoUsuarioMappers avaliacaoUsuarioMappers = new AvaliacaoUsuarioMappers();
+        private static TipoMappers tipoMappers = new TipoMappers();
         public CursoDto EntityToDto(Curso curso)
         {
             return new CursoDto()
             {
                 Id = curso.Id,
                 Nome = curso.Nome,
-                Faculdade = curso.Faculdade != null ? faculdadeMappers.EntityToDto(curso.Faculdade): null,
-                Comentario = curso.Comentarios != null? comentarioMappers.ListEntityToListDto(curso.Comentarios):null,
-                AvaliacaoUsuario = curso.AvaliacaoUsuarios !=null ? avaliacaoUsuarioMappers.ListEntityToListDto(curso.AvaliacaoUsuarios):null,
+                Faculdade = curso.Faculdade != null ? faculdadeMappers.EntityToDto(curso.Faculdade) : null,
+                Comentario = curso.Comentarios != null ? comentarioMappers.ListEntityToListDto(curso.Comentarios) : null,
+                AvaliacaoUsuario = curso.AvaliacaoUsuarios != null ? avaliacaoUsuarioMappers.ListEntityToListDto(curso.AvaliacaoUsuarios) : null,
                 Duracao = curso.Duracao,
                 FaculdadeId = curso.FaculdadeId,
                 Mensalidade = curso.Mensalidade,
                 NotaMec = curso.NotaMec,
                 PontoApoio = curso.PontoApoio,
                 Url = curso.Url,
+                TipoId = curso.TipoId,
+                Tipo = curso.Tipo != null ? tipoMappers.EntityToDto(curso.Tipo) : null,
             };
 
         }
@@ -52,6 +55,7 @@ namespace MaisEad.Utils.Mappers
                 NotaMec = curso.NotaMec,
                 PontoApoio = curso.PontoApoio,
                 Url = curso.Url,
+                TipoId = curso.TipoId,
             };
         }
 

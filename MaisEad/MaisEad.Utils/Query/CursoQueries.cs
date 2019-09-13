@@ -21,8 +21,11 @@ namespace MaisEad.Utils.Query
             "CommentTxt," +
             "AvaliacaoUsuarioId" +
             ",CursoIdAvaliacao " +
+            ", IdTipo " +
+            ", NomeTipo "+
             "FROM Curso inner join Faculdade " +
             "on Faculdade.FaculId = Curso.FaculdadeId " +
+            "inner join TipoCurso on Curso.TipoId = TipoCurso.IdTipo " +
             "left join Comentario on Curso.Id = comentario.CursoId " +
             "left join AvaliacaoUsuario on Curso.Id = AvaliacaoUsuario.CursoIdAvaliacao";
 
@@ -44,8 +47,11 @@ namespace MaisEad.Utils.Query
         "CommentTxt," +
         "AvaliacaoUsuarioId" +
         ",CursoIdAvaliacao " +
+        ",IdTipo " +
+        ",NomeTipo "+
         "FROM Curso inner join Faculdade " +
         "on Faculdade.FaculId = Curso.FaculdadeId " +
+        "inner join TipoCurso on TipoCurso.IdTipo = Curso.TipoId " +
         "left join Comentario on Curso.Id = comentario.CursoId " +
         "left join AvaliacaoUsuario on Curso.Id = AvaliacaoUsuario.CursoIdAvaliacao " +
         "WHERE Curso.Id = {0}";
