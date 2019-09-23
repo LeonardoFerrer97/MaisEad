@@ -18,13 +18,13 @@ class FiltrosAvancados extends React.Component {
                 passoAtual={this.props.passoAtual}
                 handleBack={this.props.handleBack}
                 handleNext={this.props.handleNext}
-                notaMec = {this.props.notaMec}
+                notaMec={this.props.notaMec}
             />
-            <PontoDeApoio 
+            <PontoDeApoio
                 pontoDeApoio={this.props.pontoDeApoio}
                 handleChange={this.props.handleChange}
             />
-            <AppSearchUrl 
+            <AppSearchUrl
                 url={this.props.url}
                 handleChange={this.props.handleChange}
             />

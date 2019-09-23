@@ -26,7 +26,7 @@ namespace MaisEad.Utils.Mappers
                 NotaMec = curso.NotaMec,
                 PontoApoio = curso.PontoApoio,
                 Url = curso.Url,
-                TipoId = curso.TipoCursoId,
+                TipoId = curso.TipoId,
                 TipoCurso = curso.TipoCurso != null ? TipoCursoMappers.EntityToDto(curso.TipoCurso) : null,
             };
 
@@ -55,7 +55,7 @@ namespace MaisEad.Utils.Mappers
                 NotaMec = curso.NotaMec,
                 PontoApoio = curso.PontoApoio,
                 Url = curso.Url,
-                TipoCursoId = curso.TipoId,
+                TipoId = curso.TipoId,
             };
         }
 

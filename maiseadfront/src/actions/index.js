@@ -21,8 +21,8 @@ export function obterEadSucesso(listaEad) {
     }
 }
 
-export function getEadFiltered(NotaMec,Duracao,Url,Nome,PontoApoio,Mensalidade,NomeFaculdade,successHandler,errorHandler) {
-    const URL = `https://localhost:5001/api/Curso/Filter?NotaMec=${NotaMec}&Duracao=${Duracao}&Url=${Url}&Nome=${Nome}&PontoApoio=${PontoApoio}&Mensalidade=${Mensalidade}&nomeFaculdade=${NomeFaculdade}`
+export function getEadFiltered(NotaMec,TipoId,Duracao,Url,Nome,PontoApoio,Mensalidade,NomeFaculdade,successHandler,errorHandler) {
+    const URL = `https://localhost:5001/api/Curso/Filter?NotaMec=${NotaMec}&TipoId=${TipoId}&Duracao=${Duracao}&Url=${Url}&Nome=${Nome}&PontoApoio=${PontoApoio}&Mensalidade=${Mensalidade}&nomeFaculdade=${NomeFaculdade}`
     axios
         .get(URL)
         .then((result) => successHandler(result.data))
@@ -32,3 +32,16 @@ export function getEadFiltered(NotaMec,Duracao,Url,Nome,PontoApoio,Mensalidade,N
         payload: null
     };
 }
+
+export function getAllTipos(successHandler,errorHandler) {
+    const URL = 'https://localhost:5001/api/TipoCurso'
+    axios
+        .get(URL)
+        .then((result) => successHandler(result.data))
+        .catch((error) => errorHandler(error));
+    return {
+        type: OBTER_EAD,
+        payload: null
+    };
+}
+

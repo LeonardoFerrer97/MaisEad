@@ -7,7 +7,7 @@ namespace MaisEad.Entity.Entity
     {
         public int Id { get; set; }
         public int FaculdadeId { get; set; }
-        public int TipoCursoId { get; set; }
+        public int TipoId { get; set; }
         public int NotaMec { get; set; }
         public string Duracao { get; set; }
         public string Url { get; set; }

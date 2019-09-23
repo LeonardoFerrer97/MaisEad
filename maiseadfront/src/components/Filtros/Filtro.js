@@ -3,10 +3,12 @@ import '../../styles/Filtro/Filtro.css'
 import AppSearch from './AppSearch'
 import AppSearchDuracao from './AppSearchDuracao'
 import AppSearchMensalidade from './AppSearchMensalidade';
+import AppSearchTipoCurso from './AppSearchTipoCurso';
 
 
 class Filtro extends React.Component{
     render(){
+        console.log(this.props.handleChangeTipo)
         return <div >
 
                 <AppSearch 
@@ -22,6 +24,13 @@ class Filtro extends React.Component{
                 mensalidade={this.props.mensalidade}
                 handleChange={this.props.handleChange}
               />
+
+            <AppSearchTipoCurso 
+              tipo = {this.props.tipoCurso}
+              getSuggestions = {this.props.getSuggestions}
+              
+              tipos={this.props.tipos}
+            />
             </div>
     }
 }

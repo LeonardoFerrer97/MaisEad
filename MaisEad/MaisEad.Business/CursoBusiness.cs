@@ -89,6 +89,10 @@ namespace MaisEad.Business
                 {
                     curs.Faculdade = faculdadeBusiness.GetFaculdadeById(curs.FaculdadeId);
                 }
+                if(curso.TipoId != 0)
+                {
+                    return listaCursos.FindAll(x => x.TipoId == curso.TipoId);
+                }
                 return listaCursos ;
             }
             else
@@ -101,6 +105,11 @@ namespace MaisEad.Business
                         cursoIndividual.Faculdade = faculdadeBusiness.GetFaculdadeByNome(nomeFaculdade);
                         
                     }
+
+                    if (curso.TipoId != 0)
+                    {
+                        return cursoFinal.FindAll(x => x.TipoId == curso.TipoId);
+                    }
                     return cursoFinal;
                 }
                 else
@@ -108,6 +117,11 @@ namespace MaisEad.Business
                     var cursos = mapper.ListEntityToListDto(cursoDapperRepository.GetData(query,null));
                     foreach(var curs in cursos) {
                         curs.Faculdade = faculdadeBusiness.GetFaculdadeById(curs.FaculdadeId);
+                    }
+
+                    if (curso.TipoId != 0)
+                    {
+                        return cursos.FindAll(x => x.TipoId == curso.TipoId);
                     }
                     return cursos;
                 }
