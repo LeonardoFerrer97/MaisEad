@@ -12,6 +12,7 @@ class EaDs extends React.Component {
                 {this.props.listaEad.map(ead => {
                     return <div className='div-pai-ead'>
                         <img className='faculdade' alt={ead.faculdade.nome}src={`./images/${ead.faculdade.nome}.png`}></img>
+                        <div className='Tipo'>{ead.tipo.nome}</div>
                         <div className='vr'></div>
                         {ead.nome}
                     </div>
