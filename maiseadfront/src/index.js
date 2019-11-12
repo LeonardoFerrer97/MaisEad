@@ -30,7 +30,7 @@ ReactDOM.render(
             redirect_uri={window.location.origin}
             onRedirectCallback={onRedirectCallback}
         >
-        <Routes />
+            <Routes />
         </Auth0Provider>
     </Provider>,
     document.getElementById('root')

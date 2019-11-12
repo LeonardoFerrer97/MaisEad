@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 export const OBTER_EAD = 'OBTER_EAD'
+export const USER = 'user'
 
 export function obterListaEad(successHandler, errorHandler) {
     const URL = "https://localhost:5001/api/values";
@@ -20,6 +21,16 @@ export function obterEadSucesso(listaEad) {
         payload: listaEad
     }
 }
+
+export function loginUser(User) {
+    console.log(User)
+    return {
+        type: USER,
+        payload: User
+    }
+}
+
+
 
 export function getEadFiltered(NotaMec,TipoId,Duracao,Url,Nome,PontoApoio,Mensalidade,NomeFaculdade,successHandler,errorHandler) {
     const URL = `https://localhost:5001/api/Curso/Filter?NotaMec=${NotaMec}&TipoId=${TipoId}&Duracao=${Duracao}&Url=${Url}&Nome=${Nome}&PontoApoio=${PontoApoio}&Mensalidade=${Mensalidade}&nomeFaculdade=${NomeFaculdade}`

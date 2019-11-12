@@ -3,10 +3,9 @@ import { useAuth0 } from "../Common/auth0";
 
 const NavBar = () => {
   const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
-
   return (
     <div>
-      {!isAuthenticated && (
+      {!isAuthenticated ?
         <button
           onClick={() =>
             loginWithRedirect({})
@@ -14,11 +13,11 @@ const NavBar = () => {
         >
           Log in
         </button>
-      )}
-
-      {isAuthenticated && <button onClick={() => logout()}>Log out</button>}
+      :<button onClick={() => logout()}>Log out</button>}
     </div>
   );
 };
+
+
 
 export default NavBar;

@@ -6,13 +6,15 @@ class Home extends React.Component{
 
     
     render(){
+        console.log(this.props.user)
         return <FiltroPai successHandler = {this.props.successHandler}/>     
     }
 }
 
 function mapStateToProps(state){
     return {
-        listaEad:state.listaEad
+        listaEad:state.listaEad,
+        user:state.User
     }
 }
 

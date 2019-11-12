@@ -4,7 +4,7 @@ import _ from 'lodash';
 import '../../styles/EaD/EaD.css';
 import history from '../../components/Common/history';
 import StarRatings from '../../../node_modules/react-star-ratings';
-
+import {Auth0Provider} from '../../components/Common/auth0'
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
@@ -165,6 +165,7 @@ class EaDs extends React.Component {
       };
 
 }
+
 
 function mapStateToProps(state) {
     return {
