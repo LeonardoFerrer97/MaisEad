@@ -19,6 +19,7 @@ namespace MaisEad.Utils.Query
             "ComentarioId," +
             "CursoId," +
             "CommentTxt," +
+            "UserName," +
             "AvaliacaoUsuarioId" +
             ",CursoIdAvaliacao " +
             ",Nota" +
@@ -46,6 +47,7 @@ namespace MaisEad.Utils.Query
         "ComentarioId," +
         "CursoId," +
         "CommentTxt," +
+        "UserName," +
         "AvaliacaoUsuarioId" +
         ",CursoIdAvaliacao" +
         ",Nota " +

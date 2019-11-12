@@ -118,6 +118,14 @@
     right:0px;
 }
 
+
+.comment{
+    position: absolute;
+    margin-top:25px;
+    cursor: pointer;
+    margin-left:628px;
+}
+
 .noUnderline{
     text-decoration:none;
 }

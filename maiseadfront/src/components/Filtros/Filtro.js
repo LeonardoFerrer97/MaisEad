@@ -8,7 +8,6 @@ import AppSearchTipoCurso from './AppSearchTipoCurso';
 
 class Filtro extends React.Component{
     render(){
-        console.log(this.props.handleChangeTipo)
         return <div >
 
                 <AppSearch 

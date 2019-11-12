@@ -8,6 +8,7 @@ import EaDs from './EaDs';
 import AppEadBar from '../../components/AppEadBar/AppEadBar';
 import AppBottomBar from '../../components/AppEadBar/AppBottomBar';
 import CompareEaDs from './CompareEaDs';
+import Comentario from './Comentario';
 
 
 class DefaultView extends Component {
@@ -45,12 +46,25 @@ class DefaultView extends Component {
                 <CompareEaDs eaDsToCompare= {this.props.location.state.eaDsToCompare}successHandler = {this.successHandler}/>
             </div>)
         }
-
+        if(this.props.path ==='Comentario')
+        {
+            return (<div style={{height:'100vh',width:'100vw',backgroundImage : 'null !important',}}>
+                <AppEadBar />
+                <Comentario ead= {this.props.location.state.eaD} user={this.props.user}/>
+            </div>)
+        }
     }
 }
 
 function mapDispatchToProps(dispatch){
     return bindActionCreators({obterEadSucesso,avaliarCurso},dispatch)
 }
+function mapStateToProps(state){
+    return {
+        listaEad:state.listaEad,
+        user:state.User
+    }
+}
 
-export default connect(null,mapDispatchToProps)(DefaultView)
+
+export default connect(mapStateToProps,mapDispatchToProps)(DefaultView)

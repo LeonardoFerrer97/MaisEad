@@ -75,7 +75,6 @@ class FiltroPai extends React.Component {
         const inputValue = deburr(value.trim()).toLowerCase();
         const inputLength = inputValue.length;
         let count = 0;
-        console.log(tiposOficial)
         return inputLength === 0
             ? []
             :

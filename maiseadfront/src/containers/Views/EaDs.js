@@ -4,7 +4,6 @@ import _ from 'lodash';
 import '../../styles/EaD/EaD.css';
 import history from '../../components/Common/history';
 import StarRatings from '../../../node_modules/react-star-ratings';
-import {Auth0Provider} from '../../components/Common/auth0'
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
@@ -27,7 +26,7 @@ const CompareCheckbox = withStyles({
 class EaDs extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { rating: 0, isCompare: false, eadsToCompare: [], checkedValues: [],isSnackBarOpen:false };
+        this.state = { rating: 0, isCompare: false, eadsToCompare: [], checkedValues: [], isSnackBarOpen: false };
     }
     render() {
         if (!_.isEmpty(this.props.listaEad)) {
@@ -81,6 +80,11 @@ class EaDs extends React.Component {
                                 </div>
                             </div>
                         </div>
+                        <Tooltip title="Você será redirecionado para a página de comentários curso">
+                            <div onClick={()=>this.onClickComentar(ead)}className='comment'>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-square"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                            </div>
+                        </Tooltip>
                         <div className='check-box'>
                             {this.state.isCompare ? <FormControlLabel
                                 control={
@@ -120,7 +124,7 @@ class EaDs extends React.Component {
                     </div>
                 })}
                 <div className='buttons'>
-                    <button onClick={() => this.onClickVoltar()} className='buttonVoltar'>{this.state.isCompare?'cancelar':'voltar'}</button>
+                    <button onClick={() => this.onClickVoltar()} className='buttonVoltar'>{this.state.isCompare ? 'cancelar' : 'voltar'}</button>
                     <button onClick={() => this.onClickComparar()} className='buttonComparar'>{this.state.isCompare ? 'avançar' : 'comparar EaDs'}</button>
                 </div>
             </div>
@@ -137,13 +141,18 @@ class EaDs extends React.Component {
         this.setState({ isCompare: true })
         if (this.state.checkedValues.length > 1)
             history.push({ pathname: '/CompareEaDs', state: { eaDsToCompare: this.state.checkedValues } })
-        else if(this.state.isCompare)
-            this.setState({isSnackBarOpen:true});
+        else if (this.state.isCompare)
+            this.setState({ isSnackBarOpen: true });
     }
 
-    onClickVoltar = () =>{
-        if(this.state.isCompare)
-            this.setState({isCompare:false})
+    onClickComentar = (ead) =>
+    {
+        history.push({ pathname: '/Comentario', state: { eaD: ead } })
+    }
+
+    onClickVoltar = () => {
+        if (this.state.isCompare)
+            this.setState({ isCompare: false })
         else
             history.push('/')
     }
@@ -155,14 +164,14 @@ class EaDs extends React.Component {
                 : [...state.checkedValues, x]
         }));
     }
-    
-     handleClose = (event, reason) => {
+
+    handleClose = (event, reason) => {
         if (reason === 'clickaway') {
-          return;
+            return;
         }
-    
-        this.setState({isSnackBarOpen:false});
-      };
+
+        this.setState({ isSnackBarOpen: false });
+    };
 
 }
 

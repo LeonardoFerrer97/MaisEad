@@ -4,7 +4,6 @@ import EadCompare from '../../components/Compare/EadCompare'
 import '../../styles/Compare/EadCompare.css';
 class CompareEaDs extends React.Component{
 
-    
     render(){
         if(!_.isEmpty(this.props.eaDsToCompare))
             return <div className ='pai-div' >{this.props.eaDsToCompare.map((value)=>{return <EadCompare ead={value}/>})}</div>
