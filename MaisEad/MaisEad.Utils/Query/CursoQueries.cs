@@ -21,6 +21,7 @@ namespace MaisEad.Utils.Query
             "CommentTxt," +
             "AvaliacaoUsuarioId" +
             ",CursoIdAvaliacao " +
+            ",Nota" +
             ", IdTipo " +
             ", NomeTipo "+
             "FROM Curso inner join Faculdade " +
@@ -46,7 +47,8 @@ namespace MaisEad.Utils.Query
         "CursoId," +
         "CommentTxt," +
         "AvaliacaoUsuarioId" +
-        ",CursoIdAvaliacao " +
+        ",CursoIdAvaliacao" +
+        ",Nota " +
         ",IdTipo " +
         ",NomeTipo "+
         "FROM Curso inner join Faculdade " +

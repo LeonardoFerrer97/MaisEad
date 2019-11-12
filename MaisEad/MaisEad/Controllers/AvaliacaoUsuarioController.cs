@@ -35,11 +35,11 @@ namespace MaisEad.Controllers
         [HttpGet("{id}")]
         public ActionResult<IEnumerable<AvaliacaoUsuarioDto>> GetById(int id)
         {
-            return avaliacaoUsuarioBusiness.GetAllAvaliacaoUsuariosById(id);
+            return avaliacaoUsuarioBusiness.GetAllAvaliacaoUsariosById(id);
         }
 
         [HttpGet("curso/{id}")]
-        public ActionResult<IEnumerable<AvaliacaoUsuarioDto>> GetByCursoId(int id)
+        public ActionResult<AvaliacaoUsuarioDto> GetByCursoId(int id)
         {
             return avaliacaoUsuarioBusiness.GetAllAvaliacaoUsuariosByCursoId(id);
         }

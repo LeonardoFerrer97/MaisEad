@@ -23,7 +23,7 @@ class Buttons extends React.Component {
     return (
       <div className='button'>
         <Button classes={{ root: classes.RootPesquisaAvancada }} onClick={this.props.ClickPesquisaAvançada}>
-          {this.props.isFiltroAvançado?'Pesquisa Avançada':'Pesquisa Normal'}
+          {!this.props.isFiltroAvançado?'Pesquisa Normal':'Pesquisa Avançada'}
         </Button>
         <Button classes={{ root: classes.button }} onClick={this.props.realizarPesquisa}>
           Pesquisar

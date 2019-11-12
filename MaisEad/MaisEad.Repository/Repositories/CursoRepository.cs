@@ -29,7 +29,6 @@ namespace MaisEad.Repository.Repositories
                     {
                         cuEntry = cu;
                         cuEntry.Comentarios = new List<Comentario>();
-                        cuEntry.AvaliacaoUsuarios = new List<AvaliacaoUsuario>();
                         dictionaryCurso.Add(cuEntry.Id, cuEntry);
                     }
                     if (fa != null)
@@ -47,8 +46,7 @@ namespace MaisEad.Repository.Repositories
                     }
                     if(avu != null)
                     {
-                        if (!cuEntry.AvaliacaoUsuarios.Any(x => x.AvaliacaoUsuarioId == avu.AvaliacaoUsuarioId))
-                            cuEntry.AvaliacaoUsuarios.Add(avu);
+                        cuEntry.AvaliacaoUsuarios = avu;
                     }
                     return cuEntry;
                 }, null, splitOn: "FaculId,ComentarioId,AvaliacaoUsuarioId,IdTipo")
@@ -68,7 +66,6 @@ namespace MaisEad.Repository.Repositories
                     {
                         cuEntry = cu;
                         cuEntry.Comentarios = new List<Comentario>();
-                        cuEntry.AvaliacaoUsuarios = new List<AvaliacaoUsuario>();
                         dictionaryCurso.Add(cuEntry.Id, cuEntry);
                     }
                     if (fa != null)
@@ -86,8 +83,7 @@ namespace MaisEad.Repository.Repositories
                     }
                     if (avu != null)
                     {
-                        if (!cuEntry.AvaliacaoUsuarios.Any(x => x.AvaliacaoUsuarioId == avu.AvaliacaoUsuarioId))
-                            cuEntry.AvaliacaoUsuarios.Add(avu);
+                        cuEntry.AvaliacaoUsuarios = avu;
                     }
                     return cuEntry;
                 }, null, splitOn: "FaculId,ComentarioId,AvaliacaoUsuarioId,IdTipo")

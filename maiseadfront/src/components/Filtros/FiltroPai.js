@@ -23,7 +23,7 @@ class FiltroPai extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            isFiltroAvançado: false,
+            isFiltroAvançado: true,
             curso: '',
             mensalidade: '',
             passoAtual: 0,
@@ -56,7 +56,10 @@ class FiltroPai extends React.Component {
         this.setState({ isFiltroAvançado: !this.state.isFiltroAvançado });
     }
     handleChange = name => event => {
-        this.setState({ [name]: event.target.value });
+        if(event.target)
+            this.setState({ [name]: event.target.value });
+        else
+            this.setState({ [name]: event });
     };
 
     realizarPesquisa = () => {
@@ -72,11 +75,11 @@ class FiltroPai extends React.Component {
         const inputValue = deburr(value.trim()).toLowerCase();
         const inputLength = inputValue.length;
         let count = 0;
-        console.log(inputValue)
+        console.log(tiposOficial)
         return inputLength === 0
             ? []
             :
-            tiposOficial.filter((x) => { return count < 3 && x.nomeTipo.includes(inputValue) })
+            tiposOficial.filter((x) => { return count < 1 && x.nomeTipo.includes(inputValue) })
     }
 
 
@@ -84,7 +87,7 @@ class FiltroPai extends React.Component {
     render() {
         return <div className={'body-filtro'}>
             <div className='titulo-filtro'>Filtre aqui o seu EaD ideal</div>
-            {this.state.isFiltroAvançado ?
+            {!this.state.isFiltroAvançado ?
                 <FiltrosAvancados
                     handleBack={this.handleBack}
                     handleNext={this.handleNext}

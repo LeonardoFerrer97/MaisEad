@@ -37,17 +37,12 @@ namespace MaisEad.Controllers
             return usuarioBusiness.GetUsuarioById(id);
         }
 
-        [HttpGet("nome/{nome}")]
-        public ActionResult<UsuarioDto> GetByNome(string nome)
-        {
-            return usuarioBusiness.GetUsuarioByNome(nome);
-        }
 
 
         [HttpGet("email/{email}")]
         public ActionResult<UsuarioDto> GetByEmail(string email)
         {
-            return usuarioBusiness.GetUsuarioByNome(email);
+            return usuarioBusiness.GetUsuarioByEmail(email);
         }
 
         [HttpPost]

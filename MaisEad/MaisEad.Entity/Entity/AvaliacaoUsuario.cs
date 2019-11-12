@@ -6,5 +6,6 @@ namespace MaisEad.Entity.Entity
 
         public int AvaliacaoUsuarioId { get; set; }
         public int CursoIdAvaliacao{ get; set; }
+        public int Nota { get; set; }
     }
 }

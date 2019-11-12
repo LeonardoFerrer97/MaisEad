@@ -14,7 +14,6 @@ namespace MaisEad.Utils.Mappers
                 return new UsuarioDto()
                 {
                     Id = Usuario.Id,
-                    Nome = Usuario.Nome,
                     Email = Usuario.Email,
                 };
 
@@ -37,8 +36,7 @@ namespace MaisEad.Utils.Mappers
         {
             return new Usuario()
             {
-                Id = Usuario.Id,
-                Nome = Usuario.Nome,
+                Id = Usuario.Id,    
                 Email = Usuario.Email,
             };
 

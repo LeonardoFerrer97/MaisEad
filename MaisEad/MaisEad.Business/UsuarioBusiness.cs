@@ -28,9 +28,9 @@ namespace MaisEad.Business
             return mapper.EntityToDto(UsuarioRepository.Find(new { Id }));
         }
 
-        public UsuarioDto GetUsuarioByNome(string Nome)
+        public UsuarioDto GetUsuarioByEmail (string Email)
         {
-            return mapper.EntityToDto(UsuarioRepository.Find(new { Nome }));
+            return mapper.EntityToDto(UsuarioRepository.Find(new { Email }));
         }
 
         public int UpdateUsuarioById(UsuarioDto Usuario)
@@ -45,7 +45,9 @@ namespace MaisEad.Business
 
         public int InsertUsuario(UsuarioDto Usuario)
         {
-            return UsuarioRepository.Add(mapper.DtoToEntity(Usuario));
+            if (GetUsuarioByEmail(Usuario.Email) == null)
+                return UsuarioRepository.Add(mapper.DtoToEntity(Usuario));
+            else return 0;
         }
     }
 }

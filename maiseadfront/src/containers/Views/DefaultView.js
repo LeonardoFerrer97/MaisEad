@@ -1,12 +1,13 @@
 import React,{Component} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {obterEadSucesso} from '../../actions/index'
+import {obterEadSucesso,avaliarCurso} from '../../actions/index'
 import Home from './Home';
 import history from '../../components/Common/history'
 import EaDs from './EaDs';
 import AppEadBar from '../../components/AppEadBar/AppEadBar';
 import AppBottomBar from '../../components/AppEadBar/AppBottomBar';
+import CompareEaDs from './CompareEaDs';
 
 
 class DefaultView extends Component {
@@ -22,12 +23,8 @@ class DefaultView extends Component {
         history.push('/EaDs')
     }
     render() {
-        if(this.props.path==='EaDs'){
-            return (<div style={{height:'100vh',width:'100vw',backgroundImage : 'null !important',}}>
-                <AppEadBar />
-                <EaDs />
-            </div>)
-        }
+        if(history !== undefined && history.action === 'POP')
+            history.push('/')
         if(this.props.path==='Home'){
             return (<div >
                 <AppEadBar />
@@ -35,12 +32,25 @@ class DefaultView extends Component {
                 <AppBottomBar isTelaFiltrada={true}/>
             </div>)
         }
+        if(this.props.path==='EaDs'){
+            return (<div style={{height:'100vh',width:'100vw',backgroundImage : 'null !important',}}>
+                <AppEadBar />
+                <EaDs  avaliarCurso = {this.props.avaliarCurso}/>
+            </div>)
+        }
+        if(this.props.path ==='CompareEaDs')
+        {
+            return (<div style={{height:'100vh',width:'100vw',backgroundImage : 'null !important',}}>
+                <AppEadBar />
+                <CompareEaDs eaDsToCompare= {this.props.location.state.eaDsToCompare}successHandler = {this.successHandler}/>
+            </div>)
+        }
 
     }
 }
 
 function mapDispatchToProps(dispatch){
-    return bindActionCreators({obterEadSucesso},dispatch)
+    return bindActionCreators({obterEadSucesso,avaliarCurso},dispatch)
 }
 
 export default connect(null,mapDispatchToProps)(DefaultView)

@@ -33,6 +33,23 @@ export function getEadFiltered(NotaMec,TipoId,Duracao,Url,Nome,PontoApoio,Mensal
     };
 }
 
+export function postUsuario(user,successHandler,errorHandler){
+    const URL = `https://localhost:5001/api/Usuario`
+    let body ={
+        id:0,email:user.email
+    }
+    axios
+        .get(URL,body)
+        .then((result) => successHandler(result.data))
+        .catch((error) => errorHandler(error));
+    return {
+        type: OBTER_EAD,
+        payload: null
+    };
+    
+}
+
+
 export function getAllTipos(successHandler,errorHandler) {
     const URL = 'https://localhost:5001/api/TipoCurso'
     axios
@@ -44,4 +61,23 @@ export function getAllTipos(successHandler,errorHandler) {
         payload: null
     };
 }
+
+
+export function avaliarCurso(ead,nota,successHandler,errorHandler) {
+    const URL = 'https://localhost:5001/api/AvaliacaoUsuario';
+    let body = [{
+        
+        cursoId : ead.id,
+        nota: nota
+    }]
+    axios
+        .post(URL,body)
+        .then((result) => successHandler(result.data))
+        .catch((error) => errorHandler(error));
+    return {
+        type: OBTER_EAD,
+        payload: null
+    };
+}
+
 

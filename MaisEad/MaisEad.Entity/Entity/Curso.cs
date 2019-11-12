@@ -17,6 +17,6 @@ namespace MaisEad.Entity.Entity
         public Faculdade Faculdade {get;set; }
         public TipoCurso TipoCurso { get; set; } 
         public List<Comentario> Comentarios { get; set; }
-        public List<AvaliacaoUsuario> AvaliacaoUsuarios { get; set; }
+        public AvaliacaoUsuario AvaliacaoUsuarios { get; set; }
     }
 }

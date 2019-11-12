@@ -17,6 +17,7 @@ namespace MaisEad.Business
         private readonly AvaliacaoUsuarioBusiness avaliacaoUsuarioBusiness;
         private readonly FaculdadeBusiness faculdadeBusiness;
         private readonly CursoRepository cursoRepository;
+        private readonly TipoCursoBusiness tipoCursoBusiness;
 
         public CursoBusiness(string connection)
         {
@@ -25,6 +26,7 @@ namespace MaisEad.Business
             comentarioBusiness = new ComentarioBusiness(connection);
             avaliacaoUsuarioBusiness = new AvaliacaoUsuarioBusiness(connection);
             faculdadeBusiness = new FaculdadeBusiness(connection);
+            tipoCursoBusiness = new TipoCursoBusiness(connection); 
         }
 
 
@@ -88,6 +90,8 @@ namespace MaisEad.Business
                 foreach (var curs in listaCursos)
                 {
                     curs.Faculdade = faculdadeBusiness.GetFaculdadeById(curs.FaculdadeId);
+                    curs.TipoCurso = tipoCursoBusiness.GetTipoCursoById(curs.TipoId);
+                    curs.AvaliacaoUsuario = avaliacaoUsuarioBusiness.GetAllAvaliacaoUsuariosByCursoId(curs.Id);
                 }
                 if(curso.TipoId != 0)
                 {
@@ -103,7 +107,10 @@ namespace MaisEad.Business
                     foreach(var cursoIndividual in cursoFinal)
                     {
                         cursoIndividual.Faculdade = faculdadeBusiness.GetFaculdadeByNome(nomeFaculdade);
-                        
+
+                        cursoIndividual.AvaliacaoUsuario = avaliacaoUsuarioBusiness.GetAllAvaliacaoUsuariosByCursoId(cursoIndividual.Id);
+                        cursoIndividual.TipoCurso = tipoCursoBusiness.GetTipoCursoById(cursoIndividual.TipoId);
+
                     }
 
                     if (curso.TipoId != 0)
@@ -117,6 +124,8 @@ namespace MaisEad.Business
                     var cursos = mapper.ListEntityToListDto(cursoDapperRepository.GetData(query,null));
                     foreach(var curs in cursos) {
                         curs.Faculdade = faculdadeBusiness.GetFaculdadeById(curs.FaculdadeId);
+                        curs.TipoCurso = tipoCursoBusiness.GetTipoCursoById(curs.TipoId);
+                        curs.AvaliacaoUsuario = avaliacaoUsuarioBusiness.GetAllAvaliacaoUsuariosByCursoId(curs.Id);
                     }
 
                     if (curso.TipoId != 0)

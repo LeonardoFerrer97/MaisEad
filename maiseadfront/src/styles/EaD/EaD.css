@@ -56,14 +56,94 @@
 }
 
 
-.faculdade{
-    margin: 30px;
-    max-width: 130px;
-    max-height: 140px;
+.div-img-nota{
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    max-width: 10vw;
+    margin:20px;
 }
 
+.faculdade{
+    display:flex;
+    flex-grow: 1;
+    max-height:18vh;
+}
+
+.Nota{
+    align-content: center;
+    justify-content: center;
+    margin-top:10px;
+    display:flex;
+    flex-grow: 1;
+}
+.informacoes-ead{
+    margin:20px;
+    display: flex;
+    flex-direction: column;
+}
 .tipo{
+    margin: 0!important;
+    color: #646464;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.nome{
+    margin-top: 0!important;
+    color: #910000;
+    margin-bottom:2px!important;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.Duracao{
+    display: flex;
+    flex-grow:1;
+}
+.star-ratings{
     
+    margin-bottom:15px !important;
+}
+.nota-mec-titulo{
+    margin-top:0 !important;
+    margin-left:3px !important;
+    font-size:10px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-bottom:-1px !important;
+    color:#e6de12;
+
+    display: flex;
+    flex-grow:1;
+}
+
+.check-box{
+    margin-top:170px;
+    right:0px;
+}
+
+.noUnderline{
+    text-decoration:none;
+}
+
+.img{
+    margin:1vw;
+}
+
+.img-mec{
+    display: flex;
+    flex-direction: column;
+    margin:1vw;
+}
+
+
+.informacoes-especificas{
+    margin-top:5vh;
+    display: flex;
+    flex-direction: row;
+    flex-grow:10;
+}
+
+.informacoes-especificas-nome{
+    display: flex;
+    flex-grow:1;
+    flex-direction: column;
 }
 .pai{
     min-width: 70vw;

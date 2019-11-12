@@ -10,6 +10,7 @@ export default class Routes extends Component {
 				<Switch>
 					<Route exact path="/EaDs" render={(props) => <DefaultView {...props} path='EaDs'/>} />
 					<Route exact path="/" render={(props) => <DefaultView {...props} path='Home'/>} />
+					<Route exact path="/CompareEaDs" render={(props) => <DefaultView {...props} path='CompareEaDs'/>} />
 				</Switch>
 			</Router>
 		);

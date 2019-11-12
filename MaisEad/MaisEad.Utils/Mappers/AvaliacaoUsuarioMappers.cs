@@ -13,6 +13,7 @@ namespace MaisEad.Utils.Mappers
             {
                 Id = avaliacao.AvaliacaoUsuarioId,
                 CursoId = avaliacao.CursoIdAvaliacao,
+                Nota = avaliacao.Nota,
             };
 
         }
@@ -33,6 +34,7 @@ namespace MaisEad.Utils.Mappers
             return new AvaliacaoUsuario()
             {
 
+                Nota = avaliacao.Nota,
                 AvaliacaoUsuarioId = avaliacao.Id,
                 CursoIdAvaliacao = avaliacao.CursoId,
             };

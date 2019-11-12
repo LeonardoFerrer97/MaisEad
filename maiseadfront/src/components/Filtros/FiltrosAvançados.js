@@ -16,8 +16,7 @@ class FiltrosAvancados extends React.Component {
             />
             <NotaMec
                 passoAtual={this.props.passoAtual}
-                handleBack={this.props.handleBack}
-                handleNext={this.props.handleNext}
+                handleChange={this.props.handleChange}
                 notaMec={this.props.notaMec}
             />
             <PontoDeApoio

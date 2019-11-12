@@ -62,8 +62,6 @@ renderSuggestion.propTypes = {
 
 const useStyles = makeStyles(theme => ({
     textField: {
-        display:'flex',
-        flexDirection:'colunm',
         marginLeft:'13px',
         marginRight:'13px',
     },
@@ -88,7 +86,7 @@ export default function AppSearchTipoCurso(props) {
                         placeholder: 'Tipo do curso',
                     });
                     return (
-                        <div className={classes.container}>
+                        <div className={classes.textField}>
                             {renderInput({
                                 fullWidth: true,
                                 classes,
