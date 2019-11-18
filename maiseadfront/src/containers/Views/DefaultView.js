@@ -34,6 +34,7 @@ class DefaultView extends Component {
             </div>)
         }
         if(this.props.path==='EaDs'){
+            console.log('entrouuu')
             return (<div style={{height:'100vh',width:'100vw',backgroundImage : 'null !important',}}>
                 <AppEadBar />
                 <EaDs  avaliarCurso = {this.props.avaliarCurso}/>
@@ -50,7 +51,7 @@ class DefaultView extends Component {
         {
             return (<div style={{height:'100vh',width:'100vw',backgroundImage : 'null !important',}}>
                 <AppEadBar />
-                <Comentario ead= {this.props.location.state.eaD} user={this.props.user}/>
+                <Comentario ead= {this.props.location? this.props.location.state ?  this.props.location.state.eaD:null:null} user={this.props.user}/>
             </div>)
         }
     }

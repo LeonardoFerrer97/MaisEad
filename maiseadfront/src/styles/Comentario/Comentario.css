@@ -1,0 +1,103 @@
+.comment-pai{
+    display:flex;
+    flex-direction: column;
+    align-self: center;
+    justify-self: center;
+    margin-top:80px;
+    width:80vw;
+    margin-left:10vw;
+    margin-right:10vw;
+    box-shadow:  5px 5px 5px 5px #aaaaaa;
+    background-color: white;
+}
+
+
+.comment-titulo{
+    display:flex;
+    flex-grow: 1;
+    height:100px;
+    flex-direction: row;
+    color:#910000;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 50px;
+    align-self: center;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    justify-self: center;
+    width:100%;
+}
+.hr-comment{
+    width:100%;
+    border:dotted #eaeaea 1px;
+}
+.comments{
+    display:flex;
+    flex-grow: 1;
+    height:70px;
+    flex-direction: row;
+    display:flex;
+    flex-grow: 1;
+    color:#646464;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    width:100%;
+    align-self: center;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    justify-self: center;
+}
+
+.voltar{
+    display:flex;
+    flex-grow: 1;
+    height:70px;
+    display:flex;
+    flex-grow: 1;
+    color:#646464;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    width:100%;
+
+    align-self: center;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    justify-self: center;
+}
+.background{
+    width: 100vw;
+    height:90vh;
+    margin-top:10vh;
+
+    background-color:#eaeaea !important;
+}
+.button-voltar{
+    color:white;
+    width: 75px;
+    height:30px;
+    background-color:#910000;
+}
+
+.post-comment{
+    display:flex;
+    flex-grow: 1;
+    height:70px;
+    display:flex;
+    flex-grow: 1;
+    color:#646464;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    width:100%;
+
+    align-self: center;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    justify-self: center;
+}

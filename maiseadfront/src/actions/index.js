@@ -41,9 +41,10 @@ export function getComentarioByCursoId(cursoId, successHandler, errorHandler) {
     };
 }
 export function postComentario(comment, successHandler, errorHandler) {
-    const URL = `https://localhost:5001/api/Comentario/lista`;
+    const URL = `https://localhost:5001/api/Comentario`;
+    console.log( URL)
     axios
-        .get(URL, comment)
+        .post(URL, comment)
         .then((result) => successHandler(result.data))
         .catch((error) => errorHandler(error));
     return {

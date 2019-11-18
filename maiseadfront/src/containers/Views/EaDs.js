@@ -48,16 +48,16 @@ class EaDs extends React.Component {
                                 /></div>
                         </div>
                         <div className='vr'></div>
-                        <div class='informacoes-ead'>
+                        <div className='informacoes-ead'>
 
-                            <div class='informacoes-especificas-nome'>
+                            <div className='informacoes-especificas-nome'>
 
-                                <Tooltip title="Você será redirecionado para a página do curso"><a className='noUnderline' href={'https://' + ead.url} rel="noreferrer"><h1 class='nome'>{ead.nome}</h1></a></Tooltip>
-                                <p class='tipo'>{ead.tipoCurso.nomeTipo}</p>
+                                <Tooltip title="Você será redirecionado para a página do curso"><a className='noUnderline' href={'https://' + ead.url} rel="noreferrer"><h1 className='nome'>{ead.nome}</h1></a></Tooltip>
+                                <p className='tipo'>{ead.tipoCurso.nomeTipo}</p>
                             </div>
-                            <div class='informacoes-especificas'>
+                            <div className='informacoes-especificas'>
                                 <div className='img'>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#646464" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" class="feather feather-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#646464" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" ><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
                                     <span style={{ color: '#646464', marginBottom: '5px' }}>    {ead.duracao} anos</span>
                                 </div>
                                 <div className='img-mec' >
@@ -74,15 +74,15 @@ class EaDs extends React.Component {
                                     </div>
                                 </div>
                                 <div className='img' >
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#24a629" stroke-width="2" strokeLinecap="round" strokeLinejoin="round" class="feather feather-dollar-sign"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#24a629" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-dollar-sign"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
 
                                     <span style={{ color: '#24a629', transform: 'translateY(100px)' }}>     {ead.mensalidade}</span>
                                 </div>
                             </div>
                         </div>
-                        <Tooltip title="Você será redirecionado para a página de comentários curso">
-                            <div onClick={()=>this.onClickComentar(ead)}className='comment'>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-square"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                        <Tooltip id ={ead.id} title="Você será redirecionado para a página de comentários curso">
+                            <div id ={ead.id}onClick={()=>this.onClickComentar(ead)}className='comment'>
+                                <svg id ={ead.id} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-message-square"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
                             </div>
                         </Tooltip>
                         <div className='check-box'>
@@ -134,7 +134,7 @@ class EaDs extends React.Component {
     changeRating = (rating, ead) => {
         if (ead.avaliacaoUsuario != null)
             ead.avaliacaoUsuario.nota = rating;
-        this.props.avaliarCurso(ead, rating, () => { }, () => { })
+        this.props.avaliarCurso(ead, rating, () => {history.push('/') }, () => { })
     }
 
     onClickComparar = () => {

@@ -1,44 +1,105 @@
 import React from 'react';
-import {getComentarioByCursoId,postComentario} from '../../actions/index'
+import { getComentarioByCursoId, postComentario } from '../../actions/index'
 import * as _ from 'lodash';
+import '../../styles/Comentario/Comentario.css'
+import history from '../../components/Common/history';
+import { withStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
 
+const styles = theme => ({
 
-class Comentario extends React.Component{
+    textField: {
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'colunm',
+        marginLeft: '13px',
+        marginRight: '13px',
+    },
+});
 
-    constructor(props){
+class Comentario extends React.Component {
+
+    constructor(props) {
         super(props);
-        this.state={comments:[],user:''}
+        this.state = { comments: [], isAlreadyCalled: false, commentTxT: '' }
     }
 
-    onPostComment(commentTxT)
-    {
-        let comment = [{
-            id:0,
-            cursoId :this.props.ead.id,
-            commenTxt : commentTxT,
-            userName : this.state.user,
-        }]
-
-        postComentario(comment,()=>{},()=>{})
+    handleChange = (event) => {
+        this.setState({ commentTxT: event.target.value })
     }
 
-    successHandlerGetComments(comments){
-        this.setState({comments})
-    }
-
-    componentDidMount(){
-        if(!_.isEmpty(this.props.user) && !_.isEmpty(this.props.ead)){
-            getComentarioByCursoId(this.props.ead.id,this.successHandlerGetComments,()=>{})
-            this.setState({user :this.props.user.email})
+    onPostComment = () => {
+        let comment = {
+            id: 0,
+            cursoId: this.props.ead.id,
+            commentTxt: this.state.commentTxT,
+            userName: 'leoferrersilva@gmail.com'
         }
+        postComentario(comment,this.successHandlerPostComments, () => { })
     }
-    
-    render(){
-        return <div></div>     
+
+    successHandlerPostComments =()=>
+    {
+
+        getComentarioByCursoId(this.props.ead.id, this.successHandlerGetComments, () => { })
+        this.setState({commentTxT: ''})
+    }
+
+    successHandlerGetComments = (comments) => {
+        this.setState({ isAlreadyCalled: true })
+        this.setState({ comments })
+    }
+
+    onKeyPress = (e) =>
+    {
+        console.log(e)
+        if (e.key === 'Enter') {
+            e.preventDefault()
+            this.onPostComment()
+          }
+    }
+
+
+    render() {
+        const { classes } = this.props;
+        if (!this.state.isAlreadyCalled && !_.isEmpty(this.props.ead))
+            getComentarioByCursoId(this.props.ead.id, this.successHandlerGetComments, () => { })
+        if (this.state.isAlreadyCalled && !_.isEmpty(this.props.ead)) {
+            return <div className='background'><div className='comment-pai'>
+                <div className='comment-titulo'>{this.props.ead.nome} na {this.props.ead.faculdade.nome} </div>
+                <hr className='hr-comment'></hr>
+                {this.state.comments.map(value => {
+                    return <div>
+                        <div className='comments'> {value.userName.split('@')[0]} disse: {value.commentTxt} </div>
+                        <hr className='hr-comment'></hr>
+                    </div>
+                })}
+                <div style ={{width:'80%'}}className='post-comment'>
+                    <form  style ={{width:'80%'}} noValidate >
+                        <TextField
+                            id="outlined-name"
+                            label="Faça seu comentario"
+                            fullWidth
+                            classes={{ root: classes.textField }}
+                            value={this.state.commentTxT}
+                            onKeyPress ={(e)=>this.onKeyPress(e)}
+                            onChange={(e) => this.handleChange(e)}
+                            margin="normal"
+                            variant="outlined"
+                        />
+                    </form>
+
+                    <button style={{marginLeft:'30px',backgroundColor:'#910000',color:'white'}}onClick = {this.onPostComment}> COMENTAR </button>
+                </div>
+                <hr className='hr-comment'></hr>
+                <div className='voltar'> <button className='button-voltar' onClick={() => history.push('/')}> VOLTAR</button></div>
+            </div>
+            </div>
+        } else return <div></div>
     }
 }
 
 
 
 
-export default Comentario;
+export default withStyles(styles)(Comentario);
