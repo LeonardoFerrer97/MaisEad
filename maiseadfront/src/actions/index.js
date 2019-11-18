@@ -22,10 +22,10 @@ export function obterEadSucesso(listaEad) {
     }
 }
 
-export function loginUser(User) {
+export function loginUser(user) {
     return {
         type: USER,
-        payload: User
+        payload: user
     }
 }
 
@@ -42,7 +42,6 @@ export function getComentarioByCursoId(cursoId, successHandler, errorHandler) {
 }
 export function postComentario(comment, successHandler, errorHandler) {
     const URL = `https://localhost:5001/api/Comentario`;
-    console.log( URL)
     axios
         .post(URL, comment)
         .then((result) => successHandler(result.data))
@@ -68,13 +67,14 @@ export function getEadFiltered(NotaMec, TipoId, Duracao, Url, Nome, PontoApoio, 
     };
 }
 
-export function postUsuario(user, successHandler, errorHandler) {
+export function postUsuario(email, successHandler, errorHandler) {
+
     const URL = `https://localhost:5001/api/Usuario`
     let body = {
-        id: 0, email: user.email
+        id: 0, email: email
     }
     axios
-        .get(URL, body)
+        .post(URL, body)
         .then((result) => successHandler(result.data))
         .catch((error) => errorHandler(error));
     return {

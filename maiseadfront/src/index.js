@@ -5,33 +5,14 @@ import Routes from './Routes'
 import { Provider } from 'react-redux'
 import configureStore from './components/ConfigureStore';
 import * as serviceWorker from './serviceWorker';
-import { Auth0Provider } from "./components/Common/auth0";
-import config from "./auth_config.json";
-
 
 
 const store = configureStore();
-const onRedirectCallback = appState => {
-    window.history.replaceState(
-      {},
-      document.title,
-      appState && appState.targetUrl
-        ? appState.targetUrl
-        : window.location.pathname
-    );
-  };
 
 
 ReactDOM.render(
     <Provider store={store}>
-        <Auth0Provider
-            domain={config.domain}
-            client_id={config.clientId}
-            redirect_uri={window.location.origin}
-            onRedirectCallback={onRedirectCallback}
-        >
             <Routes />
-        </Auth0Provider>
     </Provider>,
     document.getElementById('root')
 );

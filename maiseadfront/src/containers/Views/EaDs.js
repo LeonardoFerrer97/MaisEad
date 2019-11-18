@@ -26,7 +26,7 @@ const CompareCheckbox = withStyles({
 class EaDs extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { rating: 0, isCompare: false, eadsToCompare: [], checkedValues: [], isSnackBarOpen: false };
+        this.state = { rating: 0, isCompare: false, eadsToCompare: [], checkedValues: [], isSnackBarOpen: false,notAutheticated:false};
     }
     render() {
         if (!_.isEmpty(this.props.listaEad)) {
@@ -80,9 +80,9 @@ class EaDs extends React.Component {
                                 </div>
                             </div>
                         </div>
-                        <Tooltip id ={ead.id} title="Você será redirecionado para a página de comentários curso">
-                            <div id ={ead.id}onClick={()=>this.onClickComentar(ead)}className='comment'>
-                                <svg id ={ead.id} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-message-square"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                        <Tooltip id={ead.id} title="Você será redirecionado para a página de comentários curso">
+                            <div id={ead.id} onClick={() => this.onClickComentar(ead)} className='comment'>
+                                <svg id={ead.id} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-message-square"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
                             </div>
                         </Tooltip>
                         <div className='check-box'>
@@ -121,6 +121,29 @@ class EaDs extends React.Component {
                                 </IconButton>,
                             ]}
                         />
+                        <Snackbar
+                            anchorOrigin={{
+                                vertical: 'bottom',
+                                horizontal: 'left',
+                            }}
+                            open={this.state.notAutheticated}
+                            autoHideDuration={6000}
+                            onClose={this.handleClose}
+                            ContentProps={{
+                                'aria-describedby': 'message-id',
+                            }}
+                            message={<span id="message-id">Você precisa estar logado para avaliar o curso.</span>}
+                            action={[
+                                <IconButton
+                                    key="close"
+                                    aria-label="close"
+                                    color="inherit"
+                                    onClick={this.handleClose}
+                                >
+                                    <CloseIcon />
+                                </IconButton>,
+                            ]}
+                        />
                     </div>
                 })}
                 <div className='buttons'>
@@ -132,9 +155,13 @@ class EaDs extends React.Component {
         else return <div></div>
     }
     changeRating = (rating, ead) => {
-        if (ead.avaliacaoUsuario != null)
-            ead.avaliacaoUsuario.nota = rating;
-        this.props.avaliarCurso(ead, rating, () => {history.push('/') }, () => { })
+        if (this.props.auth.isAuthenticated()) {
+            if (ead.avaliacaoUsuario != null)
+                ead.avaliacaoUsuario.nota = rating;
+            this.props.avaliarCurso(ead, rating, () => { history.push('/') }, () => { })
+        }
+        else
+            this.setState({notAutheticated:true})
     }
 
     onClickComparar = () => {
@@ -145,8 +172,7 @@ class EaDs extends React.Component {
             this.setState({ isSnackBarOpen: true });
     }
 
-    onClickComentar = (ead) =>
-    {
+    onClickComentar = (ead) => {
         history.push({ pathname: '/Comentario', state: { eaD: ead } })
     }
 

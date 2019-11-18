@@ -34,13 +34,16 @@ class AppEadBar extends React.Component {
   handleClose = () => {
     this.setState({ isModalOpen: false });
   }
+
+
+
   render() {
     const { classes } = this.props;
     return <AppBar classes={{ root: classes.root }}>
       <Toolbar classes={{ root: classes.root }} />
       <div className='Titulo' onClick={()=>{history.push('/')}}>MaisEad</div>
       <div className='login'>
-        <NavBar></NavBar>
+        <NavBar auth={this.props.auth}></NavBar>
       </div>
     </AppBar>
   }

@@ -1,19 +1,18 @@
 import React from "react";
-import { useAuth0 } from "../Common/auth0";
 
-const NavBar = () => {
-  const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
+const NavBar = (props) => {
   return (
     <div>
-      {!isAuthenticated ?
+      {!props.auth.isAuthenticated() ?
         <button
-          onClick={() =>
-            loginWithRedirect({})
+          onClick={() => {
+            props.auth.login()
+          }
           }
         >
           Log in
         </button>
-      :<button onClick={() => logout()}>Log out</button>}
+        : <button onClick={() => props.auth.logout()}>Log out</button>}
     </div>
   );
 };

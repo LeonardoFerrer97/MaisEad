@@ -6,6 +6,9 @@ import history from '../../components/Common/history';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 
+import Snackbar from '@material-ui/core/Snackbar';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
 const styles = theme => ({
 
     textField: {
@@ -21,7 +24,7 @@ class Comentario extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { comments: [], isAlreadyCalled: false, commentTxT: '' }
+        this.state = { comments: [], isAlreadyCalled: false, commentTxT: '', showSnackbar: false }
     }
 
     handleChange = (event) => {
@@ -29,20 +32,27 @@ class Comentario extends React.Component {
     }
 
     onPostComment = () => {
-        let comment = {
-            id: 0,
-            cursoId: this.props.ead.id,
-            commentTxt: this.state.commentTxT,
-            userName: 'leoferrersilva@gmail.com'
+        if (!this.props.auth.isAuthenticated()) {
+            this.setState({showSnackbar:true})
         }
-        postComentario(comment,this.successHandlerPostComments, () => { })
+        else {
+            this.props.auth.getProfile(this.getProfile);
+        }
     }
 
-    successHandlerPostComments =()=>
-    {
+        getProfile = (x,user) =>{
+            let comment = {
+                id: 0,
+                cursoId: this.props.ead.id,
+                commentTxt: this.state.commentTxT,
+                userName: user.name
+            }
+            postComentario(comment, this.successHandlerPostComments, () => { })
+        }
+    successHandlerPostComments = () => {
 
         getComentarioByCursoId(this.props.ead.id, this.successHandlerGetComments, () => { })
-        this.setState({commentTxT: ''})
+        this.setState({ commentTxT: '' })
     }
 
     successHandlerGetComments = (comments) => {
@@ -50,15 +60,20 @@ class Comentario extends React.Component {
         this.setState({ comments })
     }
 
-    onKeyPress = (e) =>
-    {
-        console.log(e)
+    onKeyPress = (e) => {
         if (e.key === 'Enter') {
             e.preventDefault()
             this.onPostComment()
-          }
+        }
     }
 
+    handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        this.setState({ isSnackBarOpen: false });
+    };
 
     render() {
         const { classes } = this.props;
@@ -70,30 +85,53 @@ class Comentario extends React.Component {
                 <hr className='hr-comment'></hr>
                 {this.state.comments.map(value => {
                     return <div>
-                        <div className='comments'> {value.userName.split('@')[0]} disse: {value.commentTxt} </div>
+                        <div className='comments'> {value.userName} disse: {value.commentTxt} </div>
                         <hr className='hr-comment'></hr>
                     </div>
                 })}
-                <div style ={{width:'80%'}}className='post-comment'>
-                    <form  style ={{width:'80%'}} noValidate >
+                <div style={{ width: '80%' }} className='post-comment'>
+                    <form style={{ width: '80%' }} noValidate >
                         <TextField
                             id="outlined-name"
                             label="Faça seu comentario"
                             fullWidth
                             classes={{ root: classes.textField }}
                             value={this.state.commentTxT}
-                            onKeyPress ={(e)=>this.onKeyPress(e)}
+                            onKeyPress={(e) => this.onKeyPress(e)}
                             onChange={(e) => this.handleChange(e)}
                             margin="normal"
                             variant="outlined"
                         />
                     </form>
 
-                    <button style={{marginLeft:'30px',backgroundColor:'#910000',color:'white'}}onClick = {this.onPostComment}> COMENTAR </button>
+                    <button style={{ marginLeft: '30px', backgroundColor: '#910000', color: 'white' }} onClick={this.onPostComment}> COMENTAR </button>
                 </div>
                 <hr className='hr-comment'></hr>
                 <div className='voltar'> <button className='button-voltar' onClick={() => history.push('/')}> VOLTAR</button></div>
             </div>
+                <Snackbar
+                    anchorOrigin={{
+                        vertical: 'bottom',
+                        horizontal: 'left',
+                    }}
+                    open={this.state.showSnackbar}
+                    autoHideDuration={6000}
+                    onClose={this.handleClose}
+                    ContentProps={{
+                        'aria-describedby': 'message-id',
+                    }}
+                    message={<span id="message-id">Você precisa estar logado para comentar.</span>}
+                    action={[
+                        <IconButton
+                            key="close"
+                            aria-label="close"
+                            color="inherit"
+                            onClick={this.handleClose}
+                        >
+                            <CloseIcon />
+                        </IconButton>,
+                    ]}
+                />
             </div>
         } else return <div></div>
     }
