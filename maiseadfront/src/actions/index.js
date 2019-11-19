@@ -4,7 +4,7 @@ export const OBTER_EAD = 'OBTER_EAD'
 export const USER = 'user'
 
 export function obterListaEad(successHandler, errorHandler) {
-    const URL = "https://localhost:5001/api/values";
+    const URL = "https://maiseadback.herokuapp.com/api/values";
     axios
         .get(URL)
         .then((result) => successHandler(result.data))
@@ -30,7 +30,7 @@ export function loginUser(user) {
 }
 
 export function getComentarioByCursoId(cursoId, successHandler, errorHandler) {
-    const URL = `https://localhost:5001/api/Comentario/curso/${cursoId}`;
+    const URL = `https://maiseadback.herokuapp.com/api/Comentario/curso/${cursoId}`;
     axios
         .get(URL)
         .then((result) => successHandler(result.data))
@@ -41,7 +41,7 @@ export function getComentarioByCursoId(cursoId, successHandler, errorHandler) {
     };
 }
 export function postComentario(comment, successHandler, errorHandler) {
-    const URL = `https://localhost:5001/api/Comentario`;
+    const URL = `https://maiseadback.herokuapp.com/api/Comentario`;
     axios
         .post(URL, comment)
         .then((result) => successHandler(result.data))
@@ -56,7 +56,7 @@ export function postComentario(comment, successHandler, errorHandler) {
 
 
 export function getEadFiltered(NotaMec, TipoId, Duracao, Url, Nome, PontoApoio, Mensalidade, NomeFaculdade, successHandler, errorHandler) {
-    const URL = `https://localhost:5001/api/Curso/Filter?NotaMec=${NotaMec}&TipoId=${TipoId}&Duracao=${Duracao}&Url=${Url}&Nome=${Nome}&PontoApoio=${PontoApoio}&Mensalidade=${Mensalidade}&nomeFaculdade=${NomeFaculdade}`
+    const URL = `https://maiseadback.herokuapp.com/api/Curso/Filter?NotaMec=${NotaMec}&TipoId=${TipoId}&Duracao=${Duracao}&Url=${Url}&Nome=${Nome}&PontoApoio=${PontoApoio}&Mensalidade=${Mensalidade}&nomeFaculdade=${NomeFaculdade}`
     axios
         .get(URL)
         .then((result) => successHandler(result.data))
@@ -69,7 +69,7 @@ export function getEadFiltered(NotaMec, TipoId, Duracao, Url, Nome, PontoApoio, 
 
 export function postUsuario(email, successHandler, errorHandler) {
 
-    const URL = `https://localhost:5001/api/Usuario`
+    const URL = `https://maiseadback.herokuapp.com/api/Usuario`
     let body = {
         id: 0, email: email
     }
@@ -86,7 +86,7 @@ export function postUsuario(email, successHandler, errorHandler) {
 
 
 export function getAllTipos(successHandler, errorHandler) {
-    const URL = 'https://localhost:5001/api/TipoCurso'
+    const URL = 'https://maiseadback.herokuapp.com/api/TipoCurso'
     axios
         .get(URL)
         .then((result) => successHandler(result.data))
@@ -99,7 +99,7 @@ export function getAllTipos(successHandler, errorHandler) {
 
 
 export function avaliarCurso(ead, nota, successHandler, errorHandler) {
-    const URL = 'https://localhost:5001/api/AvaliacaoUsuario';
+    const URL = 'https://maiseadback.herokuapp.com/api/AvaliacaoUsuario';
     let body = [{
 
         cursoId: ead.id,

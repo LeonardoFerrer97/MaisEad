@@ -13,6 +13,7 @@ const styles = theme => ({
 
 class EadCompare extends React.Component {
     render() {
+        console.log(this.props.ead)
         return <div className='filho-div'>
             <div className='first-child'>
                 <div><p className='name'>{this.props.ead.nome}</p></div>
@@ -20,6 +21,11 @@ class EadCompare extends React.Component {
             <hr className='hr' />
             <div className='first-child'>
                 <div><p className='escrito'>Faculdade : {this.props.ead.faculdade.nome}</p></div>
+            </div>
+            <hr className='hr' />
+
+            <div className='first-child'>
+                <div><p className='escrito'>Nota MEC da faculdade : {this.props.ead.faculdade.notaMec}</p></div>
             </div>
             <hr className='hr' />
             <div className='first-child'>

@@ -41,7 +41,7 @@ class AppEadBar extends React.Component {
     const { classes } = this.props;
     return <AppBar classes={{ root: classes.root }}>
       <Toolbar classes={{ root: classes.root }} />
-      <div className='Titulo' onClick={()=>{history.push('/')}}>MaisEad</div>
+      <div className='Titulo' onClick={()=>{history.push('/')}}><img className='logo'alt="logo" src={`./images/Logo.png`}></img></div>
       <div className='login'>
         <NavBar auth={this.props.auth}></NavBar>
       </div>

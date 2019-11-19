@@ -4,7 +4,7 @@ export default class Auth {
   auth0 = new auth0.WebAuth({
     domain: 'dev-d1olx9ru.auth0.com',
     clientID: 'oZ07ZtsCNEwrVbP2DOknH32QVqrfgBLn',
-    redirectUri:  'http://localhost:3000/callback' ,
+    redirectUri:  'https://maisead.herokuapp.com/callback' ,
     responseType:"token id_token",
     scope: "openid profile email"    ,
   });

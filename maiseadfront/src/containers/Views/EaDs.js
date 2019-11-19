@@ -109,7 +109,7 @@ class EaDs extends React.Component {
                             ContentProps={{
                                 'aria-describedby': 'message-id',
                             }}
-                            message={<span id="message-id">Por favor, selecione mais de um EaD para ser comparado.</span>}
+                            message={<span id="message-id">{this.state.checkedValues.length>4?'O máximo de EaDs para comparação é 4':'Por favor, selecione mais de um EaD para ser comparado.'}</span>}
                             action={[
                                 <IconButton
                                     key="close"
@@ -166,7 +166,7 @@ class EaDs extends React.Component {
 
     onClickComparar = () => {
         this.setState({ isCompare: true })
-        if (this.state.checkedValues.length > 1)
+        if (this.state.checkedValues.length > 1 && this.state.checkedValues.length<5)
             history.push({ pathname: '/CompareEaDs', state: { eaDsToCompare: this.state.checkedValues } })
         else if (this.state.isCompare)
             this.setState({ isSnackBarOpen: true });
@@ -196,7 +196,7 @@ class EaDs extends React.Component {
             return;
         }
 
-        this.setState({ isSnackBarOpen: false });
+        this.setState({ isSnackBarOpen: false,notAutheticated:false });
     };
 
 }
