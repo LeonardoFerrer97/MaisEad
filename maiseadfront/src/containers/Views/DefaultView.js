@@ -9,6 +9,7 @@ import AppEadBar from '../../components/AppEadBar/AppEadBar';
 import AppBottomBar from '../../components/AppEadBar/AppBottomBar';
 import CompareEaDs from './CompareEaDs';
 import Comentario from './Comentario';
+import Avaliacao from './Avaliacao'
 
 
 class DefaultView extends Component {
@@ -58,6 +59,14 @@ class DefaultView extends Component {
             return (<div style={{ height: '100vh', width: '100vw', backgroundImage: 'null !important', }}>
                 <AppEadBar auth={this.props.auth} />
                 <Comentario auth={this.props.auth} ead={this.props.location ? this.props.location.state ? this.props.location.state.eaD : null : null} user={this.props.user} />
+            </div>)
+        }
+        if (this.props.path === 'Avalie') {
+            console.log(this.props)
+            return (<div style={{ height: '100vh', width: '100vw', backgroundImage: 'null !important', }}>
+
+                <AppEadBar auth={this.props.auth} />
+                <Avaliacao auth={this.props.auth} ead={this.props.location ? this.props.location.state ? this.props.location.state.ead : null : null}  />
             </div>)
         }
     }

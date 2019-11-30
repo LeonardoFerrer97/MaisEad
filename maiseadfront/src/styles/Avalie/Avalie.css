@@ -1,0 +1,87 @@
+.comment-titulo-avaliar{
+    display:flex;
+    flex-grow: 1;
+    height:100px;
+    flex-direction: row;
+    color:#910000;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 50px;
+    align-self: center;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    justify-self: center;
+    width:100%;
+}
+
+.background{
+    width: 100vw;
+    height:90vh;
+    margin-top:10vh;
+    background-color:#eaeaea !important;
+}
+
+.buttons-avaliar{
+    background-color: white;
+    display: flex;
+    min-width: 48vw;
+    min-height: 10vh;
+    margin:10px;
+    box-shadow:  5px 5px 5px 5px #aaaaaa;
+    max-width: 48vw;
+    max-height: 10vh;
+    align-self: center;
+    flex-direction: column;
+    margin-left: 25vw;
+    margin-right:10vw;
+    justify-self: center;
+}
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    width: 70vw;
+    padding: 10px;
+    justify-items: center;
+  }
+
+  .avaliacoes{
+      display:flex;
+      flex-direction: column;
+      align-self: center;
+      align-items: center;
+  }
+  .grid-item {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    font-size: 30px;
+    margin:30px;
+    text-align: center;
+  }
+.buttonVoltar{
+    margin-right:55%;
+    margin-left:10px;
+    margin-top:10px;
+    margin-bottom: 10px;
+    color:white;
+    display: flex;
+    flex-grow: 1;
+    max-width: 150px;
+    cursor: pointer;
+    justify-content: space-around;
+    background-color:#910000;
+    box-shadow: 3px 3px 3px 3px #aaaaaa;
+}
+
+.buttonComparar{
+    max-width: 150px;
+    cursor: pointer;
+    justify-content: space-around;
+    margin:10px;
+    flex-grow: 1;
+    color:white;
+    display: flex;
+    background-color:#910000;
+    box-shadow: 3px 3px 3px 3px #aaaaaa;
+}

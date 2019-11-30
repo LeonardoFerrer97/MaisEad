@@ -37,6 +37,9 @@ namespace MaisEad.Business
             if (avaliacaoUsuarios.Count() == 0)
                 return null;
             int soma = 0;
+            int somaQualidade = 0;
+            int somaInfra = 0;
+            int somaOrg = 0;
             int count = 0;
             AvaliacaoUsuarioDto avaliacoesUsuario = new AvaliacaoUsuarioDto();
             foreach (var avaliacao in avaliacaoUsuarios)
@@ -47,10 +50,19 @@ namespace MaisEad.Business
                     avaliacoesUsuario.Id = avaliacao.AvaliacaoUsuarioId;
                 }
                 soma += avaliacao.Nota;
+                somaQualidade += avaliacao.QualidadeMaterial;
+                somaInfra += avaliacao.InfraestruturaPoloApoio;
+                somaOrg += avaliacao.OrganizacaoVirtual;
                 count++;
             }
             soma /= count;
+            somaQualidade /= count;
+            somaInfra /= count;
+            somaOrg /= count;
             avaliacoesUsuario.Nota = soma;
+            avaliacoesUsuario.OrganizacaoVirtual = somaOrg;
+            avaliacoesUsuario.QualidadeMaterial = somaQualidade;
+            avaliacoesUsuario.InfraestruturaPoloApoio = somaInfra;
             return avaliacoesUsuario;
         }
 

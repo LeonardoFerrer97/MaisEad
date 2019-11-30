@@ -36,16 +36,9 @@ class EaDs extends React.Component {
                     return <div className='div-pai-ead'>
                         <div className='div-img-nota'>
                             <img className='faculdade' alt={ead.faculdade.nome} src={`./images/${ead.faculdade.nome}.png`}></img>
-                            <div className='Nota'>
-                                <StarRatings
-                                    starDimension='10px'
-                                    rating={ead.avaliacaoUsuario == null ? 0 : ead.avaliacaoUsuario.nota}
-                                    starRatedColor="#16cbdb"
-                                    starHoverColor="blue"
-                                    changeRating={(event) => this.changeRating(event, ead)}
-                                    numberOfStars={5}
-                                    name='rating'
-                                /></div>
+                            <div className='Nota' onClick={()=>this.onClickAvaliarCurso(ead)}>
+                                Avalie esse curso
+                                </div>
                         </div>
                         <div className='vr'></div>
                         <div className='informacoes-ead'>
@@ -121,29 +114,7 @@ class EaDs extends React.Component {
                                 </IconButton>,
                             ]}
                         />
-                        <Snackbar
-                            anchorOrigin={{
-                                vertical: 'bottom',
-                                horizontal: 'left',
-                            }}
-                            open={this.state.notAutheticated}
-                            autoHideDuration={6000}
-                            onClose={this.handleClose}
-                            ContentProps={{
-                                'aria-describedby': 'message-id',
-                            }}
-                            message={<span id="message-id">Você precisa estar logado para avaliar o curso.</span>}
-                            action={[
-                                <IconButton
-                                    key="close"
-                                    aria-label="close"
-                                    color="inherit"
-                                    onClick={this.handleClose}
-                                >
-                                    <CloseIcon />
-                                </IconButton>,
-                            ]}
-                        />
+                        
                     </div>
                 })}
                 <div className='buttons'>
@@ -190,6 +161,12 @@ class EaDs extends React.Component {
                 : [...state.checkedValues, x]
         }));
     }
+
+    onClickAvaliarCurso = (ead) =>{
+
+        history.push({ pathname: '/Avalie', state: { ead} })
+    }
+
 
     handleClose = (event, reason) => {
         if (reason === 'clickaway') {

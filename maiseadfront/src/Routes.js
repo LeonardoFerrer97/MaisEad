@@ -21,6 +21,7 @@ export default class Routes extends Component {
 					<Route exact path="/" render={(props) => <DefaultView auth={auth}{...props} path='Home'/>} />
 					<Route exact path="/CompareEaDs" render={(props) => <DefaultView auth={auth}{...props} path='CompareEaDs'/>} />
 					<Route exact path="/Comentario" render={(props) => <DefaultView auth={auth}{...props} path='Comentario'/>} />
+					<Route exact path="/Avalie" render={(props) => <DefaultView auth={auth}{...props} path='Avalie'/>} />
 					<Route path="/callback" render={(props) => { handleAuthentication(props); return <Callback {...props} /> }} />
 				</Switch>
 			</Router>
