@@ -10,31 +10,65 @@ class Avalie extends React.Component {
         return <div className='background'>
             <div className='comment-titulo-avaliar'>{this.props.ead.nome} na {this.props.ead.faculdade.nome} </div>
             <div className="avaliacoes">
-            <div class="grid-container">
-                <div class="grid-item"><p>Infraestrutura dos polos de apoio</p></div>
-                <div class="grid-item">Qualidade do material didático</div>
-                <div class="grid-item">Organização do Ambiente Virtual de Aprendizagem</div>
-                <div class="grid-item">Nota do curso de 1 a 5</div>
+                <div class="grid-container">
+                    <div class="grid-item"><p>Infraestrutura dos polos de apoio</p>
+                        <StarRatings
+                            starDimension='20px'
+                            rating={this.props.isAvaliar? this.props.Infra : this.props.ead.avaliacaoUsuario.infraestruturaPoloApoio}
+                            starRatedColor="#16cbdb"
+                            starHoverColor="blue"
+                            disabled={true}
+                            changeRating={this.props.isAvaliar?()=>{} :(event) => this.props.handleChange(event)}
+                            numberOfStars={5}
+                            name='rating'
+                        />
+                    </div>
+                    <div class="grid-item"><p>Qualidade do material didático</p>
+                        <StarRatings
+                            starDimension='20px'
+                            rating={this.props.isAvaliar? this.props.Material : this.props.ead.avaliacaoUsuario.qualidadeMaterial}
+                            starRatedColor="#16cbdb"
+                            starHoverColor="blue"
+                            disabled={true}
+                            changeRating={this.props.isAvaliar?()=>{} :(event) => this.props.handleChange(event)}
+                            numberOfStars={5}
+                            name='rating'
+                        />
+                    </div>
+                    <div class="grid-item"><p>Organização do Ambiente Virtual de Aprendizagem</p>
+                        <StarRatings
+                            starDimension='20px'
+                            rating={this.props.isAvaliar? this.props.Organizacao : this.props.ead.avaliacaoUsuario.organizacaoVirtual}
+                            starRatedColor="#16cbdb"
+                            starHoverColor="blue"
+                            disabled={true}
+                            changeRating={this.props.isAvaliar?()=>{} :(event) => this.props.handleChange(event)}
+                            numberOfStars={5}
+                            name='rating'
+                        />
+                    </div>
+                    <div class="grid-item"><p>Nota do curso de 1 a 5</p>
+                        <StarRatings
+                            starDimension='20px'
+                            rating={this.props.isAvaliar? this.props.Organizacao :  this.props.ead.avaliacaoUsuario.nota}
+                            starRatedColor="#16cbdb"
+                            starHoverColor="blue"
+                            disabled={true}
+                            changeRating={this.props.isAvaliar?()=>{} :(event) => this.props.handleChange(event)}
+                            numberOfStars={5}
+                            name='rating'
+                        />
+                    </div>
+                </div>
             </div>
-            </div>
-            <StarRatings
-                starDimension='10px'
-                rating={this.props.ead.avaliacaoUsuario == null ? 0 : this.props.ead.avaliacaoUsuario.nota}
-                starRatedColor="#16cbdb"
-                starHoverColor="blue"
-                disabled={true}
-                changeRating={(event) => this.changeRating(event, this.props.ead)}
-                numberOfStars={5}
-                name='rating'
-            />
             <Snackbar
                 anchorOrigin={{
                     vertical: 'bottom',
                     horizontal: 'left',
                 }}
-                open={false}//this.props.notAutheticated}}
+                open={this.props.showSnackbar}
                 autoHideDuration={6000}
-                onClose={this.handleClose}
+                onClose={this.props.handleClose}
                 ContentProps={{
                     'aria-describedby': 'message-id',
                 }}
@@ -44,7 +78,7 @@ class Avalie extends React.Component {
                         key="close"
                         aria-label="close"
                         color="inherit"
-                        onClick={this.handleClose}
+                        onClick={this.props.handleClose}
                     >
                         <CloseIcon />
                     </IconButton>,
@@ -52,7 +86,7 @@ class Avalie extends React.Component {
             />
             <div className='buttons-avaliar'>
                 <button onClick={() => this.props.onClickVoltar()} className='buttonVoltar'>{this.props.isAvaliar ? 'cancelar' : 'voltar'}</button>
-                <button onClick={() => this.props.onClickComparar()} className='buttonComparar'>{this.props.isAvaliar ? 'Avaliar' : 'Finalizar'}</button>
+                <button onClick={() => this.props.onClickAvaliar()} className='buttonComparar'>{this.props.isAvaliar ? 'Finalizar' : 'Avaliar'}</button>
             </div>
         </div >
     }

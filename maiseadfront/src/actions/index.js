@@ -98,13 +98,17 @@ export function getAllTipos(successHandler, errorHandler) {
 }
 
 
-export function avaliarCurso(ead, nota, successHandler, errorHandler) {
+export function avaliarCurso(ead, nota,org,infra,mat, successHandler, errorHandler) {
     const URL = 'https://maiseadback.herokuapp.com/api/AvaliacaoUsuario';
     let body = [{
 
         cursoId: ead.id,
-        nota: nota
+        nota: nota,
+        organizacaoVirtual: org,
+        infraestruturaPoloApoio: infra,
+        qualidadeMaterial: mat
     }]
+    console.log(body)
     axios
         .post(URL, body)
         .then((result) => successHandler(result.data))
