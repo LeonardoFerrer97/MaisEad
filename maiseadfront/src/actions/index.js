@@ -108,7 +108,6 @@ export function avaliarCurso(ead, nota,org,infra,mat, successHandler, errorHandl
         infraestruturaPoloApoio: infra,
         qualidadeMaterial: mat
     }]
-    console.log(body)
     axios
         .post(URL, body)
         .then((result) => successHandler(result.data))

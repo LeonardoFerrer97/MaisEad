@@ -37,7 +37,7 @@ class EaDs extends React.Component {
                         <div className='div-img-nota'>
                             <img className='faculdade' alt={ead.faculdade.nome} src={`./images/${ead.faculdade.nome}.png`}></img>
                             <div className='Nota' onClick={()=>this.onClickAvaliarCurso(ead)}>
-                                Avalie esse curso
+                                <button style={{color:'#646464',backgroundColor:'#FFFFFF',border:'none',cursor:'pointer'}}>Avalie esse curso</button>
                                 </div>
                         </div>
                         <div className='vr'></div>

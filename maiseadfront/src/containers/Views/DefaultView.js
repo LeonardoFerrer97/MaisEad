@@ -62,7 +62,6 @@ class DefaultView extends Component {
             </div>)
         }
         if (this.props.path === 'Avalie') {
-            console.log(this.props)
             return (<div style={{ height: '100vh', width: '100vw', backgroundImage: 'null !important', }}>
 
                 <AppEadBar auth={this.props.auth} />

@@ -13,14 +13,12 @@ class Avaliacao extends React.Component{
             Material:0,
             Organizacao:0,
             isAvaliar:false,
+            snackBarToEnd:false,
         }
     }
 
-    handleChange = name => event => {
-        if(event.target)
-            this.setState({ [name]: event.target.value });
-        else
-            this.setState({ [name]: event });
+    handleChange = (event,name) => {
+        this.setState({ [name]: event });
     };
 
     handleClose =()=>{
@@ -30,14 +28,23 @@ class Avaliacao extends React.Component{
 
     onClickAvaliar =() =>{
         if(!this.state.isAvaliar){
-            if (this.props.auth.isAuthenticated()) {
+           if (this.props.auth.isAuthenticated()) {
                 this.setState({isAvaliar:true})
             }
             else
-                this.setState({showSnackbar:true})
+              this.setState({showSnackbar:true})
         }
         else
-            avaliarCurso(this.props.ead, this.state.Nota,this.state.Organizacao,this.state.Infra,this.state.Material, () => { history.push('/') }, () => { })
+            avaliarCurso(this.props.ead, this.state.Nota,this.state.Organizacao,this.state.Infra,this.state.Material, this.onAvaliarAcabar, () => { })
+    }
+
+    onAvaliarAcabar = () =>
+    {
+        this.setState({snackBarToEnd:true});
+        setTimeout(function () {
+            this.setState({snackBarToEnd:false})
+            history.push('/')
+        }, 2000);
     }
 
     onClickVoltar =() =>{
@@ -61,6 +68,7 @@ class Avaliacao extends React.Component{
                             onClickVoltar = {this.onClickVoltar}
                             handleClose = {this.handleClose}
                             showSnackbar = {this.state.showSnackbar}
+                            snackBarToEnd = {this.state.snackBarToEnd}
                             >
                             </Avalie> 
         else return <div></div>
